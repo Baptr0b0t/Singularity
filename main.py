@@ -5,9 +5,10 @@ import Gameobject
 pygame.init()
 
 # Dimensions de la fenêtre
-LARGEUR, HAUTEUR = 800, 500
+LARGEUR, HAUTEUR = 1000, 1000
 fenetre = pygame.display.set_mode((LARGEUR, HAUTEUR))
-pygame.display.set_caption("Triangle orienté vers la souris")
+pygame.display.set_caption("Singularity")
+
 
 # Couleurs
 NOIR = (0, 0, 0)
@@ -15,9 +16,9 @@ BLANC = (255, 255, 255)
 ROUGE = (255, 0, 0)
 
 
+spaceship = pygame.image.load('spaceship.png')
 
-
-
+#DELETE SOON
 class Renderer(Gameobject.Component):
     def __init__(self, game_object, color, size):
         self.color = color
@@ -38,6 +39,23 @@ class Renderer(Gameobject.Component):
             point3 = (x + size * math.cos(angle - 2 * math.pi / 3), y + size * math.sin(angle - 2 * math.pi / 3))
 
             pygame.draw.polygon(fenetre, self.color, [point1, point2, point3])
+
+
+class sprite_renderer(pygame.sprite.Sprite):
+
+    def __init__(self, surface):
+        pygame.sprite.Sprite.__init__(self)
+        self.surface = surface
+
+    def update(self, game_object):
+        transform = game_object.get_component(Gameobject.Transform)
+        if transform:
+            angle = math.degrees(transform.angle)+90
+            self.image = pygame.transform.rotate(self.surface, -angle)
+            self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
+
+
+
 
 class Movement(Gameobject.Component):
     def __init__(self, speed):
@@ -81,21 +99,25 @@ def appliquer_filtre_8bit(surface, largeur, hauteur, facteur):
     # Reprojette la surface réduite sur l'affichage principal en la redimensionnant
     pygame.transform.scale(surface_reduite, (largeur, hauteur), surface)
 
+spr = pygame.sprite.Group()
 
-
-
-# Boucle principale
 clock = pygame.time.Clock()
-triangle = Gameobject.GameObject()
-triangle.add_component(Gameobject.Transform(LARGEUR // 2, HAUTEUR // 2))
-triangle.add_component(Renderer(triangle, ROUGE, 20))
+triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2))
+#triangle.add_component(Renderer(triangle, ROUGE, 20))
+triangle.add_self_updated_component(sprite_renderer(spaceship))
 triangle.add_component(Movement(200))
+
+spr.add(triangle.get_component(sprite_renderer))
 
 
 font = pygame.font.Font("Symbols.ttf", 20)
 hostile_icon = font.render("|w2q", False, (255, 125, 0))
 
 
+#pygame.display.toggle_fullscreen()
+LARGEUR, HAUTEUR = pygame.display.get_surface().get_size()
+
+# Boucle principale
 running = True
 while running:
     delta_time = clock.tick(60) / 1000  # Temps écoulé en secondes
@@ -114,8 +136,12 @@ while running:
     fenetre.blit(hostile_icon, (40, 240))
 
     triangle.update(delta_time)
-
+    #triangle.get_component(Renderer).update(triangle, delta_time)
+    spr.update(triangle)
+    spr.draw(fenetre)
     appliquer_filtre_8bit(fenetre, LARGEUR, HAUTEUR, 1)
+
+
 
 
     pygame.display.flip()
