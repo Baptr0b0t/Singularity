@@ -46,35 +46,55 @@ class sprite_renderer(pygame.sprite.Sprite):
     def __init__(self, surface):
         pygame.sprite.Sprite.__init__(self)
         self.surface = surface
+        self.scale = surface.get_size()
+
+    def set_scale(self, scale):
+        self.scale = scale
 
     def update(self, game_object):
         transform = game_object.get_component(Gameobject.Transform)
         if transform:
             angle = math.degrees(transform.angle)+90
-            self.image = pygame.transform.rotate(self.surface, -angle)
+            self.image = pygame.transform.scale(self.surface,self.scale)
+            self.image = pygame.transform.rotate(self.image, -angle)
             self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
 
 
 
 
 class Movement(Gameobject.Component):
-    def __init__(self, speed):
-        self.speed = speed
+    def __init__(self, acceleration_speed):
+        self.deltav = acceleration_speed
 
     def update(self, game_object, delta_time):
         transform = game_object.get_component(Gameobject.Transform)
+        velocity = game_object.get_component(Gameobject.Velocity)
         if transform:
             souris_x, souris_y = pygame.mouse.get_pos()
             transform.angle = math.atan2(souris_y - transform.position[1], souris_x - transform.position[0])
 
-            keys = pygame.key.get_pressed()
-            if keys[pygame.K_SPACE]:
-                transform.position[0] += self.speed * math.cos(transform.angle) * delta_time
-                transform.position[1] += self.speed * math.sin(transform.angle) * delta_time
 
-                # Limites de l'écran
-                transform.position[0] = max(0, min(LARGEUR, transform.position[0]))
-                transform.position[1] = max(0, min(HAUTEUR, transform.position[1]))
+            if velocity:
+                keys = pygame.key.get_pressed()
+                if keys[pygame.K_SPACE]:
+                    velocity.acceleration[0] = self.deltav * math.cos(transform.angle)
+                    velocity.acceleration[1] = self.deltav * math.sin(transform.angle)
+                else:
+                    velocity.acceleration[0] = 0
+                    velocity.acceleration[1] = 0
+
+                velocity.velocity[0] += velocity.acceleration[0] * delta_time
+                velocity.velocity[1] += velocity.acceleration[1] * delta_time
+
+
+                transform.position[0] += velocity.velocity[0] * delta_time
+                transform.position[1] += velocity.velocity[1] * delta_time
+
+            # Limites de l'écran
+            transform.position[0] = max(0, min(LARGEUR, transform.position[0]))
+            transform.position[1] = max(0, min(HAUTEUR, transform.position[1]))
+
+
 
 
 
@@ -106,6 +126,7 @@ triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2))
 #triangle.add_component(Renderer(triangle, ROUGE, 20))
 triangle.add_self_updated_component(sprite_renderer(spaceship))
 triangle.add_component(Movement(200))
+triangle.add_component(Gameobject.Velocity())
 
 spr.add(triangle.get_component(sprite_renderer))
 
@@ -114,7 +135,7 @@ font = pygame.font.Font("Symbols.ttf", 20)
 hostile_icon = font.render("|w2q", False, (255, 125, 0))
 
 
-#pygame.display.toggle_fullscreen()
+pygame.display.toggle_fullscreen()
 LARGEUR, HAUTEUR = pygame.display.get_surface().get_size()
 
 # Boucle principale

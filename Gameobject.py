@@ -42,3 +42,11 @@ class Transform(Component):
     def goto(self, x, y, angle=0):
         self.position = [x, y]
         self.angle = angle
+
+
+class Velocity(Component):
+    def __init__(self, x=0, y=0, ax=0, ay=0):
+        self.velocity = [x, y]
+        self.acceleration = [ax,ay]
+
+
