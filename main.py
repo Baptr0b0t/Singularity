@@ -1,11 +1,14 @@
 import pygame
 import math
 import Gameobject
+import taglist
+import gameobject_manager as gm
+from taglist import main_camera
 
 pygame.init()
 
 # Dimensions de la fenêtre
-LARGEUR, HAUTEUR = 1000, 1000
+LARGEUR, HAUTEUR = 1000, 600
 fenetre = pygame.display.set_mode((LARGEUR, HAUTEUR))
 pygame.display.set_caption("Singularity")
 
@@ -17,28 +20,6 @@ ROUGE = (255, 0, 0)
 
 
 spaceship = pygame.image.load('spaceship.png')
-
-#DELETE SOON
-class Renderer(Gameobject.Component):
-    def __init__(self, game_object, color, size):
-        self.color = color
-        self.size = size
-
-    def set_color(self, color):
-        self.color = color
-
-    def update(self, game_object, delta_time):
-        transform = game_object.get_component(Gameobject.Transform)
-        if transform:
-            x, y = transform.position
-            angle = transform.angle
-            size = self.size
-            #dessine le triangle
-            point1 = (x + size * math.cos(angle), y + size * math.sin(angle))
-            point2 = (x + size * math.cos(angle + 2 * math.pi / 3), y + size * math.sin(angle + 2 * math.pi / 3))
-            point3 = (x + size * math.cos(angle - 2 * math.pi / 3), y + size * math.sin(angle - 2 * math.pi / 3))
-
-            pygame.draw.polygon(fenetre, self.color, [point1, point2, point3])
 
 
 class sprite_renderer(pygame.sprite.Sprite):
@@ -57,8 +38,31 @@ class sprite_renderer(pygame.sprite.Sprite):
             angle = math.degrees(transform.angle)+90
             self.image = pygame.transform.scale(self.surface,self.scale)
             self.image = pygame.transform.rotate(self.image, -angle)
-            self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
+            relativecamera = game_object.get_component(relative_camera)
 
+            if relativecamera and relativecamera.active:
+                self.rect = self.image.get_rect(center=(relativecamera.position[0], relativecamera.position[1]))
+            else:
+                self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
+
+class relative_camera(Gameobject.Component):
+    def __init__(self):
+        self.position = (0,0)
+        self.active = False
+
+    def update(self, game_object, delta_time):
+        camera_position = gm.Gameobjectmanager.find_by_tag(taglist.main_camera)[0].get_component(Gameobject.Transform).position
+        print(camera_position)
+        position = game_object.get_component(Gameobject.Transform).position
+        newpositionx = position[0] - camera_position[0] + LARGEUR//2
+        newpositiony = position[1] - camera_position[1] + HAUTEUR//2
+        self.position = (newpositionx, newpositiony)
+        print(self.position)
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_TAB]:
+            self.active = True
+        else:
+            self.active = False
 
 
 
@@ -71,8 +75,11 @@ class Movement(Gameobject.Component):
         velocity = game_object.get_component(Gameobject.Velocity)
         if transform:
             souris_x, souris_y = pygame.mouse.get_pos()
-            transform.angle = math.atan2(souris_y - transform.position[1], souris_x - transform.position[0])
-
+            relativecamera = game_object.get_component(relative_camera)
+            if relativecamera.active:
+                transform.angle = math.atan2(souris_y - relativecamera.position[1], souris_x - relativecamera.position[0])
+            else:
+                transform.angle = math.atan2(souris_y - transform.position[1], souris_x - transform.position[0])
 
             if velocity:
                 keys = pygame.key.get_pressed()
@@ -91,8 +98,8 @@ class Movement(Gameobject.Component):
                 transform.position[1] += velocity.velocity[1] * delta_time
 
             # Limites de l'écran
-            transform.position[0] = max(0, min(LARGEUR, transform.position[0]))
-            transform.position[1] = max(0, min(HAUTEUR, transform.position[1]))
+            #transform.position[0] = max(0, min(LARGEUR, transform.position[0]))
+            #transform.position[1] = max(0, min(HAUTEUR, transform.position[1]))
 
 
 
@@ -122,20 +129,27 @@ def appliquer_filtre_8bit(surface, largeur, hauteur, facteur):
 spr = pygame.sprite.Group()
 
 clock = pygame.time.Clock()
-triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2))
-#triangle.add_component(Renderer(triangle, ROUGE, 20))
+triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2), tag=taglist.main_camera)
 triangle.add_self_updated_component(sprite_renderer(spaceship))
 triangle.add_component(Movement(200))
 triangle.add_component(Gameobject.Velocity())
+triangle.add_component(relative_camera())
+
 
 spr.add(triangle.get_component(sprite_renderer))
+
+
+relativecamtest = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2), tag=taglist.main_camera)
+relativecamtest.add_self_updated_component(sprite_renderer(spaceship))
+relativecamtest.add_component(relative_camera())
+spr.add(relativecamtest.get_component(sprite_renderer))
 
 
 font = pygame.font.Font("Symbols.ttf", 20)
 hostile_icon = font.render("|w2q", False, (255, 125, 0))
 
 
-pygame.display.toggle_fullscreen()
+#pygame.display.toggle_fullscreen()
 LARGEUR, HAUTEUR = pygame.display.get_surface().get_size()
 
 # Boucle principale
@@ -157,8 +171,11 @@ while running:
     fenetre.blit(hostile_icon, (40, 240))
 
     triangle.update(delta_time)
-    #triangle.get_component(Renderer).update(triangle, delta_time)
+    relativecamtest.update(delta_time)
+
     spr.update(triangle)
+    spr.draw(fenetre)
+    spr.update(relativecamtest)
     spr.draw(fenetre)
     appliquer_filtre_8bit(fenetre, LARGEUR, HAUTEUR, 1)
 
