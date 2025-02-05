@@ -24,8 +24,9 @@ spaceship = pygame.image.load('spaceship.png')
 
 class sprite_renderer(pygame.sprite.Sprite):
 
-    def __init__(self, surface, scale_factor = 1.0):
+    def __init__(self, game_object, surface = spaceship, scale_factor = 1.0):
         pygame.sprite.Sprite.__init__(self)
+        self.game_object = game_object
         self.surface = surface
         self.scale = (surface.get_size()[0] * scale_factor,surface.get_size()[1] * scale_factor)
 
@@ -33,13 +34,17 @@ class sprite_renderer(pygame.sprite.Sprite):
     def set_scale(self, scale):
         self.scale = scale
 
-    def update(self, game_object):
-        transform = game_object.get_component(Gameobject.Transform)
+    def set_sprite(self, surface):
+        self.surface = surface
+
+    def update(self): #call on pygame.sprite.group.update()
+
+        transform = self.game_object.get_component(Gameobject.Transform)
         if transform:
             angle = math.degrees(transform.angle)+90
 
 
-            relativecamera = game_object.get_component(relative_camera)
+            relativecamera = self.game_object.get_component(relative_camera)
 
             if relativecamera and relativecamera.active:
                 self.image = pygame.transform.scale(self.surface, relativecamera.scale)
@@ -49,6 +54,7 @@ class sprite_renderer(pygame.sprite.Sprite):
                 self.image = pygame.transform.scale(self.surface, self.scale)
                 self.image = pygame.transform.rotate(self.image, -angle)
                 self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
+
 
 class relative_camera(Gameobject.Component):
     def __init__(self, scale_factor = 8):
@@ -107,8 +113,8 @@ class Movement(Gameobject.Component):
                 transform.position[1] += velocity.velocity[1] * delta_time
 
             # Limites de l'écran
-            #transform.position[0] = max(0, min(LARGEUR, transform.position[0]))
-            #transform.position[1] = max(0, min(HAUTEUR, transform.position[1]))
+            transform.position[0] = max(0, min(LARGEUR, transform.position[0]))
+            transform.position[1] = max(0, min(HAUTEUR, transform.position[1]))
 
 
 
@@ -139,7 +145,7 @@ spr = pygame.sprite.Group()
 
 clock = pygame.time.Clock()
 triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2), tag=taglist.main_camera)
-triangle.add_self_updated_component(sprite_renderer(spaceship, 0.1))
+triangle.add_self_updated_component(sprite_renderer(triangle,spaceship, 0.1))
 triangle.add_component(Movement(200))
 triangle.add_component(Gameobject.Velocity())
 triangle.add_component(relative_camera())
@@ -149,13 +155,18 @@ spr.add(triangle.get_component(sprite_renderer))
 
 
 relativecamtest = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2), tag=taglist.main_camera)
-relativecamtest.add_self_updated_component(sprite_renderer(spaceship, 0.1))
+relativecamtest.add_self_updated_component(sprite_renderer(relativecamtest,spaceship, 0.1))
 relativecamtest.add_component(relative_camera())
 spr.add(relativecamtest.get_component(sprite_renderer))
 
+FPS_number_object = Gameobject.GameObject((LARGEUR // 10, HAUTEUR // 10))
+FPS_number_object.add_self_updated_component(sprite_renderer(FPS_number_object,spaceship, 0.1))
+FPS_number_object.add_component(relative_camera())
+spr.add(FPS_number_object.get_component(sprite_renderer))
+
 
 font = pygame.font.Font("Symbols.ttf", 20)
-hostile_icon = font.render("|w2q", False, (255, 125, 0))
+
 
 
 #pygame.display.toggle_fullscreen()
@@ -165,27 +176,31 @@ LARGEUR, HAUTEUR = pygame.display.get_surface().get_size()
 running = True
 while running:
     delta_time = clock.tick(60) / 1000  # Temps écoulé en secondes
-    print(delta_time)
+
+    print(1/delta_time)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
     # Mise à jour
-
+    FPS_number = font.render(str(clock.get_fps()), False, (255, 125, 0))
 
 
 
     # Dessin
     fenetre.fill(NOIR)
-    fenetre.blit(hostile_icon, (40, 240))
 
     triangle.update(delta_time)
     relativecamtest.update(delta_time)
 
-    spr.update(triangle)
+    FPS_number_object.get_component(sprite_renderer).set_sprite(FPS_number)
+
+    FPS_number_object.update(delta_time)
+
+    spr.update()
     spr.draw(fenetre)
-    spr.update(relativecamtest)
-    spr.draw(fenetre)
+
+
     appliquer_filtre_8bit(fenetre, LARGEUR, HAUTEUR, 1)
 
 
