@@ -34,19 +34,20 @@ class sprite_renderer(pygame.sprite.Sprite):
     def set_scale(self, scale):
         self.scale = scale
 
-    def set_sprite(self, surface):
+    def set_sprite(self, surface, scale_factor = 1.0):
         self.surface = surface
+        self.scale = (surface.get_size()[0] * scale_factor, surface.get_size()[1] * scale_factor)
 
     def update(self): #call on pygame.sprite.group.update()
 
         transform = self.game_object.get_component(Gameobject.Transform)
         if transform:
-            angle = math.degrees(transform.angle)+90
+            angle = math.degrees(transform.angle)
 
 
             relativecamera = self.game_object.get_component(relative_camera)
 
-            if relativecamera and relativecamera.active:
+            if relativecamera and relativecamera.active: #Need Clean up
                 self.image = pygame.transform.scale(self.surface, relativecamera.scale)
                 self.image = pygame.transform.rotate(self.image, -angle)
                 self.rect = self.image.get_rect(center=(relativecamera.position[0], relativecamera.position[1]))
@@ -64,13 +65,16 @@ class relative_camera(Gameobject.Component):
         self.scale_factor = scale_factor
 
     def update(self, game_object, delta_time):
+        """
+        Must be launched before the gameobject spriterenderer
+        """
         camera_position = gm.Gameobjectmanager.find_by_tag(taglist.main_camera)[0].get_component(Gameobject.Transform).position #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
         newpositionx = (transform.position[0] - camera_position[0])*self.scale_factor + LARGEUR//2
         newpositiony = (transform.position[1] - camera_position[1])*self.scale_factor + HAUTEUR//2
         self.position = (newpositionx, newpositiony)
 
-        renderer = game_object.get_component(sprite_renderer) #Dangereux si plusieur type
+        renderer = game_object.get_component(sprite_renderer)
 
         self.scale = (renderer.scale[0] * self.scale_factor, renderer.scale[1] * self.scale_factor) #Modifie la taille pendant les rotations
         keys = pygame.key.get_pressed()
@@ -92,15 +96,15 @@ class Movement(Gameobject.Component):
             souris_x, souris_y = pygame.mouse.get_pos()
             relativecamera = game_object.get_component(relative_camera)
             if relativecamera and relativecamera.active:
-                transform.angle = math.atan2(souris_y - relativecamera.position[1], souris_x - relativecamera.position[0])
+                transform.angle = math.atan2(souris_y - relativecamera.position[1], souris_x - relativecamera.position[0]) + math.radians(90)
             else:
-                transform.angle = math.atan2(souris_y - transform.position[1], souris_x - transform.position[0])
+                transform.angle = math.atan2(souris_y - transform.position[1], souris_x - transform.position[0]) + math.radians(90)
 
             if velocity:
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_SPACE]:
-                    velocity.acceleration[0] = self.deltav * math.cos(transform.angle)
-                    velocity.acceleration[1] = self.deltav * math.sin(transform.angle)
+                    velocity.acceleration[0] = self.deltav * math.cos(transform.angle - math.radians(90))
+                    velocity.acceleration[1] = self.deltav * math.sin(transform.angle - math.radians(90))
                 else:
                     velocity.acceleration[0] = 0
                     velocity.acceleration[1] = 0
@@ -149,23 +153,22 @@ triangle.add_self_updated_component(sprite_renderer(triangle,spaceship, 0.1))
 triangle.add_component(Movement(200))
 triangle.add_component(Gameobject.Velocity())
 triangle.add_component(relative_camera())
-
-
 spr.add(triangle.get_component(sprite_renderer))
 
 
-relativecamtest = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2), tag=taglist.main_camera)
+relativecamtest = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2))
 relativecamtest.add_self_updated_component(sprite_renderer(relativecamtest,spaceship, 0.1))
 relativecamtest.add_component(relative_camera())
 spr.add(relativecamtest.get_component(sprite_renderer))
 
-FPS_number_object = Gameobject.GameObject((LARGEUR // 10, HAUTEUR // 10))
+FPS_number_object = Gameobject.GameObject((LARGEUR // 10, HAUTEUR // 10), math.radians(0))
 FPS_number_object.add_self_updated_component(sprite_renderer(FPS_number_object,spaceship, 0.1))
 FPS_number_object.add_component(relative_camera())
 spr.add(FPS_number_object.get_component(sprite_renderer))
 
 
-font = pygame.font.Font("Symbols.ttf", 20)
+symbolfont = pygame.font.Font("Symbols.ttf", 20)
+font = pygame.font.Font("SAIBA-45.ttf", 60)
 
 
 
@@ -183,8 +186,8 @@ while running:
             running = False
 
     # Mise à jour
-    FPS_number = font.render(str(clock.get_fps()), False, (255, 125, 0))
-
+    FPS_number = symbolfont.render(str(int(clock.get_fps())), False, (255, 125, 0))
+    #FPS_number = font.render(str(int(math.degrees(triangle.get_component(Gameobject.Transform).angle))), False, (255, 125, 0))
 
 
     # Dessin

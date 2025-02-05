@@ -1,9 +1,9 @@
 import gameobject_manager as gm
 
 class GameObject:
-    def __init__(self, location = (0,0), tag = None):
+    def __init__(self, location = (0,0), angle=0,tag = None):
         self.components = []
-        self.components.append(Transform(location[0], location[1]))
+        self.components.append(Transform(location[0], location[1], angle))
 
         self.self_updated_components = []
         self.tag = tag
@@ -42,7 +42,7 @@ class Component:
 class Transform(Component):
     def __init__(self, x, y, angle = 0):
         self.position = [x, y]
-        self.angle = angle
+        self.angle = angle #radians
 
     def goto(self, x, y, angle=0):
         self.position = [x, y]
