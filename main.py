@@ -3,7 +3,7 @@ import math
 import Gameobject
 import taglist
 import gameobject_manager as gm
-from taglist import main_camera
+
 
 pygame.init()
 
@@ -24,10 +24,11 @@ spaceship = pygame.image.load('spaceship.png')
 
 class sprite_renderer(pygame.sprite.Sprite):
 
-    def __init__(self, surface):
+    def __init__(self, surface, scale_factor = 1.0):
         pygame.sprite.Sprite.__init__(self)
         self.surface = surface
-        self.scale = surface.get_size()
+        self.scale = (surface.get_size()[0] * scale_factor,surface.get_size()[1] * scale_factor)
+
 
     def set_scale(self, scale):
         self.scale = scale
@@ -36,33 +37,41 @@ class sprite_renderer(pygame.sprite.Sprite):
         transform = game_object.get_component(Gameobject.Transform)
         if transform:
             angle = math.degrees(transform.angle)+90
-            self.image = pygame.transform.scale(self.surface,self.scale)
-            self.image = pygame.transform.rotate(self.image, -angle)
+
+
             relativecamera = game_object.get_component(relative_camera)
 
             if relativecamera and relativecamera.active:
+                self.image = pygame.transform.scale(self.surface, relativecamera.scale)
+                self.image = pygame.transform.rotate(self.image, -angle)
                 self.rect = self.image.get_rect(center=(relativecamera.position[0], relativecamera.position[1]))
             else:
+                self.image = pygame.transform.scale(self.surface, self.scale)
+                self.image = pygame.transform.rotate(self.image, -angle)
                 self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
 
 class relative_camera(Gameobject.Component):
-    def __init__(self):
+    def __init__(self, scale_factor = 8):
         self.position = (0,0)
         self.active = False
+        self.scale = (0,0)
+        self.scale_factor = scale_factor
 
     def update(self, game_object, delta_time):
-        camera_position = gm.Gameobjectmanager.find_by_tag(taglist.main_camera)[0].get_component(Gameobject.Transform).position
-        print(camera_position)
-        position = game_object.get_component(Gameobject.Transform).position
-        newpositionx = position[0] - camera_position[0] + LARGEUR//2
-        newpositiony = position[1] - camera_position[1] + HAUTEUR//2
+        camera_position = gm.Gameobjectmanager.find_by_tag(taglist.main_camera)[0].get_component(Gameobject.Transform).position #not crash proof
+        transform = game_object.get_component(Gameobject.Transform)
+        newpositionx = (transform.position[0] - camera_position[0])*self.scale_factor + LARGEUR//2
+        newpositiony = (transform.position[1] - camera_position[1])*self.scale_factor + HAUTEUR//2
         self.position = (newpositionx, newpositiony)
-        print(self.position)
+
+        renderer = game_object.get_component(sprite_renderer) #Dangereux si plusieur type
+
+        self.scale = (renderer.scale[0] * self.scale_factor, renderer.scale[1] * self.scale_factor) #Modifie la taille pendant les rotations
         keys = pygame.key.get_pressed()
         if keys[pygame.K_TAB]:
-            self.active = True
-        else:
             self.active = False
+        else:
+            self.active = True
 
 
 
@@ -76,7 +85,7 @@ class Movement(Gameobject.Component):
         if transform:
             souris_x, souris_y = pygame.mouse.get_pos()
             relativecamera = game_object.get_component(relative_camera)
-            if relativecamera.active:
+            if relativecamera and relativecamera.active:
                 transform.angle = math.atan2(souris_y - relativecamera.position[1], souris_x - relativecamera.position[0])
             else:
                 transform.angle = math.atan2(souris_y - transform.position[1], souris_x - transform.position[0])
@@ -130,7 +139,7 @@ spr = pygame.sprite.Group()
 
 clock = pygame.time.Clock()
 triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2), tag=taglist.main_camera)
-triangle.add_self_updated_component(sprite_renderer(spaceship))
+triangle.add_self_updated_component(sprite_renderer(spaceship, 0.1))
 triangle.add_component(Movement(200))
 triangle.add_component(Gameobject.Velocity())
 triangle.add_component(relative_camera())
@@ -140,7 +149,7 @@ spr.add(triangle.get_component(sprite_renderer))
 
 
 relativecamtest = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2), tag=taglist.main_camera)
-relativecamtest.add_self_updated_component(sprite_renderer(spaceship))
+relativecamtest.add_self_updated_component(sprite_renderer(spaceship, 0.1))
 relativecamtest.add_component(relative_camera())
 spr.add(relativecamtest.get_component(sprite_renderer))
 
