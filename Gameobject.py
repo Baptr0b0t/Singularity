@@ -3,18 +3,31 @@ import gameobject_manager as gm
 class GameObject:
     def __init__(self, location = (0,0), angle=0,tag = None):
         self.components = []
-        self.components.append(Transform(location[0], location[1], angle))
+
 
         self.self_updated_components = []
+
+        self.quick_updated_components = []
+
+        self.late_updated_components = []
         self.tag = tag
+
+        self.quick_updated_components.append(Transform(location[0], location[1], angle))
 
         gm.Gameobjectmanager.add_object(self)
 
     def add_component(self, component):
         self.components.append(component)
 
+
     def add_self_updated_component(self, component):
         self.self_updated_components.append(component)
+
+    def add_quick_updated_component(self, component):
+        self.quick_updated_components.append(component)
+
+    def add_late_updated_component(self, component):
+        self.late_updated_components.append(component)
 
     def get_component(self, component_type):
         for component in self.components:
@@ -24,10 +37,24 @@ class GameObject:
         for component in self.self_updated_components:
             if isinstance(component, component_type):
                 return component
+
+        for component in self.quick_updated_components:
+            if isinstance(component, component_type):
+                return component
+
+        for component in self.late_updated_components:
+            if isinstance(component, component_type):
+                return component
         return None
 
     def update(self, delta_time):
+        for component in self.quick_updated_components:
+            component.update(self, delta_time)
+
         for component in self.components:
+            component.update(self, delta_time)
+
+        for component in self.late_updated_components:
             component.update(self, delta_time)
 
 
@@ -54,4 +81,7 @@ class Velocity(Component):
         self.velocity = [x, y]
         self.acceleration = [ax,ay]
 
-
+    def update(self, game_object, delta_time):
+        self.velocity[0] += self.acceleration[0] * delta_time
+        self.velocity[1] += self.acceleration[1] * delta_time
+        self.acceleration = [0,0]

@@ -1,9 +1,12 @@
-import pygame
 import math
-import Gameobject
-import taglist
-import gameobject_manager as gm
 
+import pygame
+
+import Gameobject
+import gameobject_manager as gm
+import taglist
+import component.ai as ai
+import component.movement as movement
 
 pygame.init()
 
@@ -58,7 +61,7 @@ class sprite_renderer(pygame.sprite.Sprite):
 
 
 class relative_camera(Gameobject.Component):
-    def __init__(self, scale_factor = 8):
+    def __init__(self, scale_factor = 5):
         self.position = (0,0)
         self.active = False
         self.scale = (0,0)
@@ -84,8 +87,16 @@ class relative_camera(Gameobject.Component):
             self.active = True
 
 
+class gravity(Gameobject.Component):
+    def __init__(self):
+        self.force = 120
+    def update(self, game_object, delta_time):
+        velocity = game_object.get_component(Gameobject.Velocity)
+        if velocity:
+            velocity.acceleration[1] += self.force
 
-class Movement(Gameobject.Component):
+
+class Player_space_movement(Gameobject.Component):
     def __init__(self, acceleration_speed):
         self.deltav = acceleration_speed
 
@@ -103,18 +114,20 @@ class Movement(Gameobject.Component):
             if velocity:
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_SPACE]:
-                    velocity.acceleration[0] = self.deltav * math.cos(transform.angle - math.radians(90))
-                    velocity.acceleration[1] = self.deltav * math.sin(transform.angle - math.radians(90))
-                else:
-                    velocity.acceleration[0] = 0
-                    velocity.acceleration[1] = 0
-
-                velocity.velocity[0] += velocity.acceleration[0] * delta_time
-                velocity.velocity[1] += velocity.acceleration[1] * delta_time
+                    velocity.acceleration[0] += self.deltav * math.cos(transform.angle - math.radians(90))
+                    velocity.acceleration[1] += self.deltav * math.sin(transform.angle - math.radians(90))
 
 
-                transform.position[0] += velocity.velocity[0] * delta_time
-                transform.position[1] += velocity.velocity[1] * delta_time
+class space_movement(Gameobject.Component):
+    """
+    :requires: Gameobject.Velocity
+    """
+    def update(self, game_object, delta_time):
+        transform = game_object.get_component(Gameobject.Transform)
+        velocity = game_object.get_component(Gameobject.Velocity)
+        if transform and velocity:
+            transform.position[0] += velocity.velocity[0] * delta_time
+            transform.position[1] += velocity.velocity[1] * delta_time
 
             # Limites de l'écran
             transform.position[0] = max(0, min(LARGEUR, transform.position[0]))
@@ -150,8 +163,10 @@ spr = pygame.sprite.Group()
 clock = pygame.time.Clock()
 triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2), tag=taglist.main_camera)
 triangle.add_self_updated_component(sprite_renderer(triangle,spaceship, 0.1))
-triangle.add_component(Movement(200))
-triangle.add_component(Gameobject.Velocity())
+triangle.add_quick_updated_component(Gameobject.Velocity())
+triangle.add_component(Player_space_movement(200))
+triangle.add_component(gravity())
+triangle.add_late_updated_component(space_movement())
 triangle.add_component(relative_camera())
 spr.add(triangle.get_component(sprite_renderer))
 
