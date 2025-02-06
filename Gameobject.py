@@ -1,7 +1,7 @@
 import gameobject_manager as gm
 
 class GameObject:
-    def __init__(self, location = (0,0), angle=0,tag = None):
+    def __init__(self, location = (0,0), angle=0):
         self.components = []
 
 
@@ -10,11 +10,17 @@ class GameObject:
         self.quick_updated_components = []
 
         self.late_updated_components = []
-        self.tag = tag
+        self.tag = []
 
         self.quick_updated_components.append(Transform(location[0], location[1], angle))
 
         gm.Gameobjectmanager.add_object(self)
+
+    def add_tag(self, tag):
+        self.tag.append(tag)
+
+    def has_tag(self, tag):
+        return tag in self.tag
 
     def add_component(self, component):
         self.components.append(component)

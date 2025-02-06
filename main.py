@@ -161,7 +161,8 @@ def appliquer_filtre_8bit(surface, largeur, hauteur, facteur):
 spr = pygame.sprite.Group()
 
 clock = pygame.time.Clock()
-triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2), tag=taglist.main_camera)
+triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2))
+triangle.add_tag(taglist.main_camera)
 triangle.add_self_updated_component(sprite_renderer(triangle,spaceship, 0.1))
 triangle.add_quick_updated_component(Gameobject.Velocity())
 triangle.add_component(Player_space_movement(200))
