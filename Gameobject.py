@@ -77,9 +77,6 @@ class Transform(Component):
         self.position = [x, y]
         self.angle = angle #radians
 
-    def goto(self, x, y, angle=0):
-        self.position = [x, y]
-        self.angle = angle
 
 
 class Velocity(Component):
