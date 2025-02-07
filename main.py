@@ -71,7 +71,7 @@ class relative_camera(Gameobject.Component):
         """
         Must be launched before the gameobject spriterenderer
         """
-        camera_position = gm.Gameobjectmanager.find_by_tag(taglist.main_camera)[0].get_component(Gameobject.Transform).position #not crash proof
+        camera_position = gm.Gameobjectmanager.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform).position #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
         newpositionx = (transform.position[0] - camera_position[0])*self.scale_factor + LARGEUR//2
         newpositiony = (transform.position[1] - camera_position[1])*self.scale_factor + HAUTEUR//2
@@ -89,7 +89,7 @@ class relative_camera(Gameobject.Component):
 
 class gravity(Gameobject.Component):
     def __init__(self):
-        self.force = 120
+        self.force = 30
     def update(self, game_object, delta_time):
         velocity = game_object.get_component(Gameobject.Velocity)
         if velocity:
@@ -162,7 +162,8 @@ spr = pygame.sprite.Group()
 
 clock = pygame.time.Clock()
 triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2))
-triangle.add_tag(taglist.main_camera)
+triangle.add_tag(taglist.MAIN_CAMERA)
+triangle.add_tag(taglist.PLAYER)
 triangle.add_self_updated_component(sprite_renderer(triangle,spaceship, 0.1))
 triangle.add_quick_updated_component(Gameobject.Velocity())
 triangle.add_component(Player_space_movement(200))

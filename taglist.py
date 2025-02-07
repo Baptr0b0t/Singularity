@@ -1,1 +1,2 @@
-main_camera = 240 #Unique
+MAIN_CAMERA = 240 #Unique
+PLAYER = 794
