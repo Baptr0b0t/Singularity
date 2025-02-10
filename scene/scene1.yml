@@ -1,0 +1,21 @@
+game_objects:
+  triangle:
+    position: [LARGEUR//2, HAUTEUR//2]
+    angle: 0
+    tags:
+      - MAIN_CAMERA
+      - PLAYER
+    components:
+      self_updated:
+        sprite_renderer:
+          sprite: "./resources/spaceship"
+          scale: 0.1
+      quick_updated:
+        Velocity: {}
+      standard:
+        Player_space_movement:
+          speed: 200
+        gravity: {}
+        relative_camera: {}
+      late_updated:
+        space_movement: {}

@@ -1,0 +1,75 @@
+import pygame
+from component import *
+import Gameobject
+import math
+import taglist
+
+
+
+
+
+missing_texture = pygame.image.load('./resources/missing_texture.jpg')
+
+class Sprite_renderer(pygame.sprite.Sprite):
+
+    def __init__(self, game_object, surface = missing_texture, scale_factor = 1.0):
+        pygame.sprite.Sprite.__init__(self)
+        self.game_object = game_object
+        self.surface = surface
+        self.scale = (surface.get_size()[0] * scale_factor,surface.get_size()[1] * scale_factor)
+
+
+    def set_scale(self, scale):
+        self.scale = scale
+
+    def set_sprite(self, surface, scale_factor = 1.0):
+        self.surface = surface
+        self.scale = (surface.get_size()[0] * scale_factor, surface.get_size()[1] * scale_factor)
+
+    def update(self): #call on pygame.sprite.group.update()
+
+        transform = self.game_object.get_component(Gameobject.Transform)
+        if transform:
+            angle = math.degrees(transform.angle)
+
+
+            relativecamera = self.game_object.get_component(relative_camera)
+
+            if relativecamera and relativecamera.active: #Need Clean up
+                self.image = pygame.transform.scale(self.surface, relativecamera.scale)
+                self.image = pygame.transform.rotate(self.image, -angle)
+                self.rect = self.image.get_rect(center=(relativecamera.position[0], relativecamera.position[1]))
+            else:
+                self.image = pygame.transform.scale(self.surface, self.scale)
+                self.image = pygame.transform.rotate(self.image, -angle)
+                self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
+
+
+
+class relative_camera(Gameobject.Component):
+    def __init__(self, scale_factor = 5):
+        self.position = (0,0)
+        self.active = False
+        self.scale = (0,0)
+        self.scale_factor = scale_factor
+
+    def update(self, game_object, delta_time):
+        """
+        Must be launched before the gameobject spriterenderer
+        """
+        from main import LARGEUR, HAUTEUR
+        import gameobject_manager as gm
+        camera_position = gm.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform).position #not crash proof
+        transform = game_object.get_component(Gameobject.Transform)
+        newpositionx = (transform.position[0] - camera_position[0])*self.scale_factor + LARGEUR//2
+        newpositiony = (transform.position[1] - camera_position[1])*self.scale_factor + HAUTEUR//2
+        self.position = (newpositionx, newpositiony)
+
+        renderer = game_object.get_component(Sprite_renderer)
+
+        self.scale = (renderer.scale[0] * self.scale_factor, renderer.scale[1] * self.scale_factor) #Modifie la taille pendant les rotations
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_TAB]:
+            self.active = False
+        else:
+            self.active = True
