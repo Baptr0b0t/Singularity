@@ -1,16 +1,16 @@
 import pygame
-from component import *
+
 import Gameobject
 import math
 import taglist
-
-
+import gameobject_manager as gm
+import Holder
 
 
 
 missing_texture = pygame.image.load('./resources/missing_texture.jpg')
 
-class Sprite_renderer(pygame.sprite.Sprite):
+class SpriteRenderer(pygame.sprite.Sprite):
 
     def __init__(self, game_object, surface = missing_texture, scale_factor = 1.0):
         pygame.sprite.Sprite.__init__(self)
@@ -33,7 +33,7 @@ class Sprite_renderer(pygame.sprite.Sprite):
             angle = math.degrees(transform.angle)
 
 
-            relativecamera = self.game_object.get_component(relative_camera)
+            relativecamera = self.game_object.get_component(RelativeCamera)
 
             if relativecamera and relativecamera.active: #Need Clean up
                 self.image = pygame.transform.scale(self.surface, relativecamera.scale)
@@ -46,7 +46,7 @@ class Sprite_renderer(pygame.sprite.Sprite):
 
 
 
-class relative_camera(Gameobject.Component):
+class RelativeCamera(Gameobject.Component):
     def __init__(self, scale_factor = 5):
         self.position = (0,0)
         self.active = False
@@ -57,15 +57,13 @@ class relative_camera(Gameobject.Component):
         """
         Must be launched before the gameobject spriterenderer
         """
-        from main import LARGEUR, HAUTEUR
-        import gameobject_manager as gm
         camera_position = gm.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform).position #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
-        newpositionx = (transform.position[0] - camera_position[0])*self.scale_factor + LARGEUR//2
-        newpositiony = (transform.position[1] - camera_position[1])*self.scale_factor + HAUTEUR//2
+        newpositionx = (transform.position[0] - camera_position[0])*self.scale_factor + Holder.Game.LARGEUR//2
+        newpositiony = (transform.position[1] - camera_position[1])*self.scale_factor + Holder.Game.HAUTEUR//2
         self.position = (newpositionx, newpositiony)
 
-        renderer = game_object.get_component(Sprite_renderer)
+        renderer = game_object.get_component(SpriteRenderer)
 
         self.scale = (renderer.scale[0] * self.scale_factor, renderer.scale[1] * self.scale_factor) #Modifie la taille pendant les rotations
         keys = pygame.key.get_pressed()
