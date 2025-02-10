@@ -22,7 +22,7 @@ BLANC = (255, 255, 255)
 ROUGE = (255, 0, 0)
 
 
-spaceship = pygame.image.load('spaceship.png')
+spaceship = pygame.image.load('./resources/spaceship.png')
 
 
 class sprite_renderer(pygame.sprite.Sprite):
@@ -158,9 +158,10 @@ def appliquer_filtre_8bit(surface, largeur, hauteur, facteur):
     # Reprojette la surface réduite sur l'affichage principal en la redimensionnant
     pygame.transform.scale(surface_reduite, (largeur, hauteur), surface)
 
-spr = pygame.sprite.Group()
-
+main_sprite_group = pygame.sprite.Group()
 clock = pygame.time.Clock()
+
+
 triangle = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2))
 triangle.add_tag(taglist.MAIN_CAMERA)
 triangle.add_tag(taglist.PLAYER)
@@ -170,18 +171,18 @@ triangle.add_component(Player_space_movement(200))
 triangle.add_component(gravity())
 triangle.add_late_updated_component(space_movement())
 triangle.add_component(relative_camera())
-spr.add(triangle.get_component(sprite_renderer))
+main_sprite_group.add(triangle.get_component(sprite_renderer))
 
 
 relativecamtest = Gameobject.GameObject((LARGEUR//2, HAUTEUR//2))
 relativecamtest.add_self_updated_component(sprite_renderer(relativecamtest,spaceship, 0.1))
 relativecamtest.add_component(relative_camera())
-spr.add(relativecamtest.get_component(sprite_renderer))
+main_sprite_group.add(relativecamtest.get_component(sprite_renderer))
 
 FPS_number_object = Gameobject.GameObject((LARGEUR // 10, HAUTEUR // 10), math.radians(0))
 FPS_number_object.add_self_updated_component(sprite_renderer(FPS_number_object,spaceship, 0.1))
 FPS_number_object.add_component(relative_camera())
-spr.add(FPS_number_object.get_component(sprite_renderer))
+main_sprite_group.add(FPS_number_object.get_component(sprite_renderer))
 
 
 symbolfont = pygame.font.Font("Symbols.ttf", 20)
@@ -217,8 +218,8 @@ while running:
 
     FPS_number_object.update(delta_time)
 
-    spr.update()
-    spr.draw(fenetre)
+    main_sprite_group.update()
+    main_sprite_group.draw(fenetre)
 
 
     appliquer_filtre_8bit(fenetre, LARGEUR, HAUTEUR, 1)
