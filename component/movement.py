@@ -4,6 +4,7 @@ import pygame
 from component.render import RelativeCamera
 import Holder
 import SceneManager
+import taglist
 
 class Gravity(Gameobject.Component):
     def __init__(self, mass, fixed=False):
@@ -32,6 +33,7 @@ class Gravity(Gameobject.Component):
 class PlayerSpaceMovement(Gameobject.Component):
     def __init__(self, acceleration_speed):
         self.deltav = acceleration_speed
+        self.boost_force = 2
 
     def update(self, game_object, delta_time):
         transform = game_object.get_component(Gameobject.Transform)
@@ -47,8 +49,12 @@ class PlayerSpaceMovement(Gameobject.Component):
             if velocity:
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_SPACE]:
-                    velocity.acceleration[0] += self.deltav * math.cos(transform.angle - math.radians(90))
-                    velocity.acceleration[1] += self.deltav * math.sin(transform.angle - math.radians(90))
+                    if keys[pygame.K_LSHIFT]:
+                        force = self.deltav * self.boost_force
+                    else:
+                        force = self.deltav
+                    velocity.acceleration[1] += force * math.sin(transform.angle - math.radians(90))
+                    velocity.acceleration[0] += force * math.cos(transform.angle - math.radians(90))
 
 class SpaceMovement(Gameobject.Component):
     """

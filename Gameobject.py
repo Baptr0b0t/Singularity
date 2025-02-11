@@ -31,6 +31,9 @@ class GameObject:
     def add_late_updated_component(self, component):
         self.late_updated_components.append(component)
 
+    def has_component(self, component_type):
+        return self.get_component(component_type) is not None
+
     def get_component(self, component_type):
         for component in self.components:
             if isinstance(component, component_type):

@@ -47,13 +47,12 @@ game_objects:
         SpriteRenderer:
           image_path: "./resources/planet_1.png"
           scale_factor: 0.1
-      quick_updated:
-        Velocity:
-          x: 30
+      quick_updated: { }
       standard:
         RelativeCamera: { }
         Gravity:
           mass: 10000
+          fixed : True
       late_updated:
         SpaceMovement: { }
 
