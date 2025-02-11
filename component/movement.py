@@ -34,7 +34,7 @@ class PlayerSpaceMovement(Gameobject.Component):
                     velocity.acceleration[0] += self.deltav * math.cos(transform.angle - math.radians(90))
                     velocity.acceleration[1] += self.deltav * math.sin(transform.angle - math.radians(90))
 
-class space_movement(Gameobject.Component):
+class SpaceMovement(Gameobject.Component):
     """
     :requires: Gameobject.Velocity
     """

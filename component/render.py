@@ -3,20 +3,23 @@ import pygame
 import Gameobject
 import math
 import taglist
-import gameobject_manager as gm
+import SceneManager as gm
 import Holder
 
 
 
-missing_texture = pygame.image.load('./resources/missing_texture.jpg')
+missing_texture = "./resources/missing_texture.jpg"
 
 class SpriteRenderer(pygame.sprite.Sprite):
 
-    def __init__(self, game_object, surface = missing_texture, scale_factor = 1.0):
+    def __init__(self, game_object, image_path = missing_texture, scale_factor = 1.0):
         pygame.sprite.Sprite.__init__(self)
         self.game_object = game_object
-        self.surface = surface
-        self.scale = (surface.get_size()[0] * scale_factor,surface.get_size()[1] * scale_factor)
+        try:
+            self.surface = pygame.image.load(image_path)
+        except FileNotFoundError:
+            self.surface = pygame.image.load(missing_texture)
+        self.scale = (self.surface.get_size()[0] * scale_factor,self.surface.get_size()[1] * scale_factor)
 
 
     def set_scale(self, scale):

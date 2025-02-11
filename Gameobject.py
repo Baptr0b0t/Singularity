@@ -1,5 +1,3 @@
-from gameobject_manager import Scene
-
 class GameObject:
     def __init__(self, location = (0,0), angle=0):
         self.components = []
@@ -13,7 +11,6 @@ class GameObject:
 
         self.quick_updated_components.append(Transform(location[0], location[1], angle))
 
-        Scene.add_object(self)
 
     def add_tag(self, tag):
         self.tag.append(tag)
@@ -21,7 +18,7 @@ class GameObject:
     def has_tag(self, tag):
         return tag in self.tag
 
-    def add_component(self, component):
+    def add_standard_component(self, component):
         self.components.append(component)
 
 

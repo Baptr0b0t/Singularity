@@ -1,5 +1,5 @@
 game_objects:
-  triangle:
+  player:
     position: [LARGEUR//2, HAUTEUR//2]
     angle: 0
     tags:
@@ -7,15 +7,30 @@ game_objects:
       - PLAYER
     components:
       self_updated:
-        sprite_renderer:
-          sprite: "./resources/spaceship"
-          scale: 0.1
+        SpriteRenderer:
+          image_path: "./resources/spaceship.png"
+          scale_factor: 0.1
       quick_updated:
         Velocity: {}
       standard:
-        Player_space_movement:
-          speed: 200
-        gravity: {}
-        relative_camera: {}
+        PlayerSpaceMovement:
+          acceleration_speed: 200
+        Gravity: {}
+        RelativeCamera: {}
       late_updated:
-        space_movement: {}
+        SpaceMovement: {}
+  dummy:
+    position: [ LARGEUR//2+200, HAUTEUR//2+200 ]
+    angle: 0
+    tags: {}
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/planet_1.png"
+          scale_factor: 0.1
+      quick_updated:
+        Velocity: { }
+      standard:
+        RelativeCamera: { }
+      late_updated:
+        SpaceMovement: { }
