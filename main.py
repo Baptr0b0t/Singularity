@@ -19,7 +19,7 @@ pygame.display.set_caption("Singularity")
 
 
 # Couleurs
-NOIR = (0, 0, 0)
+NOIR = (0, 50, 0)
 BLANC = (255, 255, 255)
 ROUGE = (255, 0, 0)
 
