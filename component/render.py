@@ -3,7 +3,7 @@ import pygame
 import Gameobject
 import math
 import taglist
-import SceneManager as gm
+import SceneManager
 import Holder
 
 
@@ -60,7 +60,7 @@ class RelativeCamera(Gameobject.Component):
         """
         Must be launched before the gameobject spriterenderer
         """
-        camera_position = gm.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform).position #not crash proof
+        camera_position = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform).position #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
         newpositionx = (transform.position[0] - camera_position[0])*self.scale_factor + Holder.Game.LARGEUR//2
         newpositiony = (transform.position[1] - camera_position[1])*self.scale_factor + Holder.Game.HAUTEUR//2

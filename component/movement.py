@@ -3,14 +3,30 @@ import Gameobject
 import pygame
 from component.render import RelativeCamera
 import Holder
+import SceneManager
 
 class Gravity(Gameobject.Component):
-    def __init__(self):
-        self.force = 30
+    def __init__(self, mass, fixed=False):
+        self.G = 10
+        self.mass = mass
+        self.fixed = fixed
     def update(self, game_object, delta_time):
-        velocity = game_object.get_component(Gameobject.Velocity)
-        if velocity:
-            velocity.acceleration[1] += self.force
+        if not self.fixed:
+            velocity = game_object.get_component(Gameobject.Velocity)
+            transform = game_object.get_component(Gameobject.Transform)
+            if velocity and transform:
+                ObjectList = SceneManager.Scene.find_by_component(Gravity)
+
+                for obj in ObjectList:
+                    ObjectTransform = obj.get_component(Gameobject.Transform)
+                    dx = transform.position[0]-ObjectTransform.position[0]
+                    dy = transform.position[1]-ObjectTransform.position[1]
+                    distance = math.sqrt(dx**2 + dy**2)
+                    if distance <= 10: #For not make black hole
+                        continue
+                    force = self.G * (self.mass * obj.get_component(Gravity).mass) / (distance ** 2)
+                    velocity.acceleration[0] += -force * dx / distance / self.mass
+                    velocity.acceleration[1] += -force * dy / distance / self.mass
 
 
 class PlayerSpaceMovement(Gameobject.Component):

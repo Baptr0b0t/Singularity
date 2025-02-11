@@ -66,6 +66,10 @@ class Scene:
         return [obj for obj in cls.alive_objects if obj.has_tag(tag)]
 
     @classmethod
+    def find_by_component(cls, component):
+        return [obj for obj in cls.alive_objects if obj.get_component(component) is not None]
+
+    @classmethod
     def get_all_alive(cls):
         return cls.alive_objects
 
