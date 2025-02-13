@@ -7,9 +7,9 @@ import SceneManager
 import taglist
 
 class Gravity(Gameobject.Component):
-    def __init__(self, mass, fixed=False):
-        self.G = 10
-        self.mass = mass
+    def __init__(self, mass, fixed=False, g_force = 6.67430*10**-11):
+        self.G = g_force
+        self.mass = mass #kg
         self.fixed = fixed
     def update(self, game_object, delta_time):
         if not self.fixed:
@@ -22,12 +22,13 @@ class Gravity(Gameobject.Component):
                     ObjectTransform = obj.get_component(Gameobject.Transform)
                     dx = transform.position[0]-ObjectTransform.position[0]
                     dy = transform.position[1]-ObjectTransform.position[1]
-                    distance = math.sqrt(dx**2 + dy**2)
+                    distance = math.sqrt(dx**2 + dy**2) * 100
                     if distance <= 10: #For not make black hole
                         continue
                     force = self.G * (self.mass * obj.get_component(Gravity).mass) / (distance ** 2)
-                    velocity.acceleration[0] += -force * dx / distance / self.mass
-                    velocity.acceleration[1] += -force * dy / distance / self.mass
+                    print("force:", force)
+                    velocity.acceleration[0] += -force * (dx/distance) / self.mass
+                    velocity.acceleration[1] += -force * (dy/distance) / self.mass
 
 
 class PlayerSpaceMovement(Gameobject.Component):
@@ -57,9 +58,6 @@ class PlayerSpaceMovement(Gameobject.Component):
                     velocity.acceleration[0] += force * math.cos(transform.angle - math.radians(90))
 
 class SpaceMovement(Gameobject.Component):
-    """
-    :requires: Gameobject.Velocity
-    """
     def update(self, game_object, delta_time):
         transform = game_object.get_component(Gameobject.Transform)
         velocity = game_object.get_component(Gameobject.Velocity)
