@@ -9,13 +9,12 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/spaceship.png"
-          scale_factor: 0.1
+          scale_factor: 0.03
       quick_updated:
-        Velocity:
-          x: -30
+        Velocity: { }
       standard:
         PlayerSpaceMovement:
-          acceleration_speed: 200
+          acceleration_speed: 10
         Gravity:
           mass : 10000
         RelativeCamera: {}
@@ -29,7 +28,7 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/planet_1.png"
-          scale_factor: 0.1
+          scale_factor: 0.03
       quick_updated:
         Velocity: { }
       standard:
@@ -47,13 +46,33 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/planet_1.png"
-          scale_factor: 0.1
+          scale_factor: 0.03
       quick_updated: { }
       standard:
         RelativeCamera: { }
         Gravity:
           mass: 59740000000000000000000
-          fixed : True
+          fixed : False
+      late_updated:
+        SpaceMovement: { }
+  planet3:
+    position: [ LARGEUR//2-200, HAUTEUR//2-300 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/planet_1.png"
+          scale_factor: 0.04
+      quick_updated:
+        Velocity :
+          x: -6
+          y: +10
+      standard:
+        RelativeCamera: { }
+        Gravity:
+          mass: 80000000000000000000000
+          fixed : False
       late_updated:
         SpaceMovement: { }
 

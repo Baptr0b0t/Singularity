@@ -50,7 +50,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
 
 
 class RelativeCamera(Gameobject.Component):
-    def __init__(self, scale_factor = 3):
+    def __init__(self, scale_factor = 4):
         self.position = (0,0)
         self.active = False
         self.scale = (0,0)
