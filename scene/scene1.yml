@@ -17,7 +17,7 @@ game_objects:
         PlayerSpaceMovement:
           acceleration_speed: 200
         Gravity:
-          mass : 10
+          mass : 10000
         RelativeCamera: {}
       late_updated:
         SpaceMovement: {}
@@ -35,7 +35,8 @@ game_objects:
       standard:
         RelativeCamera: { }
         Gravity:
-          mass: 10000
+          mass: 59740000000000000000000
+          fixed : False
       late_updated:
         SpaceMovement: { }
   planet2:
@@ -51,7 +52,7 @@ game_objects:
       standard:
         RelativeCamera: { }
         Gravity:
-          mass: 10000
+          mass: 59740000000000000000000
           fixed : True
       late_updated:
         SpaceMovement: { }
