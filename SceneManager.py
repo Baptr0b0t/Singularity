@@ -62,12 +62,18 @@ class Scene:
             cls.alive_objects.remove(game_object)
 
     @classmethod
-    def find_by_tag(cls, tag):
-        return [obj for obj in cls.alive_objects if obj.has_tag(tag)]
+    def find_by_tag(cls, tag, search_active_scene = True):
+        if search_active_scene:
+            return [obj for obj in Holder.Game.actual_scene.scene_objects if obj.has_tag(tag)]
+        else:
+            return [obj for obj in cls.alive_objects if obj.has_tag(tag)]
 
     @classmethod
-    def find_by_component(cls, component):
-        return [obj for obj in cls.alive_objects if obj.has_component(component)]
+    def find_by_component(cls, component, search_active_scene = True):
+        if search_active_scene:
+            return [obj for obj in Holder.Game.actual_scene.scene_objects if obj.has_component(component)]
+        else:
+            return [obj for obj in cls.alive_objects if obj.has_component(component)]
 
     @classmethod
     def get_all_alive(cls):

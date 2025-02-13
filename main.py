@@ -82,6 +82,7 @@ font = pygame.font.Font("resources/SAIBA-45.ttf", 60)
 #pygame.display.toggle_fullscreen()
 Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
 actualscene = SceneManager.Scene()
+Holder.Game.actual_scene = actualscene
 # Boucle principale
 running = True
 while running:
@@ -99,9 +100,6 @@ while running:
 
     # Dessin
     fenetre.fill(NOIR)
-
-    #triangle.update(delta_time)
-    #relativecamtest.update(delta_time)
 
     sprite_group = actualscene.update_all(delta_time)
 
