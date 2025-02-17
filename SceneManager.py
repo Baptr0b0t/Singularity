@@ -31,10 +31,7 @@ class Scene:
             for update_type, components in data["components"].items():
                 for comp_name, args in components.items():
                     if comp_name in globals():  # Vérifie si la classe existe
-                        if comp_name == "SpriteRenderer":
-                            component_instance = SpriteRenderer(obj, **args)  # Ajoute l'objet en paramètre
-                        else:
-                            component_instance = globals()[comp_name](obj, **args)  # Instancie avec arguments
+                        component_instance = globals()[comp_name](obj, **args)  # Instancie avec arguments
                         getattr(obj, f"add_{update_type}_component")(component_instance)
                     else:
                         print("Composant introuvable :", comp_name)

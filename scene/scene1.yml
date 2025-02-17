@@ -20,7 +20,7 @@ game_objects:
         RelativeCamera: {}
       late_updated:
         SpaceMovement: {}
-  planet:
+  planet1:
     position: [ LARGEUR//2, HAUTEUR//2 ]
     angle: 0
     tags: {}
@@ -36,5 +36,42 @@ game_objects:
         Gravity:
           mass: 59740000000000000000000
           fixed : False
+      late_updated:
+        SpaceMovement: { }
+  planet2:
+    position: [ LARGEUR//3, HAUTEUR//4 ]
+    angle: 80
+    tags: {}
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/planet_2.png"
+          scale_factor: 0.04
+      quick_updated:
+        Velocity:
+          y: -4
+      standard:
+        RelativeCamera: { }
+        Gravity:
+          mass: 59740000000000000000000
+          fixed : False
+      late_updated:
+        SpaceMovement: { }
+  black_hole:
+    position: [ "200", "200" ]
+    angle: 0
+    tags: {}
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/black_hole.png"
+          scale_factor: 0.02
+      quick_updated:
+        Velocity: { }
+      standard:
+        RelativeCamera: { }
+        Gravity:
+          mass: 100000000000000000000000
+          fixed : True
       late_updated:
         SpaceMovement: { }
