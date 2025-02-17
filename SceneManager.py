@@ -34,8 +34,7 @@ class Scene:
                         if comp_name == "SpriteRenderer":
                             component_instance = SpriteRenderer(obj, **args)  # Ajoute l'objet en paramètre
                         else:
-                            component_instance = globals()[comp_name](**args)  # Instancie avec arguments
-
+                            component_instance = globals()[comp_name](obj, **args)  # Instancie avec arguments
                         getattr(obj, f"add_{update_type}_component")(component_instance)
                     else:
                         print("Composant introuvable :", comp_name)
@@ -45,9 +44,9 @@ class Scene:
             Scene.add_object(obj)
 
 
-    def update_all(self, delta_time):
+    def update_all(self):
         for game_object in self.scene_objects:
-            game_object.update(delta_time)
+            game_object.update()
         self.sprite_group.update()
         return self.sprite_group
 

@@ -1,3 +1,5 @@
+import Holder
+
 class GameObject:
     def __init__(self, location = (0,0), angle=0):
         self.components = []
@@ -9,7 +11,7 @@ class GameObject:
         self.late_updated_components = []
         self.tag = []
 
-        self.quick_updated_components.append(Transform(location[0], location[1], angle))
+        self.quick_updated_components.append(Transform(self ,location[0], location[1], angle))
 
 
     def add_tag(self, tag):
@@ -52,38 +54,50 @@ class GameObject:
                 return component
         return None
 
-    def update(self, delta_time):
+    def update(self):
         for component in self.quick_updated_components:
-            component.update(self, delta_time)
+            component.update()
 
         for component in self.components:
-            component.update(self, delta_time)
+            component.update()
 
         for component in self.late_updated_components:
-            component.update(self, delta_time)
+            component.update()
 
 
 
 
 class Component:
-    def update(self, game_object, delta_time):
+    #Contenir le gameobject du component
+    def __init__(self, parent):
+        self._parent = parent
+
+    @property
+    def parent(self):
+        return self._parent
+
+    def update(self):
         pass
 
 
 #Position
 class Transform(Component):
-    def __init__(self, x, y, angle = 0):
+    def __init__(self, parent, x, y, angle = 0):
+        super().__init__(parent)
+        print("addind component for ",parent)
         self.position = [x, y]
         self.angle = angle #radians
 
 
 
 class Velocity(Component):
-    def __init__(self, x=0, y=0, ax=0, ay=0):
+    def __init__(self, parent, x=0, y=0, ax=0, ay=0):
+        super().__init__(parent)
         self.velocity = [x, y]
         self.acceleration = [ax,ay]
 
-    def update(self, game_object, delta_time):
+    def update(self):
+        delta_time = Holder.Game.delta_time
         self.velocity[0] += self.acceleration[0] * delta_time
         self.velocity[1] += self.acceleration[1] * delta_time
         self.acceleration = [0,0]

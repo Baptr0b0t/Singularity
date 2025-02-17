@@ -50,16 +50,18 @@ class SpriteRenderer(pygame.sprite.Sprite):
 
 
 class RelativeCamera(Gameobject.Component):
-    def __init__(self, scale_factor = 4):
+    def __init__(self, parent, scale_factor = 4):
+        super().__init__(parent)
         self.position = (0,0)
         self.active = False
         self.scale = (0,0)
         self.scale_factor = scale_factor
 
-    def update(self, game_object, delta_time):
+    def update(self):
         """
         Must be launched before the gameobject spriterenderer
         """
+        game_object = super().parent
         camera_position = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform).position #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
         newpositionx = (transform.position[0] - camera_position[0])*self.scale_factor + Holder.Game.LARGEUR//2
