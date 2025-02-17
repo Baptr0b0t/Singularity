@@ -11,7 +11,11 @@ import Holder
 missing_texture = "./resources/missing_texture.jpg"
 
 class SpriteRenderer(pygame.sprite.Sprite):
-
+    """
+    Composant de rendu de l'objet.
+    :param image_path: Path relative de l'image du sprite.
+    :param scale_factor: Coefficient de la taille de l'image
+    """
     def __init__(self, game_object, image_path = missing_texture, scale_factor = 1.0):
         pygame.sprite.Sprite.__init__(self)
         self.game_object = game_object
@@ -34,14 +38,12 @@ class SpriteRenderer(pygame.sprite.Sprite):
         transform = self.game_object.get_component(Gameobject.Transform)
         if transform:
             angle = math.degrees(transform.angle)
+            relative_camera = self.game_object.get_component(RelativeCamera)
 
-
-            relativecamera = self.game_object.get_component(RelativeCamera)
-
-            if relativecamera and relativecamera.active: #Need Clean up
-                self.image = pygame.transform.scale(self.surface, relativecamera.scale)
+            if relative_camera and relative_camera.active: #Need Clean up
+                self.image = pygame.transform.scale(self.surface, relative_camera.scale)
                 self.image = pygame.transform.rotate(self.image, -angle)
-                self.rect = self.image.get_rect(center=(relativecamera.position[0], relativecamera.position[1]))
+                self.rect = self.image.get_rect(center=(relative_camera.position[0], relative_camera.position[1]))
             else:
                 self.image = pygame.transform.scale(self.surface, self.scale)
                 self.image = pygame.transform.rotate(self.image, -angle)
@@ -58,9 +60,6 @@ class RelativeCamera(Gameobject.Component):
         self.scale_factor = scale_factor
 
     def update(self):
-        """
-        Must be launched before the gameobject spriterenderer
-        """
         game_object = super().parent
         camera_position = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform).position #not crash proof
         transform = game_object.get_component(Gameobject.Transform)

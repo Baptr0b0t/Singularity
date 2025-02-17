@@ -7,6 +7,14 @@ import SceneManager
 import taglist
 
 class Gravity(Gameobject.Component):
+    """
+    Composant de gravitation de l'objet, s'attire vers les autres objets avec le meme composant.
+    :param mass: Masse de l'objet
+    :param fixed: Si False, le composant attire l'objet vers les sources de gravité.
+                Si True, il attire uniquement les autres objets.
+    :param g_force : Constante gravitationnelle
+    """
+
     def __init__(self,parent, mass, fixed=False, g_force = 6.67430*10**-11):
         super().__init__(parent)
         self.G = g_force
@@ -28,16 +36,20 @@ class Gravity(Gameobject.Component):
                     if distance <= 10: #For not make black hole
                         continue
                     force = self.G * (self.mass * obj.get_component(Gravity).mass) / (distance ** 2)
-                    print("force:", force)
                     velocity.acceleration[0] += -force * (dx/distance) / self.mass
                     velocity.acceleration[1] += -force * (dy/distance) / self.mass
 
 
 class PlayerSpaceMovement(Gameobject.Component):
-    def __init__(self,parent, acceleration_speed):
+    """
+    Composant de mouvement de l'objet dans l'espace par les inputs.
+    :param acceleration_speed: Force de poussée
+    :param boost_force: Coefficient du boost
+    """
+    def __init__(self,parent, acceleration_speed, boost_force = 8):
         super().__init__(parent)
         self.deltav = acceleration_speed
-        self.boost_force = 2
+        self.boost_force = boost_force
 
     def update(self):
         game_object = super().parent
@@ -45,9 +57,9 @@ class PlayerSpaceMovement(Gameobject.Component):
         velocity = game_object.get_component(Gameobject.Velocity)
         if transform:
             souris_x, souris_y = pygame.mouse.get_pos()
-            relativecamera = game_object.get_component(RelativeCamera)
-            if relativecamera and relativecamera.active:
-                transform.angle = math.atan2(souris_y - relativecamera.position[1], souris_x - relativecamera.position[0]) + math.radians(90)
+            relative_camera = game_object.get_component(RelativeCamera)
+            if relative_camera and relative_camera.active:
+                transform.angle = math.atan2(souris_y - relative_camera.position[1], souris_x - relative_camera.position[0]) + math.radians(90)
             else:
                 transform.angle = math.atan2(souris_y - transform.position[1], souris_x - transform.position[0]) + math.radians(90)
 

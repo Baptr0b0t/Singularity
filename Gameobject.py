@@ -68,7 +68,10 @@ class GameObject:
 
 
 class Component:
-    #Contenir le gameobject du component
+    """
+    Composant de base, permet de retrouver le Gameobject.
+    :param parent: Gameobject du component
+    """
     def __init__(self, parent):
         self._parent = parent
 
@@ -82,15 +85,25 @@ class Component:
 
 #Position
 class Transform(Component):
+    """
+    Composant obligatoire de position de l'objet
+    :param angle: L'angle en radian
+    """
     def __init__(self, parent, x, y, angle = 0):
         super().__init__(parent)
-        print("addind component for ",parent)
         self.position = [x, y]
-        self.angle = angle #radians
+        self.angle = angle
 
 
 
 class Velocity(Component):
+    """
+    Composant de vitesse de l'objet
+    :param x: vitesse en x
+    :param y: vitesse en y
+    :param ax: acceleration en x
+    :param ay: acceleration en y
+    """
     def __init__(self, parent, x=0, y=0, ax=0, ay=0):
         super().__init__(parent)
         self.velocity = [x, y]
