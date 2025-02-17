@@ -7,11 +7,13 @@ import SceneManager
 import taglist
 
 class Gravity(Gameobject.Component):
-    def __init__(self, mass, fixed=False, g_force = 6.67430*10**-11):
+    def __init__(self,parent, mass, fixed=False, g_force = 6.67430*10**-11):
+        super().__init__(parent)
         self.G = g_force
         self.mass = mass #kg
         self.fixed = fixed
-    def update(self, game_object, delta_time):
+    def update(self):
+        game_object = super().parent
         if not self.fixed:
             velocity = game_object.get_component(Gameobject.Velocity)
             transform = game_object.get_component(Gameobject.Transform)
@@ -32,11 +34,13 @@ class Gravity(Gameobject.Component):
 
 
 class PlayerSpaceMovement(Gameobject.Component):
-    def __init__(self, acceleration_speed):
+    def __init__(self,parent, acceleration_speed):
+        super().__init__(parent)
         self.deltav = acceleration_speed
         self.boost_force = 2
 
-    def update(self, game_object, delta_time):
+    def update(self):
+        game_object = super().parent
         transform = game_object.get_component(Gameobject.Transform)
         velocity = game_object.get_component(Gameobject.Velocity)
         if transform:
@@ -58,7 +62,12 @@ class PlayerSpaceMovement(Gameobject.Component):
                     velocity.acceleration[0] += force * math.cos(transform.angle - math.radians(90))
 
 class SpaceMovement(Gameobject.Component):
-    def update(self, game_object, delta_time):
+    def __init__(self,parent):
+        super().__init__(parent)
+
+    def update(self):
+        game_object = super().parent
+        delta_time = Holder.Game.delta_time
         transform = game_object.get_component(Gameobject.Transform)
         velocity = game_object.get_component(Gameobject.Velocity)
         if transform and velocity:

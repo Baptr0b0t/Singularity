@@ -1,6 +1,6 @@
 game_objects:
   player:
-    position: [LARGEUR//2, HAUTEUR//2]
+    position: [LARGEUR//2, HAUTEUR//2+200]
     angle: 0
     tags:
       - MAIN_CAMERA
@@ -9,7 +9,7 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/spaceship.png"
-          scale_factor: 0.03
+          scale_factor: 0.01
       quick_updated:
         Velocity: { }
       standard:
@@ -21,14 +21,14 @@ game_objects:
       late_updated:
         SpaceMovement: {}
   planet:
-    position: [ LARGEUR//2+200, HAUTEUR//2+100 ]
+    position: [ LARGEUR//2, HAUTEUR//2 ]
     angle: 0
     tags: {}
     components:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/planet_1.png"
-          scale_factor: 0.03
+          scale_factor: 0.05
       quick_updated:
         Velocity: { }
       standard:
@@ -38,41 +38,3 @@ game_objects:
           fixed : False
       late_updated:
         SpaceMovement: { }
-  planet2:
-    position: [ LARGEUR//2-200, HAUTEUR//2 ]
-    angle: 0
-    tags: { }
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_1.png"
-          scale_factor: 0.03
-      quick_updated: { }
-      standard:
-        RelativeCamera: { }
-        Gravity:
-          mass: 59740000000000000000000
-          fixed : False
-      late_updated:
-        SpaceMovement: { }
-  planet3:
-    position: [ LARGEUR//2-200, HAUTEUR//2-300 ]
-    angle: 0
-    tags: { }
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_1.png"
-          scale_factor: 0.04
-      quick_updated:
-        Velocity :
-          x: -6
-          y: +10
-      standard:
-        RelativeCamera: { }
-        Gravity:
-          mass: 80000000000000000000000
-          fixed : False
-      late_updated:
-        SpaceMovement: { }
-

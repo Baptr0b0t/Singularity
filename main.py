@@ -87,7 +87,7 @@ Holder.Game.actual_scene = actualscene
 running = True
 while running:
     delta_time = clock.tick(60) / 1000  # Temps écoulé en secondes
-
+    Holder.Game.delta_time = delta_time
     print(1/delta_time)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -101,7 +101,7 @@ while running:
     # Dessin
     fenetre.fill(NOIR)
 
-    sprite_group = actualscene.update_all(delta_time)
+    sprite_group = actualscene.update_all()
 
     #FPS_number_object.get_component(SpriteRenderer).set_sprite(FPS_number)
 
