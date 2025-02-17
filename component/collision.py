@@ -21,11 +21,11 @@ class Collision(Gameobject.Component):
     Composant de collision avec detection en cercle de l'objet dans l'espace.
     :param restitution: Coefficient de collision.
     """
-    def __init__(self, parent, restitution = 1, ratio=1):
+    def __init__(self, parent, restitution = 1, ratio=1, active = False):
         super().__init__(parent)
         self.restitution = restitution # 1 = collision rigide , 0 = aucune collision
         self.collision_ratio = ratio
-        self.active = True #Un seul objet doit faire tout les calcul
+        self.active = active #Un seul objet doit faire tout les calcul
 
 
     def update(self):
