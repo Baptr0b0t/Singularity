@@ -3,6 +3,7 @@ import yaml
 from component.render import *
 from component.movement import *
 from component.ai import *
+from component.collision import *
 from Gameobject import *
 from taglist import *
 import Holder

@@ -93,7 +93,21 @@ class Transform(Component):
         super().__init__(parent)
         self.position = [x, y]
         self.angle = angle
+    @property
+    def x(self):
+        return self.position[0]
 
+    @property
+    def y(self):
+        return self.position[1]
+
+    @x.setter
+    def x(self, value):
+        self.position[0] = value
+
+    @y.setter
+    def y(self, value):
+        self.position[1] = value
 
 
 class Velocity(Component):
@@ -108,6 +122,22 @@ class Velocity(Component):
         super().__init__(parent)
         self.velocity = [x, y]
         self.acceleration = [ax,ay]
+
+    @property
+    def x(self):
+        return self.velocity[0]
+
+    @property
+    def y(self):
+        return self.velocity[1]
+
+    @x.setter
+    def x(self, value):
+        self.velocity[0] = value
+
+    @y.setter
+    def y(self, value):
+        self.velocity[1] = value
 
     def update(self):
         delta_time = Holder.Game.delta_time

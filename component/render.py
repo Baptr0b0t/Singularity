@@ -24,6 +24,9 @@ class SpriteRenderer(pygame.sprite.Sprite):
         except FileNotFoundError:
             self.surface = pygame.image.load(missing_texture)
         self.scale = (self.surface.get_size()[0] * scale_factor,self.surface.get_size()[1] * scale_factor)
+        transform = self.game_object.get_component(Gameobject.Transform)
+        self.image = pygame.transform.scale(self.surface, self.scale)
+        self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
 
 
     def set_scale(self, scale):
