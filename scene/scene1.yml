@@ -13,10 +13,14 @@ game_objects:
       quick_updated:
         Velocity: { }
       standard:
+        Mass:
+          mass : 1000
+        Collision:
+          ratio : 0.8
+          active : True
         PlayerSpaceMovement:
           acceleration_speed: 10
-        Gravity:
-          mass : 10000
+        Gravity: { }
         RelativeCamera: {}
       late_updated:
         SpaceMovement: {}
@@ -32,10 +36,13 @@ game_objects:
       quick_updated:
         Velocity: { }
       standard:
+        Mass:
+          mass: 59740000000000000000000
+        Collision:
+          ratio: 0.7
         RelativeCamera: { }
         Gravity:
-          mass: 59740000000000000000000
-          fixed : False
+          fixed : True
       late_updated:
         SpaceMovement: { }
   planet2:
@@ -51,9 +58,11 @@ game_objects:
         Velocity:
           y: -4
       standard:
+        Mass:
+          mass: 59740000000000000000000
+        Collision: { }
         RelativeCamera: { }
         Gravity:
-          mass: 59740000000000000000000
           fixed : False
       late_updated:
         SpaceMovement: { }
@@ -69,9 +78,11 @@ game_objects:
       quick_updated:
         Velocity: { }
       standard:
+        Mass:
+          mass: 100000000000000000000000
+        Collision: { }
         RelativeCamera: { }
         Gravity:
-          mass: 100000000000000000000000
           fixed : True
       late_updated:
         SpaceMovement: { }

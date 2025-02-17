@@ -19,7 +19,7 @@ pygame.display.set_caption("Singularity")
 
 
 # Couleurs
-NOIR = (0, 50, 0)
+NOIR = (0, 0, 0)
 BLANC = (255, 255, 255)
 ROUGE = (255, 0, 0)
 
@@ -88,7 +88,7 @@ running = True
 while running:
     delta_time = clock.tick(60) / 1000  # Temps écoulé en secondes
     Holder.Game.delta_time = delta_time
-    print(1/delta_time)
+    #print(1/delta_time)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False

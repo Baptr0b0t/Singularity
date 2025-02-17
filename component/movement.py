@@ -6,6 +6,12 @@ import Holder
 import SceneManager
 import taglist
 
+class Mass(Gameobject.Component):
+    def __init__(self,parent, mass):
+        super().__init__(parent)
+        self.mass = mass
+
+
 class Gravity(Gameobject.Component):
     """
     Composant de gravitation de l'objet, s'attire vers les autres objets avec le meme composant.
@@ -15,29 +21,31 @@ class Gravity(Gameobject.Component):
     :param g_force : Constante gravitationnelle
     """
 
-    def __init__(self,parent, mass, fixed=False, g_force = 6.67430*10**-11):
+    def __init__(self,parent, fixed=False, g_force = 6.67430*10**-11):
         super().__init__(parent)
         self.G = g_force
-        self.mass = mass #kg
         self.fixed = fixed
     def update(self):
         game_object = super().parent
         if not self.fixed:
             velocity = game_object.get_component(Gameobject.Velocity)
             transform = game_object.get_component(Gameobject.Transform)
+            mass = game_object.get_component(Mass).mass
             if velocity and transform:
                 ObjectList = SceneManager.Scene.find_by_component(Gravity)
 
                 for obj in ObjectList:
+                    if obj == game_object:
+                        continue
                     ObjectTransform = obj.get_component(Gameobject.Transform)
                     dx = transform.position[0]-ObjectTransform.position[0]
                     dy = transform.position[1]-ObjectTransform.position[1]
                     distance = math.sqrt(dx**2 + dy**2) * 400
                     if distance <= 10: #For not make black hole
                         continue
-                    force = self.G * (self.mass * obj.get_component(Gravity).mass) / (distance ** 2)
-                    velocity.acceleration[0] += -force * (dx/distance) / self.mass
-                    velocity.acceleration[1] += -force * (dy/distance) / self.mass
+                    force = self.G * (mass * obj.get_component(Mass).mass) / (distance ** 2)
+                    velocity.acceleration[0] += -force * (dx/distance) / mass
+                    velocity.acceleration[1] += -force * (dy/distance) / mass
 
 
 class PlayerSpaceMovement(Gameobject.Component):
