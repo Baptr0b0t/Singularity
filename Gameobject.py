@@ -139,6 +139,23 @@ class Velocity(Component):
     def y(self, value):
         self.velocity[1] = value
 
+
+    @property
+    def ax(self):
+        return self.acceleration[0]
+
+    @property
+    def ay(self):
+        return self.acceleration[1]
+
+    @ax.setter
+    def ax(self, value):
+        self.acceleration[0] = value
+
+    @ay.setter
+    def ay(self, value):
+        self.acceleration[1] = value
+
     def update(self):
         delta_time = Holder.Game.delta_time
         self.velocity[0] += self.acceleration[0] * delta_time
