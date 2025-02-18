@@ -7,6 +7,9 @@ import SceneManager
 import taglist
 
 class Mass(Gameobject.Component):
+    """
+    :param mass: Masse de l'objet
+    """
     def __init__(self,parent, mass):
         super().__init__(parent)
         self.mass = mass
@@ -15,7 +18,6 @@ class Mass(Gameobject.Component):
 class Gravity(Gameobject.Component):
     """
     Composant de gravitation de l'objet, s'attire vers les autres objets avec le meme composant.
-    :param mass: Masse de l'objet
     :param fixed: Si False, le composant attire l'objet vers les sources de gravité.
                 Si True, il attire uniquement les autres objets.
     :param g_force : Constante gravitationnelle
@@ -97,3 +99,14 @@ class SpaceMovement(Gameobject.Component):
             # Limites de l'écran
             transform.position[0] = max(0, min(Holder.Game.LARGEUR, transform.position[0]))
             transform.position[1] = max(0, min(Holder.Game.HAUTEUR, transform.position[1]))
+
+class SpeedLimit(Gameobject.Component):
+    def __init__(self,parent, speedlimit = 10):
+        super().__init__(parent)
+        self.speedlimit = speedlimit
+
+    def update(self):
+        game_object = super().parent
+        velocity = game_object.get_component(Gameobject.Velocity)
+        velocity.x = max(-self.speedlimit, min(self.speedlimit, velocity.x))
+        velocity.y = max(-self.speedlimit, min(self.speedlimit, velocity.y))

@@ -9,25 +9,28 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/spaceship.png"
-          scale_factor: 0.01
+          scale_factor: 0.1
       quick_updated:
         Velocity: { }
       standard:
         Mass:
           mass : 1000
-        Collision:
+        PlanetCollision:
           ratio : 0.8
-          active : True
+          restitution : 1
         PlayerSpaceMovement:
           acceleration_speed: 10
         Gravity: { }
         RelativeCamera: {}
+        #SpeedLimit:
+        #  speedlimit: 80
       late_updated:
         SpaceMovement: {}
   planet1:
     position: [ LARGEUR//2, HAUTEUR//2 ]
     angle: 0
-    tags: {}
+    tags:
+      - PLANET
     components:
       self_updated:
         SpriteRenderer:
@@ -38,49 +41,56 @@ game_objects:
       standard:
         Mass:
           mass: 59740000000000000000000
-        Collision:
+        PlanetCollision:
           ratio: 0.7
         RelativeCamera: { }
         Gravity:
           fixed : True
+        #SpeedLimit:
+        #  speedlimit: 1000
       late_updated:
         SpaceMovement: { }
   planet2:
     position: [ LARGEUR//3, HAUTEUR//4 ]
     angle: 80
-    tags: {}
+    tags:
+      - PLANET
     components:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/planet_2.png"
           scale_factor: 0.04
       quick_updated:
-        Velocity:
-          y: -4
+        Velocity: { }
       standard:
         Mass:
           mass: 59740000000000000000000
-        Collision: { }
+        PlanetCollision: { }
         RelativeCamera: { }
         Gravity:
-          fixed : False
+          fixed : True
+        #SpeedLimit:
+        #  speedlimit: 1000
+
       late_updated:
         SpaceMovement: { }
   black_hole:
     position: [ "200", "200" ]
     angle: 0
-    tags: {}
+    tags:
+      - PLANET
     components:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/black_hole.png"
-          scale_factor: 0.02
+          scale_factor: 0.1
       quick_updated:
         Velocity: { }
       standard:
         Mass:
-          mass: 100000000000000000000000
-        Collision: { }
+          mass: 1000
+        PlanetCollision:
+          ratio : 0.6
         RelativeCamera: { }
         Gravity:
           fixed : True

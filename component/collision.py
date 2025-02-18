@@ -2,7 +2,8 @@ import Gameobject
 import pygame
 import SceneManager
 import math
-
+import Holder
+import taglist
 from component.movement import Mass
 from component.render import SpriteRenderer
 
@@ -16,42 +17,57 @@ def collide_circle(obj1, obj2, obj1ratio = 1, obj2ratio = 1): #From pygame.sprit
 
     return distancesquared <= (obj1radius * obj1ratio + obj2radius * obj2ratio) ** 2
 
-class Collision(Gameobject.Component):
+class PlanetCollision(Gameobject.Component):
     """
-    Composant de collision avec detection en cercle de l'objet dans l'espace.
+    Composant de collision d'objet avec des planetes dans l'espace.
     :param restitution: Coefficient de collision.
+    :param ratio: Coefficient de la taille de collision par rapport au sprite.
     """
-    def __init__(self, parent, restitution = 1, ratio=1, active = False):
+    def __init__(self, parent, restitution = 1, ratio=1):
         super().__init__(parent)
         self.restitution = restitution # 1 = collision rigide , 0 = aucune collision
         self.collision_ratio = ratio
-        self.active = active #Un seul objet doit faire tout les calcul
-
+        self.handled_collision = []
 
     def update(self):
-        if not self.active:
-            return
+
         game_object = super().parent
-        ObjectList = SceneManager.Scene.find_by_component(Collision)
+
+        self.handled_collision.clear()
+        ObjectList = SceneManager.Scene.find_by_component(PlanetCollision)
         velocity = game_object.get_component(Gameobject.Velocity)
         transform = game_object.get_component(Gameobject.Transform)
         mass = game_object.get_component(Mass).mass
+        print(f"{game_object} fait des collision")
         if velocity and transform:
             for obj in ObjectList:
                 if obj == game_object:
                     continue
+                if game_object in obj.get_component(PlanetCollision).handled_collision:
+                    continue
 
-                if collide_circle(game_object, obj, self.collision_ratio, obj.get_component(Collision).collision_ratio):
-                    collision_angle = math.atan2(transform.y - obj.get_component(Gameobject.Transform).y, transform.x - obj.get_component(Gameobject.Transform).x)
-                    self_speed = math.sqrt(velocity.x ** 2 + velocity.y ** 2)  # Norme de la vitesse
-                    obj_speed = math.sqrt(obj.get_component(Gameobject.Velocity).x ** 2 + obj.get_component(Gameobject.Velocity).y ** 2)
+                if collide_circle(game_object, obj, self.collision_ratio, obj.get_component(PlanetCollision).collision_ratio):
+
                     obj_mass = obj.get_component(Mass).mass
+                    obj_transform = obj.get_component(Gameobject.Transform)
+                    obj_velocity = obj.get_component(Gameobject.Velocity)
+                    obj_collision = obj.get_component(PlanetCollision)
 
-                    self_speed = ((self_speed * (mass - obj_mass) + 2 * obj_mass * obj_speed) / (mass + obj_mass) - self_speed)
-                    obj_speed = (obj_speed * (obj_mass - mass) + 2 * mass * self_speed) / (mass + obj_mass) - obj_speed
+                    normal_x = obj_transform.x - transform.x
+                    normal_y = obj_transform.y - transform.y
+                    distance = math.sqrt(normal_x**2 + normal_y**2)
+                    if distance == 0:
+                        distance = 0.001  # Éviter la division par zéro
+                    normal_x /= distance
+                    normal_y /= distance
+                    v1n = velocity.x * normal_x + velocity.y * normal_y
+                    v2n = obj_velocity.x * normal_x + obj_velocity.y * normal_y
 
+                    new_v1n = ((v1n * (mass - obj_mass) + 2 * obj_mass * v2n) / (mass + obj_mass)) * self.restitution
+                    new_v2n = ((v2n * (obj_mass - mass) + 2 * mass * v1n) / (mass + obj_mass)) * obj_collision.restitution
+                    velocity.x += (new_v1n - v1n) * normal_x
+                    velocity.y += (new_v1n - v1n) * normal_y
+                    obj_velocity.x += (new_v2n - v2n) * normal_x
+                    obj_velocity.y += (new_v2n - v2n) * normal_y
 
-                    velocity.x += math.cos(collision_angle) * -self_speed * self.restitution
-                    velocity.y += math.sin(collision_angle) * -self_speed * self.restitution
-                    obj.get_component(Gameobject.Velocity).x += math.cos(collision_angle) * obj_speed * obj.get_component(Collision).restitution
-                    obj.get_component(Gameobject.Velocity).y += math.sin(collision_angle) * obj_speed * obj.get_component(Collision).restitution
+                    self.handled_collision.append(obj)
