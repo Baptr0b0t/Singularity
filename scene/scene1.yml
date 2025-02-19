@@ -9,7 +9,7 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/spaceship.png"
-          scale_factor: 0.1
+          scale_factor: 0.01
       quick_updated:
         Velocity: { }
       standard:
@@ -19,12 +19,14 @@ game_objects:
           ratio : 0.8
           restitution : 1
         PlayerSpaceMovement:
-          acceleration_speed: 10
+          acceleration_speed: 15
         Gravity: { }
         RelativeCamera: {}
         #SpeedLimit:
         #  speedlimit: 80
       late_updated:
+        ScreenLimit:
+          bounce: True
         SpaceMovement: {}
   planet1:
     position: [ LARGEUR//2, HAUTEUR//2 ]
@@ -94,5 +96,7 @@ game_objects:
         RelativeCamera: { }
         Gravity:
           fixed : True
+        ScreenLimit:
+          bounce : True
       late_updated:
         SpaceMovement: { }
