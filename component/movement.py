@@ -42,8 +42,8 @@ class Gravity(Gameobject.Component):
                     ObjectTransform = obj.get_component(Gameobject.Transform)
                     dx = transform.position[0]-ObjectTransform.position[0]
                     dy = transform.position[1]-ObjectTransform.position[1]
-                    distance = math.sqrt(dx**2 + dy**2) * 400
-                    if distance <= 10: #For not make black hole
+                    distance = math.sqrt(dx**2 + dy**2) * 200
+                    if distance <= 1: #For not make black hole
                         continue
                     force = self.G * (mass * obj.get_component(Mass).mass) / (distance ** 2)
                     velocity.acceleration[0] += -force * (dx/distance) / mass
@@ -95,10 +95,9 @@ class SpaceMovement(Gameobject.Component):
         if transform and velocity:
             transform.position[0] += velocity.velocity[0] * delta_time
             transform.position[1] += velocity.velocity[1] * delta_time
-
-            # Limites de l'écran
-            transform.position[0] = max(0, min(Holder.Game.LARGEUR, transform.position[0]))
-            transform.position[1] = max(0, min(Holder.Game.HAUTEUR, transform.position[1]))
+        #Pygame limitation [-2147483647;2147483646]
+        transform.x = max(-214748364, min(214748364, transform.x))
+        transform.y = max(-214748364, min(214748364, transform.y))
 
 class SpeedLimit(Gameobject.Component):
     def __init__(self,parent, speedlimit = 10):

@@ -38,7 +38,6 @@ class PlanetCollision(Gameobject.Component):
         velocity = game_object.get_component(Gameobject.Velocity)
         transform = game_object.get_component(Gameobject.Transform)
         mass = game_object.get_component(Mass).mass
-        print(f"{game_object} fait des collision")
         if velocity and transform:
             for obj in ObjectList:
                 if obj == game_object:
@@ -57,7 +56,7 @@ class PlanetCollision(Gameobject.Component):
                     normal_y = obj_transform.y - transform.y
                     distance = math.sqrt(normal_x**2 + normal_y**2)
                     if distance == 0:
-                        distance = 0.001  # Éviter la division par zéro
+                        distance = 1  # Éviter la division par zéro
                     normal_x /= distance
                     normal_y /= distance
                     v1n = velocity.x * normal_x + velocity.y * normal_y
@@ -71,3 +70,31 @@ class PlanetCollision(Gameobject.Component):
                     obj_velocity.y += (new_v2n - v2n) * normal_y
 
                     self.handled_collision.append(obj)
+
+
+class ScreenLimit(Gameobject.Component):
+    def __init__(self, parent, bounce = False, force = 2):
+        super().__init__(parent)
+        self.bounce = bounce
+        self.force = force
+
+    def update(self):
+        game_object = super().parent
+        transform = game_object.get_component(Gameobject.Transform)
+        if self.bounce:
+
+            velocity = game_object.get_component(Gameobject.Velocity)
+            if velocity:
+
+
+                if transform.x >= Holder.Game.LARGEUR or transform.x <= 0:
+                    velocity.x += -self.force * velocity.x
+                    transform.x = max(0, min(Holder.Game.LARGEUR, transform.x))
+
+                if transform.y >= Holder.Game.LARGEUR or transform.y <= 0:
+                    velocity.y += -self.force * velocity.y
+                    transform.y = max(0, min(Holder.Game.HAUTEUR, transform.y))
+        else:
+            transform.x = max(0, min(Holder.Game.LARGEUR, transform.x))
+            transform.y = max(0, min(Holder.Game.HAUTEUR, transform.y))
+
