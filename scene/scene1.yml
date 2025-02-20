@@ -100,3 +100,18 @@ game_objects:
           bounce : True
       late_updated:
         SpaceMovement: { }
+  Texte:
+    position: [ 100, 80 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/black_hole.png"
+          scale_factor: 0.1
+      quick_updated: { }
+      standard:
+        RelativeCamera: { }
+        FontRenderer:
+          texte : "Texte"
+      late_updated: { }

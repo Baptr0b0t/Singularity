@@ -52,6 +52,21 @@ class SpriteRenderer(pygame.sprite.Sprite):
                 self.image = pygame.transform.rotate(self.image, -angle)
                 self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
 
+class FontRenderer(Gameobject.Component):
+    def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 20, texte = "", color = (255,255,255), size = 1):
+        super().__init__(parent)
+        self.font = pygame.font.Font(font_path, font_size)
+        self.color = color
+        self.change_text(texte, color, size)
+
+    def change_text(self, texte, color = None, size = 1):
+        game_object = super().parent
+        if color is None:
+            color = self.color
+
+        surface_texte = self.font.render(str(texte), False, color)
+        game_object.get_component(SpriteRenderer).set_sprite(surface_texte, size)
+
 
 
 class RelativeCamera(Gameobject.Component):
