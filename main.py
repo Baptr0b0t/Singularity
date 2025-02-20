@@ -91,8 +91,7 @@ while running:
     Holder.Game.time += delta_time
     #print(1/delta_time)
     #print("Time :", Holder.Game.time)
-    events = SceneManager.Scene.get_events()
-    for event in events:
+    for event in pygame.event.get():
         if event.type == pygame.QUIT:
             print("Quit")
             running = False
