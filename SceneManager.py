@@ -11,14 +11,26 @@ import pygame
 
 
 class EventManager:
+    """
+    Exemple usage :
+        SceneManager.Scene.has_event(eventlist.MY_EVENT)
+        SceneManager.Scene.post_event(eventlist.MY_EVENT)
+    """
     def __init__(self):
         self.events = []  # Stocke les événements récupérés
         self.reset()
 
     def reset(self):
-        """Récupère tous les événements une seule fois par frame"""
-        pygame.event.pump()
-        self.events = pygame.event.get()
+        """Reset tous les événements"""
+        self.events.clear()
+
+    def has_event(self, event, do_remove):
+        """Check un événement"""
+        if event in self.events:
+            if do_remove:
+                self.events.remove(event)
+            return True
+        return False
 
     def get_events(self):
         """Retourne la liste des événements """
@@ -26,12 +38,8 @@ class EventManager:
 
     def post_event(self, event):
         """Ajoute un nouvel événement manuellement."""
-        pygame.event.post(event)  # Ajoute l'événement à la file Pygame
+        self.events.append(event)  # Ajoute l'événement à la file
 
-        """ Exemple usage
-        custom_event = pygame.event.Event(pygame.USEREVENT, {"message": "Salut"})
-        SceneManager.Scene.post_event(custom_event)
-        """
 
 class Scene:
     alive_objects = []
@@ -74,13 +82,18 @@ class Scene:
         for game_object in self.scene_objects:
             game_object.update()
         self.sprite_group.update()
-        self.event_manager.reset() # Reset les événements
+        #self.event_manager.reset() # Reset les événements
         return self.sprite_group
 
     @classmethod
     def get_events(cls):
         """Permet aux objets de la scène de récupérer les événements"""
         return Holder.Game.actual_scene.event_manager.get_events()
+
+    @classmethod
+    def has_event(cls, event, do_remove=True ):
+        """Ajoute un nouvel event."""
+        return Holder.Game.actual_scene.event_manager.has_event(event, do_remove)
 
     @classmethod
     def post_event(cls, event):
