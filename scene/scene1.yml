@@ -85,7 +85,7 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/black_hole.png"
-          scale_factor: 0.1
+          scale_factor: 0.02
       quick_updated:
         Velocity: { }
       standard:
@@ -93,6 +93,7 @@ game_objects:
           mass: 1000
         PlanetCollision:
           ratio : 0.6
+          restitution : 0.95
         RelativeCamera: { }
         Gravity:
           fixed : True
@@ -112,6 +113,6 @@ game_objects:
       quick_updated: { }
       standard:
         RelativeCamera: { }
-        FontRenderer:
-          texte : "Texte"
+        FontRenderer: { }
+        FPS_UI: { }
       late_updated: { }

@@ -161,3 +161,20 @@ class Velocity(Component):
         self.velocity[0] += self.acceleration[0] * delta_time
         self.velocity[1] += self.acceleration[1] * delta_time
         self.acceleration = [0,0]
+
+
+
+class Cooldown:
+    def __init__(self, cooldown, start_ready = True):
+        self.reset_time = Holder.Game.time
+        self.cooldown = cooldown
+        self.ready = start_ready
+
+    def is_ready(self):
+        if Holder.Game.time >= self.reset_time + self.cooldown:
+            self.ready = True
+        return self.ready
+
+    def reset(self):
+        self.reset_time = Holder.Game.time
+        self.ready = False

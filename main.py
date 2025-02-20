@@ -51,27 +51,6 @@ def appliquer_filtre_8bit(surface, largeur, hauteur, facteur):
 clock = pygame.time.Clock()
 
 
-#triangle = Gameobject.GameObject((Holder.Game.LARGEUR//2,Holder.Game.HAUTEUR//2))
-#triangle.add_tag(taglist.MAIN_CAMERA)
-#triangle.add_tag(taglist.PLAYER)
-#triangle.add_self_updated_component(SpriteRenderer(triangle, spaceship, 0.1))
-#triangle.add_quick_updated_component(Gameobject.Velocity())
-#triangle.add_component(PlayerSpaceMovement(200))
-#triangle.add_component(Gravity())
-#triangle.add_late_updated_component(SpaceMovement())
-#triangle.add_component(RelativeCamera())
-#main_sprite_group.add(triangle.get_component(SpriteRenderer))
-
-
-#relativecamtest = Gameobject.GameObject((500, 300))
-#relativecamtest.add_self_updated_component(SpriteRenderer(relativecamtest, spaceship, 0.1))
-#relativecamtest.add_component(RelativeCamera())
-#main_sprite_group.add(relativecamtest.get_component(SpriteRenderer))
-
-#FPS_number_object = Gameobject.GameObject((100, 100), math.radians(0))
-#FPS_number_object.add_self_updated_component(SpriteRenderer(FPS_number_object, spaceship, 0.1))
-#FPS_number_object.add_component(RelativeCamera())
-#main_sprite_group.add(FPS_number_object.get_component(SpriteRenderer))
 
 
 
@@ -87,7 +66,6 @@ while running:
     delta_time = clock.tick(60) / 1000  # Temps écoulé en secondes
     Holder.Game.delta_time = delta_time
     Holder.Game.time += delta_time
-    #print(1/delta_time)
     #print("Time :", Holder.Game.time)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
