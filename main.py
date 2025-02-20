@@ -74,8 +74,6 @@ clock = pygame.time.Clock()
 #main_sprite_group.add(FPS_number_object.get_component(SpriteRenderer))
 
 
-symbolfont = pygame.font.Font("resources/Symbols.ttf", 20)
-font = pygame.font.Font("resources/SAIBA-45.ttf", 60)
 
 
 
@@ -97,7 +95,7 @@ while running:
             running = False
 
     # Mise à jour
-    FPS_number = symbolfont.render(str(int(clock.get_fps())), False, (255, 125, 0))
+
     #FPS_number = font.render(str(int(math.degrees(triangle.get_component(Gameobject.Transform).angle))), False, (255, 125, 0))
 
 
