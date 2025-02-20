@@ -70,7 +70,7 @@ class FontRenderer(Gameobject.Component):
 
 
 class RelativeCamera(Gameobject.Component):
-    def __init__(self, parent, scale_factor = 4):
+    def __init__(self, parent, scale_factor = 0.5):
         super().__init__(parent)
         self.position = (0,0)
         self.active = False
@@ -86,7 +86,6 @@ class RelativeCamera(Gameobject.Component):
         self.position = (newpositionx, newpositiony)
 
         renderer = game_object.get_component(SpriteRenderer)
-
         self.scale = (renderer.scale[0] * self.scale_factor, renderer.scale[1] * self.scale_factor) #Modifie la taille pendant les rotations
         keys = pygame.key.get_pressed()
         if keys[pygame.K_TAB]:
