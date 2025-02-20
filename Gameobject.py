@@ -80,7 +80,7 @@ class Component:
         return self._parent
 
     def update(self):
-        pass
+        pass #Permet les composants sans update()
 
 
 #Position
@@ -158,8 +158,8 @@ class Velocity(Component):
 
     def update(self):
         delta_time = Holder.Game.delta_time
-        self.velocity[0] += self.acceleration[0] * delta_time
-        self.velocity[1] += self.acceleration[1] * delta_time
+        self.x += self.ax * delta_time
+        self.y += self.ay * delta_time
         self.acceleration = [0,0]
 
 
