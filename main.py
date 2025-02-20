@@ -8,7 +8,7 @@ import taglist
 from component.render import *
 from component.movement import *
 import Holder
-
+import eventlist
 
 pygame.init()
 
@@ -89,9 +89,12 @@ while running:
     delta_time = clock.tick(60) / 1000  # Temps écoulé en secondes
     Holder.Game.delta_time = delta_time
     Holder.Game.time += delta_time
-    print(1/delta_time)
-    for event in pygame.event.get():
+    #print(1/delta_time)
+    #print("Time :", Holder.Game.time)
+    events = SceneManager.Scene.get_events()
+    for event in events:
         if event.type == pygame.QUIT:
+            print("Quit")
             running = False
 
     # Mise à jour

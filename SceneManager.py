@@ -9,18 +9,45 @@ from taglist import *
 import Holder
 import pygame
 
+
+class EventManager:
+    def __init__(self):
+        self.events = []  # Stocke les événements récupérés
+        self.reset()
+
+    def reset(self):
+        """Récupère tous les événements une seule fois par frame"""
+        pygame.event.pump()
+        self.events = pygame.event.get()
+
+    def get_events(self):
+        """Retourne la liste des événements """
+        return self.events
+
+    def post_event(self, event):
+        """Ajoute un nouvel événement manuellement."""
+        pygame.event.post(event)  # Ajoute l'événement à la file Pygame
+
+        """ Exemple usage
+        custom_event = pygame.event.Event(pygame.USEREVENT, {"message": "Salut"})
+        SceneManager.Scene.post_event(custom_event)
+        """
+
 class Scene:
     alive_objects = []
     def __init__(self):
         self.sprite_group = pygame.sprite.Group()
         self.scene_objects = []
-        with open("scene/scene1.yml", "r") as file:
-            scene = yaml.safe_load(file)
+        self.event_manager = EventManager()
+
         LARGEUR = Holder.Game.LARGEUR
         HAUTEUR = Holder.Game.HAUTEUR
+        with open("scene/scene1.yml", "r") as file:
+            scene = yaml.safe_load(file)
         print(scene)
+
         for name, data in scene["game_objects"].items():
-            position = (eval(data["position"][0]),eval(data["position"][1])) #Transforme "LARGEUR" et "HAUTEUR"
+            position = (eval(str(data["position"][0])),eval(str(data["position"][1]))) #Transforme "LARGEUR" et "HAUTEUR"
             print(position)
             obj = Gameobject.GameObject(position, data["angle"])
 
@@ -43,10 +70,22 @@ class Scene:
 
 
     def update_all(self):
+
         for game_object in self.scene_objects:
             game_object.update()
         self.sprite_group.update()
+        self.event_manager.reset() # Reset les événements
         return self.sprite_group
+
+    @classmethod
+    def get_events(cls):
+        """Permet aux objets de la scène de récupérer les événements"""
+        return Holder.Game.actual_scene.event_manager.get_events()
+
+    @classmethod
+    def post_event(cls, event):
+        """Ajoute un nouvel event."""
+        return Holder.Game.actual_scene.event_manager.post_event(event)
 
     @classmethod
     def add_object(cls, game_object):
