@@ -26,7 +26,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
         self.scale = (self.surface.get_size()[0] * scale_factor,self.surface.get_size()[1] * scale_factor)
         transform = self.game_object.get_component(Gameobject.Transform)
         self.image = pygame.transform.scale(self.surface, self.scale)
-        self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
+        self.rect = self.image.get_rect(center=(transform.x, transform.y))
 
 
     def set_scale(self, scale):
@@ -50,7 +50,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
             else:
                 self.image = pygame.transform.scale(self.surface, self.scale)
                 self.image = pygame.transform.rotate(self.image, -angle)
-                self.rect = self.image.get_rect(center=(transform.position[0], transform.position[1]))
+                self.rect = self.image.get_rect(center=(transform.x, transform.y))
 
 class FontRenderer(Gameobject.Component):
     def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 20, texte = "", color = (255,255,255), size = 1):
@@ -72,17 +72,17 @@ class FontRenderer(Gameobject.Component):
 class RelativeCamera(Gameobject.Component):
     def __init__(self, parent, scale_factor = 0.5):
         super().__init__(parent)
-        self.position = (0,0)
+        self.position = (0,0) #Add x,y property
         self.active = False
         self.scale = (0,0)
         self.scale_factor = scale_factor
 
     def update(self):
         game_object = super().parent
-        camera_position = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform).position #not crash proof
+        camera_transform = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform) #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
-        newpositionx = (transform.position[0] - camera_position[0])*self.scale_factor + Holder.Game.LARGEUR//2
-        newpositiony = (transform.position[1] - camera_position[1])*self.scale_factor + Holder.Game.HAUTEUR//2
+        newpositionx = (transform.x - camera_transform.x)*self.scale_factor + Holder.Game.LARGEUR//2
+        newpositiony = (transform.y - camera_transform.y)*self.scale_factor + Holder.Game.HAUTEUR//2
         self.position = (newpositionx, newpositiony)
 
         renderer = game_object.get_component(SpriteRenderer)

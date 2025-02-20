@@ -34,20 +34,20 @@ class Gravity(Gameobject.Component):
             transform = game_object.get_component(Gameobject.Transform)
             mass = game_object.get_component(Mass).mass
             if velocity and transform:
-                ObjectList = SceneManager.Scene.find_by_component(Gravity)
+                object_list = SceneManager.Scene.find_by_component(Gravity)
 
-                for obj in ObjectList:
+                for obj in object_list:
                     if obj == game_object:
                         continue
-                    ObjectTransform = obj.get_component(Gameobject.Transform)
-                    dx = transform.position[0]-ObjectTransform.position[0]
-                    dy = transform.position[1]-ObjectTransform.position[1]
+                    object_transform = obj.get_component(Gameobject.Transform)
+                    dx = transform.x - object_transform.x
+                    dy = transform.y - object_transform.y
                     distance = math.sqrt(dx**2 + dy**2) * 200
                     if distance <= 1: #For not make black hole
                         continue
                     force = self.G * (mass * obj.get_component(Mass).mass) / (distance ** 2)
-                    velocity.acceleration[0] += -force * (dx/distance) / mass
-                    velocity.acceleration[1] += -force * (dy/distance) / mass
+                    velocity.ax += -force * (dx/distance) / mass
+                    velocity.ay += -force * (dy/distance) / mass
 
 
 class PlayerSpaceMovement(Gameobject.Component):
@@ -71,7 +71,7 @@ class PlayerSpaceMovement(Gameobject.Component):
             if relative_camera and relative_camera.active:
                 transform.angle = math.atan2(souris_y - relative_camera.position[1], souris_x - relative_camera.position[0]) + math.radians(90)
             else:
-                transform.angle = math.atan2(souris_y - transform.position[1], souris_x - transform.position[0]) + math.radians(90)
+                transform.angle = math.atan2(souris_y - transform.y, souris_x - transform.x) + math.radians(90)
 
             if velocity:
                 keys = pygame.key.get_pressed()
@@ -80,8 +80,8 @@ class PlayerSpaceMovement(Gameobject.Component):
                         force = self.deltav * self.boost_force
                     else:
                         force = self.deltav
-                    velocity.acceleration[1] += force * math.sin(transform.angle - math.radians(90))
-                    velocity.acceleration[0] += force * math.cos(transform.angle - math.radians(90))
+                    velocity.ax += force * math.cos(transform.angle - math.radians(90))
+                    velocity.ay += force * math.sin(transform.angle - math.radians(90))
 
 class SpaceMovement(Gameobject.Component):
     def __init__(self,parent):
@@ -93,8 +93,8 @@ class SpaceMovement(Gameobject.Component):
         transform = game_object.get_component(Gameobject.Transform)
         velocity = game_object.get_component(Gameobject.Velocity)
         if transform and velocity:
-            transform.position[0] += velocity.velocity[0] * delta_time
-            transform.position[1] += velocity.velocity[1] * delta_time
+            transform.x += velocity.x * delta_time
+            transform.y += velocity.y * delta_time
         #Pygame limitation [-2147483647;2147483646]
         transform.x = max(-214748364, min(214748364, transform.x))
         transform.y = max(-214748364, min(214748364, transform.y))
