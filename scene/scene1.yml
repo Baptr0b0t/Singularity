@@ -77,7 +77,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   black_hole:
-    position: [ "200", "200" ]
+    position: [ 200, 200 ]
     angle: 0
     tags:
       - PLANET
