@@ -1,7 +1,8 @@
 import Gameobject
 import Holder
-from component.render import FontRenderer
-
+from component.render import FontRenderer, SpriteRenderer, RelativeCamera
+import math
+import SceneManager
 
 class FPS_UI(Gameobject.Component, Gameobject.Cooldown):
     def __init__(self, parent, end_texte = "FPS", color = (255,255,255), size = 1, cooldown = 1):
@@ -20,3 +21,26 @@ class FPS_UI(Gameobject.Component, Gameobject.Cooldown):
             texte = str(round(1/delta_time)) + self.end_texte
             game_object.get_component(FontRenderer).change_text(texte, self.color)
             Gameobject.Cooldown.reset(self)
+
+
+class Velocity_Arrow(Gameobject.Component):
+    def __init__(self, parent, scale = 0.018):
+        Gameobject.Component.__init__(self, parent)
+        self.arrow = Gameobject.GameObject((Holder.Game.LARGEUR//2,Holder.Game.HAUTEUR//2))
+
+        self.arrow.add_self_updated_component(SpriteRenderer(self.arrow, "./resources/icon/arrow.png", scale))
+
+        if parent.has_component(RelativeCamera):
+            relative_cam = parent.get_component(RelativeCamera)
+            self.arrow.add_standard_component(RelativeCamera(self.arrow, relative_cam.scale_factor*0.5))
+
+        SceneManager.Scene.add_object(self.arrow)
+
+    def update(self):
+        game_object = super().parent
+        velocity = game_object.get_component(Gameobject.Velocity)
+        transform = game_object.get_component(Gameobject.Transform)
+        arrow_transform = self.arrow.get_component(Gameobject.Transform)
+        angle_radians = math.atan2(velocity.y, velocity.x)
+        arrow_transform.angle = angle_radians
+        arrow_transform.x, arrow_transform.y = transform.x, transform.y

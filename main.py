@@ -17,14 +17,15 @@ pygame.init()
 fenetre = pygame.display.set_mode((Holder.Game.get_screen_size()))
 pygame.display.set_caption("Singularity")
 
+singularity_icon = pygame.image.load("./resources/icon/windows_logo.png")
+pygame.display.set_icon(singularity_icon)
+
 
 # Couleurs
 NOIR = (0, 0, 0)
 BLANC = (255, 255, 255)
 ROUGE = (255, 0, 0)
 
-
-spaceship = pygame.image.load('./resources/spaceship.png')
 
 def appliquer_filtre_8bit(surface, largeur, hauteur, facteur):
     """
@@ -50,16 +51,10 @@ def appliquer_filtre_8bit(surface, largeur, hauteur, facteur):
 
 clock = pygame.time.Clock()
 
-
-
-
-
-
-
 #pygame.display.toggle_fullscreen()
 Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
 actualscene = SceneManager.Scene()
-Holder.Game.actual_scene = actualscene
+
 # Boucle principale
 running = True
 while running:
@@ -72,25 +67,17 @@ while running:
             print("Quit")
             running = False
 
-    # Mise à jour
-
-    #FPS_number = font.render(str(int(math.degrees(triangle.get_component(Gameobject.Transform).angle))), False, (255, 125, 0))
-
-
     # Dessin
     fenetre.fill(NOIR)
 
     sprite_group = actualscene.update_all()
 
-    #FPS_number_object.get_component(SpriteRenderer).set_sprite(FPS_number)
-
-    #FPS_number_object.update(delta_time)
 
     #main_sprite_group.update()
     sprite_group.draw(fenetre)
 
 
-    appliquer_filtre_8bit(fenetre, Holder.Game.LARGEUR, Holder.Game.HAUTEUR, 1)
+    #appliquer_filtre_8bit(fenetre, Holder.Game.LARGEUR, Holder.Game.HAUTEUR, 1)
 
 
 

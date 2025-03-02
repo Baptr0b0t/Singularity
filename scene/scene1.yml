@@ -17,17 +17,19 @@ game_objects:
           mass : 1000
         PlanetCollision:
           ratio : 0.8
-          restitution : 1
+          restitution : 0.9
         PlayerSpaceMovement:
           acceleration_speed: 15
         Gravity: { }
         RelativeCamera: {}
         #SpeedLimit:
         #  speedlimit: 80
+
       late_updated:
         ScreenLimit:
           bounce: True
         SpaceMovement: {}
+        Velocity_Arrow: {}
   planet1:
     position: [ LARGEUR//2, HAUTEUR//2 ]
     angle: 0
@@ -45,9 +47,10 @@ game_objects:
           mass: 59740000000000000000000
         PlanetCollision:
           ratio: 0.7
+          restitution : 1
         RelativeCamera: { }
         Gravity:
-          fixed : True
+          fixed : False
         #SpeedLimit:
         #  speedlimit: 1000
       late_updated:
@@ -67,10 +70,11 @@ game_objects:
       standard:
         Mass:
           mass: 59740000000000000000000
-        PlanetCollision: { }
+        PlanetCollision:
+          restitution : 1
         RelativeCamera: { }
         Gravity:
-          fixed : True
+          fixed : False
         #SpeedLimit:
         #  speedlimit: 1000
 
