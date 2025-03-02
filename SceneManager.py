@@ -48,7 +48,7 @@ class Scene:
         self.sprite_group = pygame.sprite.Group()
         self.scene_objects = []
         self.event_manager = EventManager()
-
+        Holder.Game.actual_scene = self #Une scene cree est automatiquement la scene active
         LARGEUR = Holder.Game.LARGEUR
         HAUTEUR = Holder.Game.HAUTEUR
         with open("scene/scene1.yml", "r") as file:
@@ -73,8 +73,6 @@ class Scene:
                     else:
                         print("Composant introuvable :", comp_name)
 
-            self.sprite_group.add(obj.get_component(SpriteRenderer))
-            self.scene_objects.append(obj)
             Scene.add_object(obj)
 
 
@@ -103,6 +101,9 @@ class Scene:
 
     @classmethod
     def add_object(cls, game_object):
+
+        Holder.Game.actual_scene.sprite_group.add(game_object.get_component(SpriteRenderer))
+        Holder.Game.actual_scene.scene_objects.append(game_object)
         cls.alive_objects.append(game_object)
         print(cls.alive_objects)
 
