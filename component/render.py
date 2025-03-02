@@ -27,6 +27,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
         transform = self.game_object.get_component(Gameobject.Transform)
         self.image = pygame.transform.scale(self.surface, self.scale)
         self.rect = self.image.get_rect(center=(transform.x, transform.y))
+        self.visible = True
 
 
     def set_scale(self, scale):
@@ -37,7 +38,10 @@ class SpriteRenderer(pygame.sprite.Sprite):
         self.scale = (surface.get_size()[0] * scale_factor, surface.get_size()[1] * scale_factor)
 
     def update(self): #call on pygame.sprite.group.update()
-
+        if not self.visible:
+            self.image = pygame.transform.scale(self.surface, (0,0))
+            self.rect = self.image.get_rect(center=(0, 0))
+            return
         transform = self.game_object.get_component(Gameobject.Transform)
         if transform:
             angle = math.degrees(transform.angle)
