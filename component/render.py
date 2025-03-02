@@ -6,9 +6,15 @@ import taglist
 import SceneManager
 import Holder
 
-
-
 missing_texture = "./resources/missing_texture.jpg"
+def load_image(image_path):
+    """Charge une image en gérant les erreurs."""
+    try:
+        return pygame.image.load(image_path)
+    except FileNotFoundError:
+        return pygame.image.load(missing_texture)
+
+
 
 class SpriteRenderer(pygame.sprite.Sprite):
     """
@@ -19,10 +25,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
     def __init__(self, game_object, image_path = missing_texture, scale_factor = 1.0):
         pygame.sprite.Sprite.__init__(self)
         self.game_object = game_object
-        try:
-            self.surface = pygame.image.load(image_path)
-        except FileNotFoundError:
-            self.surface = pygame.image.load(missing_texture)
+        self.surface = load_image(image_path)
         self.scale = (self.surface.get_size()[0] * scale_factor,self.surface.get_size()[1] * scale_factor)
         transform = self.game_object.get_component(Gameobject.Transform)
         self.image = pygame.transform.scale(self.surface, self.scale)
@@ -38,23 +41,27 @@ class SpriteRenderer(pygame.sprite.Sprite):
         self.scale = (surface.get_size()[0] * scale_factor, surface.get_size()[1] * scale_factor)
 
     def update(self): #call on pygame.sprite.group.update()
+        """Met à jour l'affichage du sprite."""
         if not self.visible:
-            self.image = pygame.transform.scale(self.surface, (0,0))
-            self.rect = self.image.get_rect(center=(0, 0))
+            self.image = pygame.Surface((0, 0), pygame.SRCALPHA)
+            self.rect.topleft = (0, 0)
             return
-        transform = self.game_object.get_component(Gameobject.Transform)
-        if transform:
-            angle = math.degrees(transform.angle)
-            relative_camera = self.game_object.get_component(RelativeCamera)
 
-            if relative_camera and relative_camera.active: #Need Clean up
-                self.image = pygame.transform.scale(self.surface, relative_camera.scale)
-                self.image = pygame.transform.rotate(self.image, -angle)
-                self.rect = self.image.get_rect(center=(relative_camera.position[0], relative_camera.position[1]))
-            else:
-                self.image = pygame.transform.scale(self.surface, self.scale)
-                self.image = pygame.transform.rotate(self.image, -angle)
-                self.rect = self.image.get_rect(center=(transform.x, transform.y))
+        transform = self.game_object.get_component(Gameobject.Transform)
+        if not transform:
+            return
+
+        angle = -math.degrees(transform.angle)
+        relative_camera = self.game_object.get_component(RelativeCamera)
+
+        if relative_camera and relative_camera.active:
+            position, scale = relative_camera.position, relative_camera.scale
+        else:
+            position, scale = (transform.x, transform.y), self.scale
+
+        self.image = pygame.transform.scale(self.surface, scale)
+        self.image = pygame.transform.rotate(self.image, angle)
+        self.rect = self.image.get_rect(center=position)
 
 class FontRenderer(Gameobject.Component):
     def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 20, texte = "", color = (255,255,255), size = 1):
