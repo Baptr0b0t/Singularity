@@ -1,3 +1,4 @@
+import gc
 import math
 
 import pygame
@@ -54,7 +55,7 @@ clock = pygame.time.Clock()
 #pygame.display.toggle_fullscreen()
 Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
 actualscene = SceneManager.Scene()
-
+SECONDscene = SceneManager.Scene() #New scene test
 # Boucle principale
 running = True
 while running:
@@ -67,10 +68,17 @@ while running:
             print("Quit")
             running = False
 
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_ESCAPE]:
+        Holder.Game.actual_scene = SECONDscene
+    else:
+        Holder.Game.actual_scene = actualscene
+
+
     # Dessin
     fenetre.fill(NOIR)
 
-    sprite_group = actualscene.update_all()
+    sprite_group = Holder.Game.actual_scene.update_all()
 
 
     #main_sprite_group.update()

@@ -81,7 +81,7 @@ class FontRenderer(Gameobject.Component):
 
 
 class RelativeCamera(Gameobject.Component):
-    def __init__(self, parent, scale_factor = 7):
+    def __init__(self, parent, scale_factor = 1):
         super().__init__(parent)
         self.position = (0,0) #Add x,y property
         self.active = False
