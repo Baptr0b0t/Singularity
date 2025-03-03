@@ -8,10 +8,12 @@ from component.collision import DeleteOnCollision, PlanetCollision
 
 
 class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, fire_rate = 0.1, speed = 120):
+    def __init__(self, parent, fire_rate = 0.07, speed = 190, bullet_pathfile = "./resources/blast_red.png", scale = 0.06):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, fire_rate)
         self.speed = speed
+        self.path_file = bullet_pathfile
+        self.scale = scale
 
 
     def update(self):
@@ -28,7 +30,7 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
             Gameobject.Cooldown.reset(self)
             #Creating bullet Gameobject
             bullet = Gameobject.GameObject((transform.x, transform.y), angle=transform.angle)
-            bullet.add_self_updated_component(SpriteRenderer(bullet, "./resources/icon/arrow.png", 0.02))
+            bullet.add_self_updated_component(SpriteRenderer(bullet, self.path_file, self.scale))
 
             if game_object.has_component(RelativeCamera):
                 relative_cam = game_object.get_component(RelativeCamera)
