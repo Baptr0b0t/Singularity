@@ -86,7 +86,7 @@ class ScreenLimit(Gameobject.Component):
             velocity = game_object.get_component(Gameobject.Velocity)
             if velocity:
 
-
+                #TODO : Avoid bug where the spaceship keep bouncing on border
                 if transform.x >= Holder.Game.LARGEUR or transform.x <= 0:
                     velocity.x += -self.force * velocity.x
                     #transform.x = max(0, min(Holder.Game.LARGEUR, transform.x))
