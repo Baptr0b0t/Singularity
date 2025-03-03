@@ -5,6 +5,7 @@ from component.movement import *
 from component.ai import *
 from component.collision import *
 from component.ui import *
+from component.fight import *
 from Gameobject import *
 from taglist import *
 import Holder
@@ -109,8 +110,11 @@ class Scene:
 
     @classmethod
     def remove_object(cls, game_object):
+        Holder.Game.actual_scene.sprite_group.remove(game_object.get_component(SpriteRenderer))
+        Holder.Game.actual_scene.scene_objects.remove(game_object)
         if game_object in cls.alive_objects:
             cls.alive_objects.remove(game_object)
+        game_object.delete()
 
     @classmethod
     def find_by_tag(cls, tag, search_active_scene = True):

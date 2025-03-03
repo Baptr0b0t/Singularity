@@ -32,7 +32,7 @@ class Velocity_Arrow(Gameobject.Component):
 
         if parent.has_component(RelativeCamera):
             relative_cam = parent.get_component(RelativeCamera)
-            self.arrow.add_standard_component(RelativeCamera(self.arrow, relative_cam.scale_factor*0.5))
+            self.arrow.add_standard_component(RelativeCamera(self.arrow, relative_cam.scale_factor))
 
         SceneManager.Scene.add_object(self.arrow)
 
