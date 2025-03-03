@@ -6,6 +6,7 @@ from component.ai import *
 from component.collision import *
 from component.ui import *
 from component.fight import *
+from component.health import *
 from Gameobject import *
 from taglist import *
 import Holder
