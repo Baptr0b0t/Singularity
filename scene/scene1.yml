@@ -13,6 +13,8 @@ game_objects:
       quick_updated:
         Velocity: { }
       standard:
+        Health: { }
+        HealthRegen: { }
         Mass:
           mass : 1000
         PlanetCollision:
