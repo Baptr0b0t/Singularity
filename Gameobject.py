@@ -1,4 +1,5 @@
 import Holder
+import gc
 
 class GameObject:
     def __init__(self, location = (0,0), angle=0):
@@ -64,6 +65,20 @@ class GameObject:
         for component in self.late_updated_components:
             component.update()
 
+    def delete(self):
+        """Delete GameObject"""
+        #for component in self.quick_updated_components:
+        #    component.delete()
+
+        #for component in self.components:
+        #    component.delete()
+
+        #for component in self.late_updated_components:
+        #    component.delete()
+        del self
+        gc.collect()
+        #print("deleted : ", gc.collect())
+
 
 
 
@@ -81,6 +96,10 @@ class Component:
 
     def update(self):
         pass #Permet les composants sans update()
+
+    def delete(self):
+        pass
+        #del self #ne semble pas necessaire
 
 
 #Position

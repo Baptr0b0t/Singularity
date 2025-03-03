@@ -22,9 +22,40 @@ game_objects:
           acceleration_speed: 15
         Gravity: { }
         RelativeCamera: {}
+        PlayerShot: { }
         #SpeedLimit:
         #  speedlimit: 80
-
+      late_updated:
+        ScreenLimit:
+          bounce: True
+        SpaceMovement: {}
+        Velocity_Arrow: {}
+  ai_ship:
+    position: [LARGEUR//2, HAUTEUR//2+100]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/spaceship.png"
+          scale_factor: 0.01
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass : 1000
+        PlanetCollision:
+          ratio : 0.8
+          restitution : 1
+        #PlayerSpaceMovement:
+        #  acceleration_speed: 15
+        AITargetMovement: {}
+        AITarget: { }
+        AIMaxSpeed: { }
+        Gravity: { }
+        RelativeCamera: {}
+        #SpeedLimit:
+        #  speedlimit: 80
       late_updated:
         ScreenLimit:
           bounce: True

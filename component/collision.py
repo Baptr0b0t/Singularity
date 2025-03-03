@@ -98,3 +98,32 @@ class ScreenLimit(Gameobject.Component):
             transform.x = max(0, min(Holder.Game.LARGEUR, transform.x))
             transform.y = max(0, min(Holder.Game.HAUTEUR, transform.y))
 
+
+class DeleteOnCollision(Gameobject.Component, Gameobject.Cooldown):
+    def __init__(self, parent, screen_limit = True, planet_collision_ratio = 1, seconds_before_start = 0):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, seconds_before_start) #Timer for not be destroyed by the Gameobject generator
+        self.screen_limit = screen_limit
+        self.planet_collision_ratio = planet_collision_ratio
+        Gameobject.Cooldown.reset(self)
+
+
+    def update(self):
+        game_object = super().parent
+        if not Gameobject.Cooldown.is_ready(self):
+            return
+        transform = game_object.get_component(Gameobject.Transform)
+        if self.screen_limit:
+            if transform.x >= Holder.Game.LARGEUR or transform.x <= 0 or transform.y >= Holder.Game.LARGEUR or transform.y <= 0:
+                SceneManager.Scene.remove_object(game_object)
+                return
+
+        if self.planet_collision_ratio > 0:
+            ObjectList = SceneManager.Scene.find_by_component(PlanetCollision)
+            for obj in ObjectList:
+                if obj == game_object:
+                    continue
+
+                if collide_circle(game_object, obj, self.planet_collision_ratio, obj.get_component(PlanetCollision).collision_ratio):
+                    SceneManager.Scene.remove_object(game_object)
+                    return
