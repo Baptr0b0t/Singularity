@@ -80,19 +80,33 @@ class GameObject:
         #print("deleted : ", gc.collect())
 
 
-
+def requires_active(func): #TODO: add @requires_active to component update()
+    def wrapper(self, *args, **kwargs):
+        if not self.active:
+            return  # Ne fait rien si le composant est désactivé
+        return func(self, *args, **kwargs)
+    return wrapper
 
 class Component:
     """
     Composant de base, permet de retrouver le Gameobject.
     :param parent: Gameobject du component
     """
-    def __init__(self, parent):
+    def __init__(self, parent, active = False):
         self._parent = parent
+        self._active = active
 
     @property
     def parent(self):
         return self._parent
+
+    @property
+    def active(self):
+        return self._active
+
+    @active.setter
+    def active(self, value):
+        self._active = value
 
     def update(self):
         pass #Permet les composants sans update()
