@@ -14,7 +14,6 @@ class Health(Gameobject.Component):
     def update(self):
         game_object = super().parent
         self.health_point = min(100, self.health_point)
-        print(self.health_point)
 
 class HealthRegen(Gameobject.Component):
     def __init__(self,parent, regen_rate=1):
@@ -27,6 +26,3 @@ class HealthRegen(Gameobject.Component):
         health.health_point+=self.regen_rate*Holder.Game.delta_time
 
 #Todo: Add Health Bar (similar to speed arrow)
-
-
-

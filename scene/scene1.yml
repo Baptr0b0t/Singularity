@@ -138,7 +138,7 @@ game_objects:
           bounce : True
       late_updated:
         SpaceMovement: { }
-  Texte:
+  FPS_UI:
     position: [ 100, 80 ]
     angle: 0
     tags: { }
@@ -149,4 +149,16 @@ game_objects:
       standard:
         FontRenderer: { }
         FPS_UI: { }
+      late_updated: { }
+  Health_UI:
+    position: [ 100, 130 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Health_UI: { }
       late_updated: { }
