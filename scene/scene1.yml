@@ -64,7 +64,7 @@ game_objects:
         SpaceMovement: {}
         Velocity_Arrow: {}
   planet1:
-    position: [ LARGEUR//2, HAUTEUR//2 ]
+    position: [0, 0]
     angle: 0
     tags:
       - PLANET
@@ -72,7 +72,7 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/planet_1.png"
-          scale_factor: 0.05
+          scale_factor: 0.8
       quick_updated:
         Velocity: { }
       standard:
@@ -89,7 +89,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   planet2:
-    position: [ LARGEUR//3, HAUTEUR//4 ]
+    position: [ 2000, 2000 ]
     angle: 80
     tags:
       - PLANET
@@ -97,7 +97,7 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/planet_2.png"
-          scale_factor: 0.04
+          scale_factor: 1
       quick_updated:
         Velocity: { }
       standard:
@@ -105,6 +105,7 @@ game_objects:
           mass: 59740000000000000000000
         PlanetCollision:
           restitution : 1
+          ratio: 0.7
         RelativeCamera: { }
         Gravity:
           fixed : False
@@ -114,7 +115,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   black_hole:
-    position: [ 200, 200 ]
+    position: [ 600, 500 ]
     angle: 0
     tags:
       - PLANET
