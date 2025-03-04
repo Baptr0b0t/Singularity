@@ -13,13 +13,15 @@ game_objects:
       quick_updated:
         Velocity: { }
       standard:
+        #ScreenLimit:
+        #  bounce: True
         Health: { }
         HealthRegen: { }
         Mass:
           mass : 1000
         PlanetCollision:
           ratio : 0.8
-          restitution : 0.9
+          restitution : 1
         PlayerSpaceMovement:
           acceleration_speed: 15
         Gravity: { }
@@ -28,8 +30,6 @@ game_objects:
         #SpeedLimit:
         #  speedlimit: 80
       late_updated:
-        ScreenLimit:
-          bounce: True
         SpaceMovement: {}
         Velocity_Arrow: {}
   ai_ship:
@@ -59,8 +59,8 @@ game_objects:
         #SpeedLimit:
         #  speedlimit: 80
       late_updated:
-        ScreenLimit:
-          bounce: True
+        #ScreenLimit:
+        #  bounce: True
         SpaceMovement: {}
         Velocity_Arrow: {}
   planet1:
@@ -130,12 +130,12 @@ game_objects:
           mass: 1000
         PlanetCollision:
           ratio : 0.6
-          restitution : 0.95
+          restitution : 1
         RelativeCamera: { }
         Gravity:
           fixed : True
-        ScreenLimit:
-          bounce : True
+        #ScreenLimit:
+        #  bounce : True
       late_updated:
         SpaceMovement: { }
   FPS_UI:
@@ -161,4 +161,16 @@ game_objects:
       standard:
         FontRenderer: { }
         Health_UI: { }
+      late_updated: { }
+  Coordinate_UI:
+    position: [ 100, 200 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Coordinate_UI: { }
       late_updated: { }
