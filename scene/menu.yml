@@ -1,0 +1,16 @@
+game_objects:
+  quit_button:
+    position: [LARGEUR//2, HAUTEUR//2]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/black_hole.png"
+          scale_factor: 0.1
+      quick_updated: { }
+      standard:
+        Button:
+          event_on_click: "QUIT"
+        Grow_on_Hover: { }
+      late_updated: { }

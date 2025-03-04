@@ -76,6 +76,8 @@ game_objects:
       quick_updated:
         Velocity: { }
       standard:
+        Button:
+          event_on_click: "QUIT"
         Mass:
           mass: 59740000000000000000000
         PlanetCollision:
