@@ -64,7 +64,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=position)
 
 class FontRenderer(Gameobject.Component):
-    def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 20, texte = "", color = (255,255,255), size = 1):
+    def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 25, texte = "", color = (255,255,255), size = 1):
         super().__init__(parent)
         self.font = pygame.font.Font(font_path, font_size)
         self.color = color
@@ -89,7 +89,7 @@ class RelativeCamera(Gameobject.Component):
         self.scale_factor = scale_factor
 
     def update(self):
-        game_object = self.parent
+        game_object = self.parent #TODO : Change to 3 mode of vision and no real coordinate vision
         camera_transform = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform) #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
         newpositionx = (transform.x - camera_transform.x)*self.scale_factor + Holder.Game.LARGEUR//2
