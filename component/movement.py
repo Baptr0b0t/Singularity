@@ -28,7 +28,7 @@ class Gravity(Gameobject.Component):
         self.G = g_force
         self.fixed = fixed
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         if not self.fixed:
             velocity = game_object.get_component(Gameobject.Velocity)
             transform = game_object.get_component(Gameobject.Transform)
@@ -62,7 +62,7 @@ class PlayerSpaceMovement(Gameobject.Component):
         self.boost_force = boost_force
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         transform = game_object.get_component(Gameobject.Transform)
         velocity = game_object.get_component(Gameobject.Velocity)
         if transform:
@@ -88,7 +88,7 @@ class SpaceMovement(Gameobject.Component):
         super().__init__(parent)
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         delta_time = Holder.Game.delta_time
         transform = game_object.get_component(Gameobject.Transform)
         velocity = game_object.get_component(Gameobject.Velocity)
@@ -105,7 +105,7 @@ class SpeedLimit(Gameobject.Component):
         self.speedlimit = speedlimit
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         velocity = game_object.get_component(Gameobject.Velocity)
         velocity.x = max(-self.speedlimit, min(self.speedlimit, velocity.x))
         velocity.y = max(-self.speedlimit, min(self.speedlimit, velocity.y))
