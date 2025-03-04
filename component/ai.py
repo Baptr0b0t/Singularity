@@ -25,7 +25,7 @@ class AIMaxSpeed(Gameobject.Component):
         #TODO : add max deceleration_force
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         velocity = game_object.get_component(Gameobject.Velocity)
 
         if not velocity:
@@ -59,7 +59,7 @@ class AITargetMovement(Gameobject.Component):
 
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         transform = game_object.get_component(Gameobject.Transform)
         velocity = game_object.get_component(Gameobject.Velocity)
         ai_target = game_object.get_component(AITarget)

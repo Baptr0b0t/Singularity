@@ -57,7 +57,7 @@ class Velocity_Arrow(Gameobject.Component):
         SceneManager.Scene.add_object(self.arrow)
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         velocity = game_object.get_component(Gameobject.Velocity)
         transform = game_object.get_component(Gameobject.Transform)
         arrow_transform = self.arrow.get_component(Gameobject.Transform)

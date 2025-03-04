@@ -71,7 +71,7 @@ class FontRenderer(Gameobject.Component):
         self.change_text(texte, color, size)
 
     def change_text(self, texte, color = None, size = 1):
-        game_object = super().parent
+        game_object = self.parent
         if color is None:
             color = self.color
 
@@ -89,7 +89,7 @@ class RelativeCamera(Gameobject.Component):
         self.scale_factor = scale_factor
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         camera_transform = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform) #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
         newpositionx = (transform.x - camera_transform.x)*self.scale_factor + Holder.Game.LARGEUR//2
