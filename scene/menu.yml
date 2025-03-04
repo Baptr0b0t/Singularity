@@ -11,6 +11,6 @@ game_objects:
       quick_updated: { }
       standard:
         Button:
-          event_on_click: "QUIT"
+          event_on_click: "SCENE_SPACE"
         Grow_on_Hover: { }
       late_updated: { }
