@@ -109,3 +109,6 @@ class Velocity_Arrow(Gameobject.Component):
         arrow_transform.angle = math.atan2(velocity.y, velocity.x)
         arrow_transform.x, arrow_transform.y = transform.x, transform.y
         arrow_renderer.set_scale((min(math.sqrt(velocity.y**2 + velocity.x**2),self.max_speed_size), arrow_renderer.scale[1]))
+
+    def delete(self):
+        SceneManager.Scene.remove_object(self.arrow)

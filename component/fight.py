@@ -4,7 +4,7 @@ from component.render import SpriteRenderer, RelativeCamera
 import SceneManager
 import math
 from component.movement import SpaceMovement
-from component.collision import DeleteOnCollision, PlanetCollision
+from component.collision import DeleteOnCollision, DamageCollision
 
 
 class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
@@ -43,16 +43,24 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
                 bullet_velocity.x += game_object_velocity.x
                 bullet_velocity.y += game_object_velocity.y
 
+            bullet.add_standard_component(DamageCollision(bullet, damage_on_other=10))
+            bullet.add_standard_component(BulletLifeTime(bullet, life_time= 10))
             bullet.add_standard_component(DeleteOnCollision(bullet, screen_limit=False, planet_collision_ratio=1 ,seconds_before_start=.26))
             SceneManager.Scene.add_object(bullet)
 
 
-class BulletMovement(Gameobject.Component):
-    def __init__(self, parent):
-        super().__init__(parent)
+class BulletLifeTime(Gameobject.Component,Gameobject.Cooldown):
+    """
+    Remove Gameobject when existed for too long (lag killer)
+    """
+    def __init__(self, parent, life_time = 10):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, life_time)
+        Gameobject.Cooldown.reset(self)
 
     def update(self):
-        pass
+        if not Gameobject.Cooldown.is_ready(self):
+            return
+        SceneManager.Scene.remove_object(self.parent)
+        return
 
-
-#Todo: Add Bullet damager (Similar to Delete on colision)

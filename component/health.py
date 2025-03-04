@@ -1,7 +1,7 @@
 from pygments.styles import get_all_styles
 import Holder
 import Gameobject
-
+import SceneManager
 
 class Health(Gameobject.Component):
     """
@@ -24,3 +24,33 @@ class HealthRegen(Gameobject.Component):
         health.health_point+=self.regen_rate*Holder.Game.delta_time
 
 #Todo: Add Health Bar (similar to speed arrow)
+
+
+class DestroyOnNoHealth(Gameobject.Component):
+    """
+    Destroy GameObject when Health < 0
+    """
+    def __init__(self,parent):
+        super().__init__(parent)
+
+    def update(self):
+        game_object = self.parent
+        health = game_object.get_component(Health)
+        if health.health_point<0:
+            SceneManager.Scene.remove_object(game_object)
+
+
+class EventOnNoHealth(Gameobject.Component):
+    """
+    Post event when Health < 0
+    Exemple : GameOver
+    """
+    def __init__(self,parent, event):
+        super().__init__(parent)
+        self.event = event
+
+    def update(self):
+        game_object = self.parent
+        health = game_object.get_component(Health)
+        if health.health_point<0:
+            SceneManager.Scene.post_event(eval(str("eventlist." + self.event)))

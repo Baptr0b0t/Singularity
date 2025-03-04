@@ -6,6 +6,7 @@ import Holder
 import taglist
 from component.movement import Mass
 from component.render import SpriteRenderer
+from component.health import Health
 
 def collide_circle(obj1, obj2, obj1ratio = 1, obj2ratio = 1): #From pygame.sprite.collide_circle
     xdistance = obj1.get_component(Gameobject.Transform).x - obj2.get_component(Gameobject.Transform).x
@@ -127,3 +128,31 @@ class DeleteOnCollision(Gameobject.Component, Gameobject.Cooldown):
                 if collide_circle(game_object, obj, self.planet_collision_ratio, obj.get_component(PlanetCollision).collision_ratio):
                     SceneManager.Scene.remove_object(game_object)
                     return
+
+
+class DamageCollision(Gameobject.Component, Gameobject.Cooldown):
+    def __init__(self, parent, ratio = 1, damage_on_other = 10, cooldown = 0.2):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, cooldown)
+        self.planet_collision_ratio = ratio
+        self.damage_on_other = damage_on_other
+        Gameobject.Cooldown.reset(self)
+
+
+    def update(self):
+        game_object = self.parent
+
+        if not Gameobject.Cooldown.is_ready(self) or self.damage_on_other==0:
+            return
+
+        ObjectList = SceneManager.Scene.find_by_component(DamageCollision)
+        for obj in ObjectList:
+            if obj == game_object:
+                continue
+            if not obj.has_component(Health):
+                continue
+            if collide_circle(game_object, obj, self.planet_collision_ratio, obj.get_component(DamageCollision).planet_collision_ratio):
+
+                obj.get_component(Health).health_point -= self.damage_on_other
+                print("Damagin :", obj.get_component(Health).health_point)
+

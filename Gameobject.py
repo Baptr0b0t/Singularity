@@ -67,14 +67,14 @@ class GameObject:
 
     def delete(self):
         """Delete GameObject"""
-        #for component in self.quick_updated_components:
-        #    component.delete()
+        for component in self.quick_updated_components:
+            component.delete()
 
-        #for component in self.components:
-        #    component.delete()
+        for component in self.components:
+            component.delete()
 
-        #for component in self.late_updated_components:
-        #    component.delete()
+        for component in self.late_updated_components:
+            component.delete()
         del self
         gc.collect()
         #print("deleted : ", gc.collect())
