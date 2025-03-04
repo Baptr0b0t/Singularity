@@ -31,7 +31,7 @@ class PlanetCollision(Gameobject.Component):
 
     def update(self):
 
-        game_object = super().parent
+        game_object = self.parent
 
         self.handled_collision.clear()
         ObjectList = SceneManager.Scene.find_by_component(PlanetCollision)
@@ -79,7 +79,7 @@ class ScreenLimit(Gameobject.Component):
         self.force = force
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         transform = game_object.get_component(Gameobject.Transform)
         if self.bounce:
 
@@ -109,7 +109,7 @@ class DeleteOnCollision(Gameobject.Component, Gameobject.Cooldown):
 
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
         if not Gameobject.Cooldown.is_ready(self):
             return
         transform = game_object.get_component(Gameobject.Transform)
