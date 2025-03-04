@@ -47,14 +47,14 @@ class EventManager:
 
 class Scene:
     alive_objects = []
-    def __init__(self):
+    def __init__(self, scene_path_file):
         self.sprite_group = pygame.sprite.Group()
         self.scene_objects = []
         self.event_manager = EventManager()
         Holder.Game.actual_scene = self #Une scene cree est automatiquement la scene active
         LARGEUR = Holder.Game.LARGEUR
         HAUTEUR = Holder.Game.HAUTEUR
-        with open("scene/scene1.yml", "r") as file:
+        with open(scene_path_file, "r") as file:
             scene = yaml.safe_load(file)
         print(scene)
 

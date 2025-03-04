@@ -54,8 +54,11 @@ clock = pygame.time.Clock()
 
 #pygame.display.toggle_fullscreen()
 Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
-actualscene = SceneManager.Scene()
-SECONDscene = SceneManager.Scene() #New scene test
+
+menu_scene = SceneManager.Scene("./scene/menu.yml")
+space_scene = SceneManager.Scene("./scene/scene1.yml")
+
+Holder.Game.actual_scene = menu_scene
 # Boucle principale
 running = True
 while running:
@@ -68,11 +71,8 @@ while running:
             print("Quit")
             running = False
 
-    keys = pygame.key.get_pressed()
-    if keys[pygame.K_ESCAPE]:
-        Holder.Game.actual_scene = SECONDscene
-    else:
-        Holder.Game.actual_scene = actualscene
+    if SceneManager.Scene.has_event(eventlist.QUIT):
+        running = False
 
 
     # Dessin
