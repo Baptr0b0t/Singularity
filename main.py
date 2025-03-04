@@ -73,6 +73,8 @@ while running:
 
     if SceneManager.Scene.has_event(eventlist.QUIT):
         running = False
+    if SceneManager.Scene.has_event(eventlist.SCENE_SPACE):
+        Holder.Game.actual_scene = space_scene
 
 
     # Dessin
