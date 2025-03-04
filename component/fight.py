@@ -17,7 +17,7 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
 
 
     def update(self):
-        game_object = super().parent
+        game_object = self.parent
 
 
         if not Gameobject.Cooldown.is_ready(self):
