@@ -174,3 +174,15 @@ game_objects:
         FontRenderer: { }
         Coordinate_UI: { }
       late_updated: { }
+  Speed_UI:
+    position: [ 100, 300 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Speed_UI: { }
+      late_updated: { }
