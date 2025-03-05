@@ -5,6 +5,7 @@ import math
 import taglist
 import SceneManager
 import Holder
+from colorlist import * #used by globals()
 
 missing_texture = "./resources/missing_texture.jpg"
 def load_image(image_path):
@@ -64,9 +65,11 @@ class SpriteRenderer(pygame.sprite.Sprite):
         self.rect = self.image.get_rect(center=position)
 
 class FontRenderer(Gameobject.Component):
-    def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 25, texte = "", color = (255,255,255), size = 1):
+    def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 25, texte = "", color = "BLANK", size = 1):
         super().__init__(parent)
         self.font = pygame.font.Font(font_path, font_size)
+
+        color = globals()[color] #"BLANK" -> (255,255,255) using color list
         self.color = color
         self.change_text(texte, color, size)
 
@@ -77,6 +80,25 @@ class FontRenderer(Gameobject.Component):
 
         surface_texte = self.font.render(str(texte), False, color)
         game_object.get_component(SpriteRenderer).set_sprite(surface_texte, size)
+
+class RectangleRenderer(Gameobject.Component):
+    def __init__(self, parent, color = "BLANK", size = (10,10)):
+        super().__init__(parent)
+
+        color = globals()[color] #"BLANK" -> (255,255,255) using color list
+        self.color = color
+        self.size = size
+        self.change_size(color, size)
+
+
+    def change_size(self, color = None, size = (0,0)):
+        game_object = self.parent
+        if color is None:
+            color = self.color
+
+        surface_rect = pygame.Surface(self.size)
+        surface_rect.fill(color)
+        game_object.get_component(SpriteRenderer).set_sprite(surface_rect)
 
 
 
