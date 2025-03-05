@@ -1,6 +1,6 @@
 game_objects:
   quit_button:
-    position: [LARGEUR//2, HAUTEUR//2]
+    position: [LARGEUR-120, HAUTEUR-140]
     angle: 0
     tags: { }
     components:
@@ -11,6 +11,38 @@ game_objects:
       quick_updated: { }
       standard:
         Button:
+          event_on_click: "QUIT"
+        Grow_on_Hover: { }
+      late_updated: { }
+  quit_TEXT:
+    position: [ LARGEUR-120, HAUTEUR-30 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/black_hole.png"
+          scale_factor: 0.1
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "QUIT"
+          font_size: 40
+      late_updated: { }
+  Play_text_button:
+    position: [LARGEUR//2, HAUTEUR//2]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        Button:
           event_on_click: "SCENE_SPACE"
         Grow_on_Hover: { }
+        FontRenderer:
+          texte: "PLAY"
+          font_size: 90
+          color: "GREEN"
       late_updated: { }
