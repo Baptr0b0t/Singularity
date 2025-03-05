@@ -68,7 +68,7 @@ class PlayerSpaceMovement(Gameobject.Component):
         if transform:
             souris_x, souris_y = pygame.mouse.get_pos()
             relative_camera = game_object.get_component(RelativeCamera)
-            if relative_camera and relative_camera.active:
+            if relative_camera:
                 transform.angle = math.atan2(souris_y - relative_camera.position[1], souris_x - relative_camera.position[0]) + math.radians(90)
             else:
                 transform.angle = math.atan2(souris_y - transform.y, souris_x - transform.x) + math.radians(90)

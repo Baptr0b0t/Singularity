@@ -33,8 +33,7 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
             bullet.add_self_updated_component(SpriteRenderer(bullet, self.path_file, self.scale))
 
             if game_object.has_component(RelativeCamera):
-                relative_cam = game_object.get_component(RelativeCamera)
-                bullet.add_standard_component(RelativeCamera(bullet, relative_cam.scale_factor))
+                bullet.add_standard_component(RelativeCamera(bullet))
             bullet.add_standard_component(SpaceMovement(bullet))
             bullet.add_quick_updated_component(Gameobject.Velocity(bullet, x= self.speed * math.cos(transform.angle - math.radians(90)), y= self.speed * math.sin(transform.angle - math.radians(90))))
             if game_object.has_component(Gameobject.Velocity):
