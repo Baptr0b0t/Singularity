@@ -154,5 +154,4 @@ class DamageCollision(Gameobject.Component, Gameobject.Cooldown):
             if collide_circle(game_object, obj, self.planet_collision_ratio, obj.get_component(DamageCollision).planet_collision_ratio):
 
                 obj.get_component(Health).health_point -= self.damage_on_other
-                print("Damagin :", obj.get_component(Health).health_point)
 
