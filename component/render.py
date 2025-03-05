@@ -55,7 +55,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
         angle = -math.degrees(transform.angle)
         relative_camera = self.game_object.get_component(RelativeCamera)
 
-        if relative_camera and relative_camera.active:
+        if relative_camera:
             position, scale = relative_camera.position, relative_camera.scale
         else:
             position, scale = (transform.x, transform.y), self.scale
@@ -103,25 +103,31 @@ class RectangleRenderer(Gameobject.Component):
 
 
 class RelativeCamera(Gameobject.Component):
-    def __init__(self, parent, scale_factor = 1):
+    """
+    :param scale_factor_long_view Warning: Magic Number
+    :param scale_factor_short_view Warning: Magic Number #Todo Add at Game Holder
+    These param must never be different from other GameObject in same Scene
+    """
+    def __init__(self, parent, scale_factor_long_view = 0.05,scale_factor_short_view = 1):
         super().__init__(parent)
         self.position = (0,0) #Add x,y property
-        self.active = False
+        #self.active = True
         self.scale = (0,0)
-        self.scale_factor = scale_factor
+        self.scale_factor_long_view = scale_factor_long_view
+        self.scale_factor_short_view = scale_factor_short_view
 
     def update(self):
         game_object = self.parent #TODO : Change to 3 mode of vision and no real coordinate vision
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_TAB]:
+            active_scale = self.scale_factor_long_view
+        else:
+            active_scale = self.scale_factor_short_view
         camera_transform = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform) #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
-        newpositionx = (transform.x - camera_transform.x)*self.scale_factor + Holder.Game.LARGEUR//2
-        newpositiony = (transform.y - camera_transform.y)*self.scale_factor + Holder.Game.HAUTEUR//2
+        newpositionx = (transform.x - camera_transform.x)*active_scale + Holder.Game.LARGEUR//2
+        newpositiony = (transform.y - camera_transform.y)*active_scale + Holder.Game.HAUTEUR//2
         self.position = (newpositionx, newpositiony)
 
         renderer = game_object.get_component(SpriteRenderer)
-        self.scale = (renderer.scale[0] * self.scale_factor, renderer.scale[1] * self.scale_factor) #Modifie la taille pendant les rotations
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_TAB]:
-            self.active = False
-        else:
-            self.active = True
+        self.scale = (renderer.scale[0] * active_scale, renderer.scale[1] * active_scale) #Modifie la taille pendant les rotations

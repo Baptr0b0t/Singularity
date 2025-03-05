@@ -95,15 +95,14 @@ class Health_UI(Gameobject.Component, Gameobject.Cooldown):
 
 
 class Velocity_Arrow(Gameobject.Component):
-    def __init__(self, parent, scale = 0.018, max_speed_size = 60):
+    def __init__(self, parent, scale = 0.03, max_speed_size = 80):
         Gameobject.Component.__init__(self, parent)
         self.arrow = Gameobject.GameObject((Holder.Game.LARGEUR//2,Holder.Game.HAUTEUR//2))
         self.max_speed_size = max_speed_size
         self.arrow.add_self_updated_component(SpriteRenderer(self.arrow, "./resources/icon/arrow.png", scale))
 
         if parent.has_component(RelativeCamera):
-            relative_cam = parent.get_component(RelativeCamera)
-            self.arrow.add_standard_component(RelativeCamera(self.arrow, relative_cam.scale_factor))
+            self.arrow.add_standard_component(RelativeCamera(self.arrow))
 
         SceneManager.Scene.add_object(self.arrow)
 
