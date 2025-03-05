@@ -44,6 +44,10 @@ class Coordinate_UI(Gameobject.Component, Gameobject.Cooldown):
             Gameobject.Cooldown.reset(self)
 
 class Speed_UI(Gameobject.Component, Gameobject.Cooldown):
+    """
+    Need FontRenderer and a Gameobject with "PLAYER" tag exist
+    :param color exemple value (255,255,255) or "BLANK"
+    """
     def __init__(self, parent, end_texte = "m/s", color = (255,255,255), size = 1, cooldown = 0.3, is_single_value = True):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
@@ -57,7 +61,7 @@ class Speed_UI(Gameobject.Component, Gameobject.Cooldown):
     def update(self):
         if Gameobject.Cooldown.is_ready(self):
             game_object = self.parent
-            player_object = SceneManager.Scene.find_by_tag(PLAYER)[0]
+            player_object = SceneManager.Scene.find_by_tag(PLAYER)[0] #TODO: Make crash proof (Empty text when no player found)
             player_speed = player_object.get_component(Gameobject.Velocity)
             if self.is_single_value:
                 texte = str(round(math.hypot(player_speed.x, player_speed.y))) + self.end_texte
@@ -68,6 +72,10 @@ class Speed_UI(Gameobject.Component, Gameobject.Cooldown):
 
 
 class Health_UI(Gameobject.Component, Gameobject.Cooldown):
+    """
+    Need FontRenderer and a Gameobject with "PLAYER" tag exist
+    :param color exemple value (255,255,255) or "BLANK"
+    """
     def __init__(self, parent, begining_texte = "Health  ", color = (0,255,0), size = 1, cooldown = 1):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
@@ -80,7 +88,7 @@ class Health_UI(Gameobject.Component, Gameobject.Cooldown):
     def update(self):
         if Gameobject.Cooldown.is_ready(self):
             game_object = self.parent
-            player_object = SceneManager.Scene.find_by_tag(PLAYER)[0]
+            player_object = SceneManager.Scene.find_by_tag(PLAYER)[0] #TODO: Make crash proof (Empty text when no player found)
             texte = self.begining_texte + str(round(player_object.get_component(Health).health_point))
             game_object.get_component(FontRenderer).change_text(texte, self.color, self.size)
             Gameobject.Cooldown.reset(self)

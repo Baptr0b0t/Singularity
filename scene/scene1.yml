@@ -192,3 +192,16 @@ game_objects:
         FontRenderer: { }
         Speed_UI: { }
       late_updated: { }
+
+  Rectangle_UI:
+    position: [ 400, 300 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        RectangleRenderer:
+          color: "RED"
+      late_updated: { }
