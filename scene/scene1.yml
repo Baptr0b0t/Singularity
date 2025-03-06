@@ -1,4 +1,16 @@
 game_objects:
+  background:
+    position: [ LARGEUR//2, HAUTEUR//2 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/background.jpeg"
+          scale_factor: 0.8
+      quick_updated: { }
+      standard: { }
+      late_updated: { }
   player:
     position: [LARGEUR//2, HAUTEUR//2+200]
     angle: 0
