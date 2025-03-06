@@ -98,6 +98,7 @@ game_objects:
         PlanetCollision:
           ratio: 0.7
           restitution : 1
+        ConstantRotation: { }
         RelativeCamera: { }
         Gravity:
           fixed : False

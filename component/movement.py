@@ -109,3 +109,16 @@ class SpeedLimit(Gameobject.Component):
         velocity = game_object.get_component(Gameobject.Velocity)
         velocity.x = max(-self.speedlimit, min(self.speedlimit, velocity.x))
         velocity.y = max(-self.speedlimit, min(self.speedlimit, velocity.y))
+
+
+class ConstantRotation(Gameobject.Component):
+    def __init__(self,parent, degree_per_second = 5):
+        super().__init__(parent)
+        self.speed = math.radians(degree_per_second)
+
+    def update(self):
+        game_object = self.parent
+        delta_time = Holder.Game.delta_time
+        transform = game_object.get_component(Gameobject.Transform)
+        transform.angle += self.speed * delta_time
+
