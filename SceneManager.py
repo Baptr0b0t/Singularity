@@ -1,3 +1,5 @@
+import math
+
 import yaml
 
 from component.render import *
@@ -61,7 +63,7 @@ class Scene:
         for name, data in scene["game_objects"].items():
             position = (eval(str(data["position"][0])),eval(str(data["position"][1]))) #Transforme "LARGEUR" et "HAUTEUR"
             print(position)
-            obj = Gameobject.GameObject(position, data["angle"])
+            obj = Gameobject.GameObject(position, math.radians(data["angle"]))
 
             # Ajout des tags
             for tag in data["tags"]:
@@ -112,6 +114,7 @@ class Scene:
 
     @classmethod
     def remove_object(cls, game_object):
+        #TODO: Use queue list
         Holder.Game.actual_scene.sprite_group.remove(game_object.get_component(SpriteRenderer))
         Holder.Game.actual_scene.scene_objects.remove(game_object)
         if game_object in cls.alive_objects:
