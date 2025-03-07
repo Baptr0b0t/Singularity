@@ -29,6 +29,7 @@ game_objects:
       standard:
         #ScreenLimit:
         #  bounce: True
+        Fuel: { }
         Health: { }
         HealthRegen: { }
         DamageCollision:

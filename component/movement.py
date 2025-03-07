@@ -14,6 +14,17 @@ class Mass(Gameobject.Component):
         super().__init__(parent)
         self.mass = mass
 
+class Fuel(Gameobject.Component):
+    """
+    :param fuel: nombre de tick dont l'objet est capable de bouger
+    """
+    def __init__(self,parent, fuel=8000, max_fuel=8000):
+        super().__init__(parent)
+        self.fuel = fuel
+        self.max_fuel = max_fuel
+
+    def update(self):
+        self.fuel = min(self.max_fuel, self.fuel)
 
 class Gravity(Gameobject.Component):
     """
@@ -72,14 +83,22 @@ class PlayerSpaceMovement(Gameobject.Component):
                 transform.angle = math.atan2(souris_y - relative_camera.position[1], souris_x - relative_camera.position[0]) + math.radians(90)
             else:
                 transform.angle = math.atan2(souris_y - transform.y, souris_x - transform.x) + math.radians(90)
+            fuel = game_object.get_component(Fuel)
+            if fuel and fuel.fuel<=0:
+                return
 
             if velocity:
                 keys = pygame.key.get_pressed()
                 if keys[pygame.K_SPACE]:
                     if keys[pygame.K_LSHIFT]:
                         force = self.deltav * self.boost_force
+
+                        if fuel:
+                            fuel.fuel -= self.boost_force
                     else:
                         force = self.deltav
+                        if fuel:
+                            fuel.fuel -= 1
                     velocity.ax += force * math.cos(transform.angle - math.radians(90))
                     velocity.ay += force * math.sin(transform.angle - math.radians(90))
 
