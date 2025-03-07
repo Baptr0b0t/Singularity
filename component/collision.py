@@ -77,7 +77,7 @@ class PlanetCollision(Gameobject.Component):
 
                     self.handled_collision.append(obj)
 
-                    #Stuck Resolver
+                    #Stuck Resolver #Todo: add a delay for don't bug other collision like DamageCollision or use a Collision detector will call all other method from the gameObject
                     if mass<=obj_mass:
                         transform.x -= normal_x
                         transform.y -= normal_y

@@ -18,7 +18,7 @@ class Fuel(Gameobject.Component):
     """
     :param fuel: nombre de tick dont l'objet est capable de bouger
     """
-    def __init__(self,parent, fuel=8000, max_fuel=8000):
+    def __init__(self,parent, fuel=20000, max_fuel=20000):
         super().__init__(parent)
         self.fuel = fuel
         self.max_fuel = max_fuel

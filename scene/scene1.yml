@@ -210,14 +210,16 @@ game_objects:
       late_updated: { }
 
   Rectangle_UI:
-    position: [ 400, 300 ]
+    position: [40, HAUTEUR//2 - 60]
     angle: 0
     tags: { }
     components:
       self_updated:
-        SpriteRenderer: { }
+        SpriteRenderer:
+          use_topleft: True
       quick_updated: { }
       standard:
         RectangleRenderer:
-          color: "RED"
+          color: "FUEL"
+        Fuel_Rectangle: { }
       late_updated: { }

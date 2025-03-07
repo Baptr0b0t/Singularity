@@ -1,7 +1,8 @@
 import Gameobject
 import Holder
-from component.render import FontRenderer, SpriteRenderer, RelativeCamera
+from component.render import FontRenderer, SpriteRenderer, RectangleRenderer, RelativeCamera
 from component.health import Health
+from component.movement import Fuel
 import math
 import SceneManager
 from taglist import PLAYER
@@ -105,6 +106,23 @@ class Health_Rectangle(Gameobject.Component, Gameobject.Cooldown):
         #Todo: do the component
 
 
+class Fuel_Rectangle(Gameobject.Component, Gameobject.Cooldown):
+    """
+    :param color exemple value (255,255,255) or "BLANK"
+    """
+    def __init__(self, parent, color = (0,255,0), size = (90,10), cooldown = 1):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, cooldown)
+        self.color = color
+        self.size = size
+
+    def update(self):
+        rectangle_renderer = self.parent.get_component(RectangleRenderer)
+        player_object = SceneManager.Scene.find_by_tag(PLAYER)[0]
+        fuel = player_object.get_component(Fuel)
+        if fuel:
+            coef = fuel.fuel/fuel.max_fuel
+            rectangle_renderer.change_size(size = (self.size[0] * coef, self.size[1]))
 
 class Velocity_Arrow(Gameobject.Component):
     def __init__(self, parent, scale = 0.03, max_speed_size = 80):
