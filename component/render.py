@@ -106,15 +106,17 @@ class RelativeCamera(Gameobject.Component):
     """
     :param scale_factor_long_view Warning: Magic Number
     :param scale_factor_short_view Warning: Magic Number #Todo Add at Game Holder
+    :param distance factor of distance the sprite simulate
     These param must never be different from other GameObject in same Scene
     """
-    def __init__(self, parent, scale_factor_long_view = 0.05,scale_factor_short_view = 1):
+    def __init__(self, parent, scale_factor_long_view = 0.05,scale_factor_short_view = 1, distance = 1):
         super().__init__(parent)
         self.position = (0,0) #Add x,y property
         #self.active = True
         self.scale = (0,0)
-        self.scale_factor_long_view = scale_factor_long_view
-        self.scale_factor_short_view = scale_factor_short_view
+        self.distance = distance
+        self.scale_factor_long_view = scale_factor_long_view * (1/distance)
+        self.scale_factor_short_view = scale_factor_short_view * (1/distance)
 
     def update(self):
         game_object = self.parent #TODO : Change to 3 mode of vision and no real coordinate vision

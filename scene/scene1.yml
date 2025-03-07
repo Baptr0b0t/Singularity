@@ -7,9 +7,11 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/background.jpeg"
-          scale_factor: 0.8
+          scale_factor: 10
       quick_updated: { }
-      standard: { }
+      standard:
+        RelativeCamera:
+          distance: 10
       late_updated: { }
   player:
     position: [LARGEUR//2, HAUTEUR//2+200]
