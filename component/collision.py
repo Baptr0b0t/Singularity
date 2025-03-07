@@ -26,7 +26,7 @@ class PlanetCollision(Gameobject.Component):
     """
     def __init__(self, parent, restitution = 1, ratio=1):
         super().__init__(parent)
-        self.restitution = restitution # 1 = collision rigide , 0 = aucune collision
+        self.restitution = restitution # 1 = collision parfaite, 0 = Perte totale d'energie
         self.collision_ratio = ratio
         self.handled_collision = []
 
@@ -63,14 +63,28 @@ class PlanetCollision(Gameobject.Component):
                     v1n = velocity.x * normal_x + velocity.y * normal_y
                     v2n = obj_velocity.x * normal_x + obj_velocity.y * normal_y
 
-                    new_v1n = ((v1n * (mass - obj_mass) + 2 * obj_mass * v2n) / (mass + obj_mass)) * self.restitution
-                    new_v2n = ((v2n * (obj_mass - mass) + 2 * mass * v1n) / (mass + obj_mass)) * obj_collision.restitution
+                    new_v1n = ((v1n * (mass - obj_mass) + 2 * obj_mass * v2n) / (mass + obj_mass))
+                    new_v2n = ((v2n * (obj_mass - mass) + 2 * mass * v1n) / (mass + obj_mass))
                     velocity.x += (new_v1n - v1n) * normal_x
                     velocity.y += (new_v1n - v1n) * normal_y
+                    velocity.x *= self.restitution
+                    velocity.y *= self.restitution
+
                     obj_velocity.x += (new_v2n - v2n) * normal_x
                     obj_velocity.y += (new_v2n - v2n) * normal_y
+                    obj_velocity.x *= obj_collision.restitution
+                    obj_velocity.y *= obj_collision.restitution
 
                     self.handled_collision.append(obj)
+
+                    #Stuck Resolver
+                    if mass<=obj_mass:
+                        transform.x -= normal_x
+                        transform.y -= normal_y
+                    if mass>=obj_mass:
+                        obj_transform.x += normal_x
+                        obj_transform.y += normal_y
+
 
 
 class ScreenLimit(Gameobject.Component):
