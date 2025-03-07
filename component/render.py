@@ -23,14 +23,19 @@ class SpriteRenderer(pygame.sprite.Sprite):
     :param image_path: Path relative de l'image du sprite.
     :param scale_factor: Coefficient de la taille de l'image
     """
-    def __init__(self, game_object, image_path = missing_texture, scale_factor = 1.0):
+    def __init__(self, game_object, image_path = missing_texture, scale_factor = 1.0, use_topleft = False):
         pygame.sprite.Sprite.__init__(self)
         self.game_object = game_object
         self.surface = load_image(image_path)
         self.scale = (self.surface.get_size()[0] * scale_factor,self.surface.get_size()[1] * scale_factor)
+        self.use_topleft = use_topleft
+
         transform = self.game_object.get_component(Gameobject.Transform)
         self.image = pygame.transform.scale(self.surface, self.scale)
-        self.rect = self.image.get_rect(center=(transform.x, transform.y))
+        if use_topleft:
+            self.rect = self.image.get_rect(topleft=(transform.x, transform.y))
+        else:
+            self.rect = self.image.get_rect(center=(transform.x, transform.y))
         self.visible = True
 
 
@@ -62,7 +67,10 @@ class SpriteRenderer(pygame.sprite.Sprite):
 
         self.image = pygame.transform.scale(self.surface, scale)
         self.image = pygame.transform.rotate(self.image, angle)
-        self.rect = self.image.get_rect(center=position)
+        if self.use_topleft:
+            self.rect = self.image.get_rect(topleft=position)
+        else:
+            self.rect = self.image.get_rect(center=position)
 
 class FontRenderer(Gameobject.Component):
     def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 25, texte = "", color = "BLANK", size = 1):
@@ -96,7 +104,7 @@ class RectangleRenderer(Gameobject.Component):
         if color is None:
             color = self.color
 
-        surface_rect = pygame.Surface(self.size)
+        surface_rect = pygame.Surface(size)
         surface_rect.fill(color)
         game_object.get_component(SpriteRenderer).set_sprite(surface_rect)
 
