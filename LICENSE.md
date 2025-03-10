@@ -1,6 +1,8 @@
 # Project License
 
-**Project Name:** Game developed as an educational project at [EFREI](https://www.efrei.fr/).  
+**Project Name: Singularity**
+- Game developed as an educational project at [EFREI](https://www.efrei.fr/).  
+
 **Year:** 2025
 
 **Copyright (c):**  
