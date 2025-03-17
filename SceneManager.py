@@ -8,6 +8,7 @@ from component.ai import *
 from component.collision import *
 from component.ui import *
 from component.fight import *
+from component.money import *
 from component.audio import *
 from component.health import *
 from component.menu import *
@@ -16,6 +17,8 @@ from taglist import *
 import Holder
 import pygame
 
+def resolve_component(comp_name):
+    return globals()[comp_name]
 
 class EventManager:
     """
@@ -74,7 +77,7 @@ class Scene:
             for update_type, components in data["components"].items():
                 for comp_name, args in components.items():
                     if comp_name in globals():  # Vérifie si la classe existe
-                        component_instance = globals()[comp_name](obj, **args)  # Instancie avec arguments
+                        component_instance = resolve_component(comp_name)(obj, **args)  # Instancie avec arguments
                         getattr(obj, f"add_{update_type}_component")(component_instance)
                     else:
                         print("Composant introuvable :", comp_name)

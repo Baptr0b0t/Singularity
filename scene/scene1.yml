@@ -33,6 +33,9 @@ game_objects:
         #  bounce: True
         Fuel: { }
         Health: { }
+        Money: { }
+        Upgrade:
+          component: Health
         HealthRegen: { }
         DamageCollision:
           ratio: 0.8
@@ -58,8 +61,8 @@ game_objects:
     components:
       self_updated:
         SpriteRenderer:
-          image_path: "./resources/spaceship.png"
-          scale_factor: 0.1
+          image_path: "./resources/enemy_ship_1.png"
+          scale_factor: 0.3
       quick_updated:
         Velocity: { }
       standard:
