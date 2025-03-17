@@ -127,7 +127,7 @@ class RelativeCamera(Gameobject.Component):
         self.scale_factor_short_view = scale_factor_short_view * (1/distance)
 
     def update(self):
-        game_object = self.parent #TODO : Change to 3 mode of vision and no real coordinate vision
+        game_object = self.parent
         keys = pygame.key.get_pressed()
         if keys[pygame.K_TAB]:
             active_scale = self.scale_factor_long_view
