@@ -23,7 +23,7 @@ class Money(Gameobject.Component):
 
 
 class Upgrade(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent,  component = Gameobject.Component, value = 10, cooldown = 300.5):
+    def __init__(self, parent,  component = Gameobject.Component, value = 10, cooldown = 1):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
         self.value = value
