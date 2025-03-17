@@ -9,7 +9,9 @@ game_objects:
           image_path: "./resources/background.jpeg"
           scale_factor: 1
       quick_updated: { }
-      standard: { }
+      standard:
+        PlayMusic:
+          filename: "./resources/audio/Final flash of existence REMIX.mp3"
       late_updated: { }
   quit_button:
     position: [LARGEUR-120, HAUTEUR-140]

@@ -8,6 +8,7 @@ from component.ai import *
 from component.collision import *
 from component.ui import *
 from component.fight import *
+from component.audio import *
 from component.health import *
 from component.menu import *
 from Gameobject import *
@@ -80,6 +81,9 @@ class Scene:
 
             Scene.add_object(obj)
 
+    def boot_up_all(self):
+        for game_object in self.scene_objects:
+            game_object.boot_up()
 
     def update_all(self):
 
