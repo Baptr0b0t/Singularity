@@ -57,6 +57,7 @@ Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size
 
 menu_scene = SceneManager.Scene("./scene/menu.yml")
 space_scene = SceneManager.Scene("./scene/scene1.yml")
+pause_scene = SceneManager.Scene("./scene/pause.yml")
 
 Holder.Game.actual_scene = menu_scene
 # Boucle principale
@@ -70,6 +71,10 @@ while running:
         if event.type == pygame.QUIT:
             print("Quit")
             running = False
+    keys = pygame.key.get_pressed()
+    if keys[pygame.K_ESCAPE]:
+        if Holder.Game.actual_scene is space_scene:
+            Holder.Game.actual_scene = pause_scene
 
     if SceneManager.Scene.has_event(eventlist.QUIT):
         running = False
