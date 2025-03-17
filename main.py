@@ -8,8 +8,10 @@ import SceneManager
 import taglist
 from component.render import *
 from component.movement import *
+from component.audio import MusicPlayer
 import Holder
 import eventlist
+
 
 pygame.init()
 
@@ -55,11 +57,15 @@ clock = pygame.time.Clock()
 #pygame.display.toggle_fullscreen()
 Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
 
+Holder.Game.music_player = MusicPlayer()
+
 menu_scene = SceneManager.Scene("./scene/menu.yml")
 space_scene = SceneManager.Scene("./scene/scene1.yml")
 pause_scene = SceneManager.Scene("./scene/pause.yml")
 
-Holder.Game.actual_scene = menu_scene
+Holder.Game.set_actual_scene(menu_scene)
+
+
 # Boucle principale
 running = True
 while running:
@@ -74,12 +80,12 @@ while running:
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]:
         if Holder.Game.actual_scene is space_scene:
-            Holder.Game.actual_scene = pause_scene
+            Holder.Game.set_actual_scene(pause_scene)
 
     if SceneManager.Scene.has_event(eventlist.QUIT):
         running = False
     if SceneManager.Scene.has_event(eventlist.SCENE_SPACE):
-        Holder.Game.actual_scene = space_scene
+        Holder.Game.set_actual_scene(space_scene)
 
 
     # Dessin

@@ -12,6 +12,8 @@ game_objects:
       standard:
         RelativeCamera:
           distance: 10
+        PlayMusic:
+          filename : "./resources/audio/Final flash of existence REMIX.mp3"
       late_updated: { }
   player:
     position: [LARGEUR//2, HAUTEUR//2+200]

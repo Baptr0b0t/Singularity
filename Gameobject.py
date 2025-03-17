@@ -65,6 +65,19 @@ class GameObject:
         for component in self.late_updated_components:
             component.update()
 
+    def boot_up(self):
+        """
+        Use when the scene active
+        """
+        for component in self.quick_updated_components:
+            component.boot_up()
+
+        for component in self.components:
+            component.boot_up()
+
+        for component in self.late_updated_components:
+            component.boot_up()
+
     def delete(self):
         """Delete GameObject"""
         for component in self.quick_updated_components:
@@ -110,6 +123,9 @@ class Component:
 
     def update(self):
         pass #Permet les composants sans update()
+
+    def boot_up(self):
+        pass #Permet les composants sans boot_up()
 
     def delete(self):
         pass
