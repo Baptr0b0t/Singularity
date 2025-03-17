@@ -15,6 +15,10 @@ class Health(Gameobject.Component):
     def update(self):
         self.health_point = min(self.max_health_point, self.health_point)
 
+    def upgrade(self, value):
+        self.health_point += value
+        self.max_health_point += value
+
 class HealthRegen(Gameobject.Component):
     def __init__(self,parent, regen_rate=1):
         super().__init__(parent)
