@@ -67,7 +67,7 @@ class PlayerSpaceMovement(Gameobject.Component):
     :param acceleration_speed: Force de poussée
     :param boost_force: Coefficient du boost
     """
-    def __init__(self,parent, acceleration_speed, boost_force = 8):
+    def __init__(self,parent, acceleration_speed, boost_force = 4):
         super().__init__(parent)
         self.deltav = acceleration_speed
         self.boost_force = boost_force
