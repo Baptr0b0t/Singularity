@@ -7,7 +7,7 @@ import time
 
 
 class Money(Gameobject.Component):
-    def __init__(self, parent, money = 0):
+    def __init__(self, parent, money = 100):
         super().__init__(parent)
         self.money = money
 
@@ -23,19 +23,27 @@ class Money(Gameobject.Component):
 
 
 class Upgrade(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent,  component = Gameobject.Component, value = 10, cooldown = 1):
+    def __init__(self, parent,  component = Gameobject.Component, value = 10, price = 10, cooldown = 1):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
         self.value = value
-        self.namecomponent = component
+        self.name_component = component
+        self.price = price
 
 
     def update(self):
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_e] and Gameobject.Cooldown.is_ready(self): #TODO: Use event system with a button
+                player_object = SceneManager.Scene.find_by_tag(PLAYER)
+                if not player_object and len(player_object)>=1:
+                    return
+                player_object = player_object[0]
+                money = player_object.get_component(Money)
+                if not money:
+                    return
 
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_e] and Gameobject.Cooldown.is_ready(self):
-            player_object = SceneManager.Scene.find_by_tag(PLAYER)[0]
-
-            self.component = player_object.get_component(SceneManager.resolve_component(self.namecomponent))
-            self.component.upgrade(self.value)
-            Gameobject.Cooldown.reset(self)
+                if money.has_money(self.price):
+                    component = player_object.get_component(SceneManager.resolve_component(self.name_component))
+                    component.upgrade(self.value)
+                    money.remove_money(self.price)
+                    Gameobject.Cooldown.reset(self)

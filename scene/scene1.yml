@@ -45,7 +45,7 @@ game_objects:
           ratio : 0.8
           restitution : 0.95
         PlayerSpaceMovement:
-          acceleration_speed: 15
+          acceleration_speed: 50
         Gravity: { }
         RelativeCamera: {}
         PlayerShot: { }
@@ -212,6 +212,18 @@ game_objects:
       standard:
         FontRenderer: { }
         Speed_UI: { }
+      late_updated: { }
+  Money_UI:
+    position: [ 100, 400 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Money_UI: { }
       late_updated: { }
 
   Rectangle_UI:

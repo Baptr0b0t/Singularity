@@ -3,6 +3,7 @@ import Holder
 from component.render import FontRenderer, SpriteRenderer, RectangleRenderer, RelativeCamera
 from component.health import Health
 from component.movement import Fuel
+from component.money import Money
 import math
 import SceneManager
 from taglist import PLAYER
@@ -72,17 +73,40 @@ class Speed_UI(Gameobject.Component, Gameobject.Cooldown):
             Gameobject.Cooldown.reset(self)
 
 
+class Money_UI(Gameobject.Component, Gameobject.Cooldown):
+    """
+    Need FontRenderer and a Gameobject with "PLAYER" tag exist
+    :param color exemple value (255,255,255) or "BLANK"
+    """
+    def __init__(self, parent, end_texte = "$", color = (255,255,255), size = 1, cooldown = 0.3):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, cooldown)
+        self.color = color
+        self.size = size
+        self.end_texte = end_texte
+
+    def update(self):
+        if Gameobject.Cooldown.is_ready(self):
+            game_object = self.parent
+            player_object = SceneManager.Scene.find_by_tag(PLAYER)[0] #TODO: Make crash proof (Empty text when no player found)
+            player_money = player_object.get_component(Money)
+            texte = str(round(player_money.money)) + self.end_texte
+            game_object.get_component(FontRenderer).change_text(texte, self.color, self.size)
+            Gameobject.Cooldown.reset(self)
+
+
 class Health_UI(Gameobject.Component, Gameobject.Cooldown):
     """
     Need FontRenderer and a Gameobject with "PLAYER" tag exist
     :param color exemple value (255,255,255) or "BLANK"
     """
-    def __init__(self, parent, begining_texte = "Health  ", color = (0,255,0), size = 1, cooldown = 1):
+    def __init__(self, parent, begining_texte = "Health  ", color = (0,255,0), size = 1, show_max = True, cooldown = 1):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
         self.color = color
         self.size = size
         self.begining_texte = begining_texte
+        self.show_max = show_max
 
 
 
@@ -90,7 +114,10 @@ class Health_UI(Gameobject.Component, Gameobject.Cooldown):
         if Gameobject.Cooldown.is_ready(self):
             game_object = self.parent
             player_object = SceneManager.Scene.find_by_tag(PLAYER)[0] #TODO: Make crash proof (Empty text when no player found)
-            texte = self.begining_texte + str(round(player_object.get_component(Health).health_point))
+            health = player_object.get_component(Health)
+            texte = self.begining_texte + str(round(health.health_point))
+            if self.show_max:
+                texte = texte + "/" +str(round(health.max_health_point))
             game_object.get_component(FontRenderer).change_text(texte, self.color, self.size)
             Gameobject.Cooldown.reset(self)
 
