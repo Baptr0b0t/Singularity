@@ -33,7 +33,8 @@ game_objects:
         #  bounce: True
         Fuel: { }
         Health: { }
-        Upgrade:
+        Upgrade_Event:
+          event_name: "BOUGHT_HEALTH_UPGRADE"
           component: Health
         HealthRegen: { }
         DamageCollision:

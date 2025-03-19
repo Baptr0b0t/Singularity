@@ -30,3 +30,32 @@ game_objects:
           font_size: 90
           color: "BLANK"
       late_updated: { }
+  buy_health_button:
+    position: [LARGEUR-120, HAUTEUR-140]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/black_hole.png"
+          scale_factor: 0.1
+      quick_updated: { }
+      standard:
+        Button_with_cost:
+          event_on_click: "BOUGHT_HEALTH_UPGRADE"
+          cost: 20
+        Grow_on_Hover: { }
+      late_updated: { }
+
+  Money_UI:
+    position: [ 100, 400 ]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Money_UI: { }
+      late_updated: { }
