@@ -18,7 +18,7 @@ class AIMaxSpeed(Gameobject.Component):
     :param max_speed: Vitesse maximale autorisée
     :param deceleration_force: Force de freinage progressif
     """
-    def __init__(self, parent, max_speed=20, deceleration_force=0.1):
+    def __init__(self, parent, max_speed=50, deceleration_force=0.1):
         super().__init__(parent)
         self.max_speed = max_speed
         self.deceleration_force = -deceleration_force  # Réduction progressive de l'accélération si trop rapide
@@ -50,7 +50,7 @@ class AITargetMovement(Gameobject.Component):
     :param max_distance: Distance maximale avant de se rapprocher
     """
 
-    def __init__(self, parent, acceleration=40, rotation_speed=0.05, min_distance=10, max_distance=80):
+    def __init__(self, parent, acceleration=80, rotation_speed=0.05, min_distance=10, max_distance=80):
         super().__init__(parent)
         self.acceleration = acceleration
         self.rotation_speed = rotation_speed

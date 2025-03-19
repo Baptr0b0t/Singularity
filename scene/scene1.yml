@@ -33,7 +33,6 @@ game_objects:
         #  bounce: True
         Fuel: { }
         Health: { }
-        Money: { }
         Upgrade:
           component: Health
         HealthRegen: { }

@@ -6,19 +6,6 @@ import pygame
 import time
 
 
-class Money(Gameobject.Component):
-    def __init__(self, parent, money = 100):
-        super().__init__(parent)
-        self.money = money
-
-    def add_money(self, value):
-        self.money+=value
-
-    def remove_money(self, value):
-        self.money-=value
-
-    def has_money(self, cost):
-        return self.money - cost >= 0
 
 
 
@@ -38,12 +25,10 @@ class Upgrade(Gameobject.Component, Gameobject.Cooldown):
                 if not player_object and len(player_object)>=1:
                     return
                 player_object = player_object[0]
-                money = player_object.get_component(Money)
-                if not money:
-                    return
+                game_holder = Holder.Game
 
-                if money.has_money(self.price):
+                if game_holder.has_money(self.price):
                     component = player_object.get_component(SceneManager.resolve_component(self.name_component))
                     component.upgrade(self.value)
-                    money.remove_money(self.price)
+                    game_holder.remove_money(self.price)
                     Gameobject.Cooldown.reset(self)
