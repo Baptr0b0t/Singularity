@@ -14,8 +14,12 @@ from component.health import *
 from component.menu import *
 from Gameobject import *
 from taglist import *
+from eventlist import *
 import Holder
 import pygame
+
+def resolve_event(event_name):
+    return globals()[event_name]
 
 def resolve_component(comp_name):
     return globals()[comp_name]
@@ -39,6 +43,7 @@ class EventManager:
         if event in self.events:
             if do_remove:
                 self.events.remove(event)
+                print(self.events)
             return True
         return False
 
@@ -49,6 +54,7 @@ class EventManager:
     def post_event(self, event):
         """Ajoute un nouvel événement manuellement."""
         self.events.append(event)  # Ajoute l'événement à la file
+        print(self.events)
 
 
 class Scene:

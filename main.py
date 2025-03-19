@@ -62,6 +62,7 @@ Holder.Game.music_player = MusicPlayer()
 menu_scene = SceneManager.Scene("./scene/menu.yml")
 space_scene = SceneManager.Scene("./scene/scene1.yml")
 pause_scene = SceneManager.Scene("./scene/pause.yml")
+shop_scene = SceneManager.Scene("./scene/shop.yml")
 
 Holder.Game.set_actual_scene(menu_scene)
 
@@ -81,6 +82,10 @@ while running:
     if keys[pygame.K_ESCAPE]:
         if Holder.Game.actual_scene is space_scene:
             Holder.Game.set_actual_scene(pause_scene)
+
+    if keys[pygame.K_TAB]:
+        if Holder.Game.actual_scene is space_scene:
+            Holder.Game.set_actual_scene(shop_scene)
 
     if SceneManager.Scene.has_event(eventlist.QUIT):
         running = False
