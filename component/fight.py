@@ -47,6 +47,9 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
             bullet.add_standard_component(DeleteOnCollision(bullet, screen_limit=False, planet_collision_ratio=1 ,seconds_before_start=.26))
             SceneManager.Scene.add_object(bullet)
 
+    def boot_up(self):
+        Gameobject.Cooldown.reset(self)
+
 
 class BulletLifeTime(Gameobject.Component,Gameobject.Cooldown):
     """

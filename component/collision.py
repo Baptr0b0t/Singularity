@@ -169,3 +169,5 @@ class DamageCollision(Gameobject.Component, Gameobject.Cooldown):
 
                 obj.get_component(Health).health_point -= self.damage_on_other
 
+    def boot_up(self):
+        Gameobject.Cooldown.reset(self) #Lors du retour en jeu, empeche les damages sur le joueur qui tire.

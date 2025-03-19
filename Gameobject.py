@@ -93,7 +93,7 @@ class GameObject:
         #print("deleted : ", gc.collect())
 
 
-def requires_active(func): #TODO: add @requires_active to component update()
+def requires_active(func): #must add @requires_active to component update() for effect
     def wrapper(self, *args, **kwargs):
         if not self.active:
             return  # Ne fait rien si le composant est désactivé
@@ -125,6 +125,9 @@ class Component:
         pass #Permet les composants sans update()
 
     def boot_up(self):
+        """
+        Fonction lancer lorsque que la scene ou se situe le composant s'active
+        """
         pass #Permet les composants sans boot_up()
 
     def delete(self):
