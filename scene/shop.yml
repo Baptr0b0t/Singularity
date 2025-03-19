@@ -1,0 +1,32 @@
+game_objects:
+  background:
+    position: [ LARGEUR//2, HAUTEUR//2 ]
+    angle: 90
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/background.jpeg"
+          scale_factor: 1
+      quick_updated: { }
+      standard:
+        PlayMusic:
+          filename: "./resources/audio/Final flash of existence REMIX.mp3"
+      late_updated: { }
+  return_text_button:
+    position: [LARGEUR//2, 100]
+    angle: 0
+    tags: { }
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        Button:
+          event_on_click: "SCENE_SPACE"
+        Grow_on_Hover: { }
+        FontRenderer:
+          texte: "RETURN"
+          font_size: 90
+          color: "BLANK"
+      late_updated: { }
