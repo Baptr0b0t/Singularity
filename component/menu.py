@@ -10,36 +10,37 @@ class Button(Gameobject.Component):
     def __init__(self, parent, event_on_click):
         super().__init__(parent)
         self.event_on_click = event_on_click
+        self.was_pressed_last_frame = False  # Pour éviter les clics multiples en restant appuyé
 
-    def update(self):
+    def is_clicked(self):
         mouse_pos = pygame.mouse.get_pos()
         mouse_pressed = pygame.mouse.get_pressed()
 
-        # Vérifie si la souris est sur l'objet
         if self.parent.get_component(SpriteRenderer).rect.collidepoint(mouse_pos):
-            if mouse_pressed[0]:
-                print("posting :", "eventlist."+self.event_on_click, eval("eventlist."+self.event_on_click))
-                Holder.Game.post_event(eval(str("eventlist."+self.event_on_click)))
+            if mouse_pressed[0] and not self.was_pressed_last_frame:
+                self.was_pressed_last_frame = True
+                return True
+        if not mouse_pressed[0]:
+            self.was_pressed_last_frame = False
+        return False
 
-class Button_with_cost(Gameobject.Component):
+    def update(self):
+        if self.is_clicked():
+            print("posting :", "eventlist."+self.event_on_click, eval("eventlist."+self.event_on_click))
+            Holder.Game.post_event(SceneManager.resolve_event(self.event_on_click))
+
+class Button_with_cost(Button):
     def __init__(self, parent, event_on_click, cost = 10):
-        super().__init__(parent)
-        self.event_on_click = event_on_click
+        super().__init__(parent, event_on_click)
         self.cost = cost
 
     def update(self):
-        mouse_pos = pygame.mouse.get_pos()
-        mouse_pressed = pygame.mouse.get_pressed()
+        game_holder = Holder.Game
+        if self.is_clicked():
+            if game_holder.has_money(self.cost):
+                game_holder.remove_money(self.cost)
 
-        # Vérifie si la souris est sur l'objet
-        if self.parent.get_component(SpriteRenderer).rect.collidepoint(mouse_pos):
-            if mouse_pressed[0]:
-
-                game_holder = Holder.Game
-                if game_holder.has_money(self.cost):
-                    print("posting :", "eventlist."+self.event_on_click, eval("eventlist."+self.event_on_click))
-                    Holder.Game.post_event(eval(str("eventlist."+self.event_on_click)))
-                    game_holder.remove_money(self.cost)
+                Holder.Game.post_event(SceneManager.resolve_event(self.event_on_click))
 
 
 
