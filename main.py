@@ -58,6 +58,7 @@ clock = pygame.time.Clock()
 Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
 
 Holder.Game.music_player = MusicPlayer()
+Holder.Game.event_manager = Holder.EventManager()
 
 menu_scene = SceneManager.Scene("./scene/menu.yml")
 space_scene = SceneManager.Scene("./scene/scene1.yml")
@@ -87,9 +88,9 @@ while running:
         if Holder.Game.actual_scene is space_scene:
             Holder.Game.set_actual_scene(shop_scene)
 
-    if SceneManager.Scene.has_event(eventlist.QUIT):
+    if Holder.Game.has_event(eventlist.QUIT):
         running = False
-    if SceneManager.Scene.has_event(eventlist.SCENE_SPACE):
+    if Holder.Game.has_event(eventlist.SCENE_SPACE):
         Holder.Game.set_actual_scene(space_scene)
 
 

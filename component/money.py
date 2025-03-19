@@ -23,7 +23,7 @@ class Upgrade_Event(Gameobject.Component):
 
     def update(self):
 
-        if SceneManager.Scene.has_event(SceneManager.resolve_event(self.event_name)):
+        if Holder.Game.has_event(SceneManager.resolve_event(self.event_name)):
             print(SceneManager.resolve_event(self.event_name))
 
             game_object = self.parent

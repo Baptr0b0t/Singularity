@@ -19,7 +19,7 @@ class Button(Gameobject.Component):
         if self.parent.get_component(SpriteRenderer).rect.collidepoint(mouse_pos):
             if mouse_pressed[0]:
                 print("posting :", "eventlist."+self.event_on_click, eval("eventlist."+self.event_on_click))
-                SceneManager.Scene.post_event(eval(str("eventlist."+self.event_on_click)))
+                Holder.Game.post_event(eval(str("eventlist."+self.event_on_click)))
 
 class Button_with_cost(Gameobject.Component):
     def __init__(self, parent, event_on_click, cost = 10):
@@ -38,7 +38,7 @@ class Button_with_cost(Gameobject.Component):
                 game_holder = Holder.Game
                 if game_holder.has_money(self.cost):
                     print("posting :", "eventlist."+self.event_on_click, eval("eventlist."+self.event_on_click))
-                    SceneManager.Scene.post_event(eval(str("eventlist."+self.event_on_click)))
+                    Holder.Game.post_event(eval(str("eventlist."+self.event_on_click)))
                     game_holder.remove_money(self.cost)
 
 
