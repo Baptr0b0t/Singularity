@@ -58,4 +58,4 @@ class EventOnNoHealth(Gameobject.Component):
         game_object = self.parent
         health = game_object.get_component(Health)
         if health.health_point<0:
-            SceneManager.Scene.post_event(eval(str("eventlist." + self.event)))
+            Holder.Game.post_event(eval(str("eventlist." + self.event)))

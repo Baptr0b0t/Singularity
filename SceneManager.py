@@ -18,43 +18,15 @@ from eventlist import *
 import Holder
 import pygame
 
+def resolve_tag(tag_name):
+    return globals()[tag_name]
+
 def resolve_event(event_name):
     return globals()[event_name]
 
 def resolve_component(comp_name):
     return globals()[comp_name]
 
-class EventManager:
-    """
-    Exemple usage :
-        SceneManager.Scene.has_event(eventlist.MY_EVENT)
-        SceneManager.Scene.post_event(eventlist.MY_EVENT)
-    """
-    def __init__(self):
-        self.events = []  # Stocke les événements récupérés
-        self.reset()
-
-    def reset(self):
-        """Reset tous les événements"""
-        self.events.clear()
-
-    def has_event(self, event, do_remove):
-        """Check un événement"""
-        if event in self.events:
-            if do_remove:
-                self.events.remove(event)
-                print(self.events)
-            return True
-        return False
-
-    def get_events(self):
-        """Retourne la liste des événements """
-        return self.events
-
-    def post_event(self, event):
-        """Ajoute un nouvel événement manuellement."""
-        self.events.append(event)  # Ajoute l'événement à la file
-        print(self.events)
 
 
 class Scene:
@@ -62,7 +34,6 @@ class Scene:
     def __init__(self, scene_path_file):
         self.sprite_group = pygame.sprite.Group()
         self.scene_objects = []
-        self.event_manager = EventManager()
         Holder.Game.actual_scene = self #Une scene cree est automatiquement la scene active
         LARGEUR = Holder.Game.LARGEUR
         HAUTEUR = Holder.Game.HAUTEUR
@@ -78,7 +49,7 @@ class Scene:
             # Ajout des tags
             for tag in data["tags"]:
                 if tag in globals():  # Vérifie si le tag existe dans les imports
-                    obj.add_tag(globals()[tag])
+                    obj.add_tag(resolve_tag(tag))
 
             for update_type, components in data["components"].items():
                 for comp_name, args in components.items():
@@ -101,21 +72,6 @@ class Scene:
         self.sprite_group.update()
         #self.event_manager.reset() # Reset les événements
         return self.sprite_group
-
-    @classmethod
-    def get_events(cls):
-        """Permet aux objets de la scène de récupérer les événements"""
-        return Holder.Game.actual_scene.event_manager.get_events()
-
-    @classmethod
-    def has_event(cls, event, do_remove=True ):
-        """Ajoute un nouvel event."""
-        return Holder.Game.actual_scene.event_manager.has_event(event, do_remove)
-
-    @classmethod
-    def post_event(cls, event):
-        """Ajoute un nouvel event."""
-        return Holder.Game.actual_scene.event_manager.post_event(event)
 
     @classmethod
     def add_object(cls, game_object):
