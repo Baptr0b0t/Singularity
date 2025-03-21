@@ -8,7 +8,7 @@ from component.collision import DeleteOnCollision, DamageCollision
 
 
 class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, fire_rate = 0.07, speed = 190, bullet_pathfile = "./resources/blast_red.png", scale = 0.06):
+    def __init__(self, parent, fire_rate = 0.07, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, fire_rate)
         self.speed = speed

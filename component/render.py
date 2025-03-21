@@ -23,12 +23,13 @@ class SpriteRenderer(pygame.sprite.Sprite):
     :param image_path: Path relative de l'image du sprite.
     :param scale_factor: Coefficient de la taille de l'image
     """
-    def __init__(self, game_object, image_path = missing_texture, scale_factor = 1.0, use_topleft = False):
+    def __init__(self, game_object, image_path = missing_texture, scale_factor = 1.0, use_topleft = False, visible_off_screen = False):
         pygame.sprite.Sprite.__init__(self)
         self.game_object = game_object
         self.surface = load_image(image_path)
         self.scale = (self.surface.get_size()[0] * scale_factor,self.surface.get_size()[1] * scale_factor)
         self.use_topleft = use_topleft
+        self.visible_off_screen = visible_off_screen
 
         transform = self.game_object.get_component(Gameobject.Transform)
         self.image = pygame.transform.scale(self.surface, self.scale)
@@ -46,12 +47,13 @@ class SpriteRenderer(pygame.sprite.Sprite):
         self.surface = surface
         self.scale = (surface.get_size()[0] * scale_factor, surface.get_size()[1] * scale_factor)
 
+    def is_visible_on_screen(self):
+        """Vérifie si le sprite est visible à l'écran."""
+        screen_rect = pygame.display.get_surface().get_rect()
+        return self.rect.colliderect(screen_rect)
+
     def update(self): #call on pygame.sprite.group.update()
         """Met à jour l'affichage du sprite."""
-        if not self.visible:
-            self.image = pygame.Surface((0, 0), pygame.SRCALPHA)
-            self.rect.topleft = (0, 0)
-            return
 
         transform = self.game_object.get_component(Gameobject.Transform)
         if not transform:
@@ -71,6 +73,16 @@ class SpriteRenderer(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(topleft=position)
         else:
             self.rect = self.image.get_rect(center=position)
+
+        if not self.visible_off_screen:
+            # Mise à jour de la visibilité en fonction de la position du sprite
+            self.visible = self.is_visible_on_screen()
+
+        if not self.visible:
+            self.image = pygame.Surface((0, 0), pygame.SRCALPHA)
+            #self.image = pygame.transform.scale(self.surface, (100,100)) #use when want to see what sprite is invisible
+            self.rect.topleft = (0, 0)
+            return
 
 class FontRenderer(Gameobject.Component):
     def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 25, texte = "", color = "BLANK", size = 1):

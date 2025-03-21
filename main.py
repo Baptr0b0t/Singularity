@@ -84,7 +84,7 @@ while running:
         if Holder.Game.actual_scene is space_scene:
             Holder.Game.set_actual_scene(pause_scene)
 
-    if keys[pygame.K_TAB]:
+    if keys[pygame.K_r]:
         if Holder.Game.actual_scene is space_scene:
             Holder.Game.set_actual_scene(shop_scene)
 
