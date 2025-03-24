@@ -3,10 +3,12 @@ import pygame
 import SceneManager
 import math
 import Holder
-import taglist
+from taglist import PLAYER
 from component.movement import Mass
 from component.render import SpriteRenderer
 from component.health import Health
+import eventlist
+
 
 def collide_circle(obj1, obj2, obj1ratio = 1, obj2ratio = 1): #From pygame.sprite.collide_circle
     xdistance = obj1.get_component(Gameobject.Transform).x - obj2.get_component(Gameobject.Transform).x
@@ -171,3 +173,21 @@ class DamageCollision(Gameobject.Component, Gameobject.Cooldown):
 
     def boot_up(self):
         Gameobject.Cooldown.reset(self) #Lors du retour en jeu, empeche les damages sur le joueur qui tire.
+
+
+class Checkpoint(Gameobject.Component):
+    def __init__(self, parent, top_left, bottom_right):
+        Gameobject.Component.__init__(self, parent)
+        self.top_left=top_left
+        self.bottom_right = bottom_right
+
+    def update(self):
+        ObjectList = SceneManager.Scene.find_by_tag(PLAYER)
+        for object in ObjectList:
+            if object == self.parent:
+                continue
+            coordonnees = object.get_component(Gameobject.Transform)
+            position = [coordonnees.x, coordonnees.y]
+            if self.top_left[0]<=position[0]<=self.bottom_right[0] and self.top_left[1]<=position[1]<=self.bottom_right[0]:
+                Holder.Game.post_event(eventlist.SCENE_MENU)
+                print("SIUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
