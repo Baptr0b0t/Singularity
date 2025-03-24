@@ -129,7 +129,7 @@ class RelativeCamera(Gameobject.Component):
     :param distance factor of distance the sprite simulate
     These param must never be different from other GameObject in same Scene
     """
-    def __init__(self, parent, scale_factor_long_view = 0.05,scale_factor_short_view = 1, distance = 1):
+    def __init__(self, parent, scale_factor_long_view = 0.2,scale_factor_short_view = 1, distance = 1):
         super().__init__(parent)
         self.position = (0,0) #Add x,y property
         #self.active = True

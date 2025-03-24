@@ -3,6 +3,7 @@ game_objects:
     position: [ LARGEUR//2, HAUTEUR//2 ]
     angle: 0
     tags: { }
+    front_layer : False
     components:
       self_updated:
         SpriteRenderer:
@@ -21,6 +22,7 @@ game_objects:
     tags:
       - MAIN_CAMERA
       - PLAYER
+    front_layer : false
     components:
       self_updated:
         SpriteRenderer:
@@ -58,6 +60,7 @@ game_objects:
     position: [LARGEUR//2, HAUTEUR//2+100]
     angle: 0
     tags: { }
+    front_layer : False
     components:
       self_updated:
         SpriteRenderer:
@@ -88,11 +91,13 @@ game_objects:
         #  bounce: True
         SpaceMovement: {}
         Velocity_Arrow: {}
+        Turret_Holder: {}
   planet1:
     position: [0, 0]
     angle: 0
     tags:
       - PLANET
+    front_layer : False
     components:
       self_updated:
         SpriteRenderer:
@@ -120,6 +125,7 @@ game_objects:
     angle: 80
     tags:
       - PLANET
+    front_layer : False
     components:
       self_updated:
         SpriteRenderer:
@@ -146,6 +152,7 @@ game_objects:
     angle: 0
     tags:
       - PLANET
+    front_layer : False
     components:
       self_updated:
         SpriteRenderer:
@@ -170,6 +177,7 @@ game_objects:
     position: [ 100, 80 ]
     angle: 0
     tags: { }
+    front_layer : True
     components:
       self_updated:
         SpriteRenderer: { }
@@ -182,6 +190,7 @@ game_objects:
     position: [ 100, 130 ]
     angle: 0
     tags: { }
+    front_layer : True
     components:
       self_updated:
         SpriteRenderer: { }
@@ -194,6 +203,7 @@ game_objects:
     position: [ 100, 200 ]
     angle: 0
     tags: { }
+    front_layer : True
     components:
       self_updated:
         SpriteRenderer: { }
@@ -206,6 +216,7 @@ game_objects:
     position: [ 100, 300 ]
     angle: 0
     tags: { }
+    front_layer : True
     components:
       self_updated:
         SpriteRenderer: { }
@@ -218,6 +229,7 @@ game_objects:
     position: [ 100, 400 ]
     angle: 0
     tags: { }
+    front_layer : True
     components:
       self_updated:
         SpriteRenderer: { }
@@ -231,6 +243,7 @@ game_objects:
     position: [40, HAUTEUR//2 - 60]
     angle: 0
     tags: { }
+    front_layer : True
     components:
       self_updated:
         SpriteRenderer:
