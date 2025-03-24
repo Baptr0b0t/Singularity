@@ -31,6 +31,8 @@ def resolve_component(comp_name):
 
 class Scene:
     alive_objects = []
+    tag_memory = {}
+    component_memory = {}
     def __init__(self, scene_path_file):
         self.sprite_group = pygame.sprite.Group()
         self.scene_objects = []
@@ -66,7 +68,7 @@ class Scene:
             game_object.boot_up()
 
     def update_all(self):
-
+        Scene.reset_memory()
         for game_object in self.scene_objects:
             game_object.update()
         self.sprite_group.update()
@@ -90,19 +92,44 @@ class Scene:
             cls.alive_objects.remove(game_object)
         game_object.delete()
 
+
+    @classmethod
+    def reset_memory(cls):
+        """
+        Reset saved result by find_by_tag and find_by_component
+        """
+        cls.tag_memory = {}
+        cls.component_memory = {}
+
     @classmethod
     def find_by_tag(cls, tag, search_active_scene = True):
+        key = (tag, search_active_scene)
+
+        if key in cls.tag_memory:
+            return cls.tag_memory[key]
+
         if search_active_scene:
-            return [obj for obj in Holder.Game.actual_scene.scene_objects if obj.has_tag(tag)]
+            result = [obj for obj in Holder.Game.actual_scene.scene_objects if obj.has_tag(tag)]
         else:
-            return [obj for obj in cls.alive_objects if obj.has_tag(tag)]
+            result = [obj for obj in cls.alive_objects if obj.has_tag(tag)]
+
+        cls.tag_memory[key] = result
+        return result
 
     @classmethod
     def find_by_component(cls, component, search_active_scene = True):
+        key = (component, search_active_scene)
+
+        if key in cls.component_memory:
+            return cls.component_memory[key]
+
         if search_active_scene:
-            return [obj for obj in Holder.Game.actual_scene.scene_objects if obj.has_component(component)]
+            result = [obj for obj in Holder.Game.actual_scene.scene_objects if obj.has_component(component)]
         else:
-            return [obj for obj in cls.alive_objects if obj.has_component(component)]
+            result = [obj for obj in cls.alive_objects if obj.has_component(component)]
+
+        cls.component_memory[key] = result
+        return result
 
     @classmethod
     def get_all_alive(cls):
