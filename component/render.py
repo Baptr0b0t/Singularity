@@ -135,6 +135,7 @@ class RelativeCamera(Gameobject.Component):
         self.scale = (0,0)
 
         self.scale_factor_view = scale_factor_view * (1/distance)
+        self.middle_button_pressed = False
 
 
     def update(self):
@@ -143,6 +144,7 @@ class RelativeCamera(Gameobject.Component):
             keys = pygame.key.get_pressed()
             if keys[pygame.K_TAB]:
                 Holder.Game.zoom_factor = 1
+                Holder.Game.relative_offset = [0,0]
 
             for event in Holder.Game.event_manager.pygame_events:
                 # Détection du scroll de la souris avec pygame.MOUSEWHEEL
@@ -151,6 +153,21 @@ class RelativeCamera(Gameobject.Component):
                         Holder.Game.zoom_factor *= 1.03
                     elif event.y < 0:
                         Holder.Game.zoom_factor *= 0.97
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if event.button == 2:
+                        pygame.mouse.get_rel()  # Réinitialiser le rel
+                        self.middle_button_pressed = True
+
+                if event.type == pygame.MOUSEBUTTONUP:
+                    if event.button == 2:
+                        self.middle_button_pressed = False
+
+                if event.type == pygame.MOUSEMOTION:
+                    if self.middle_button_pressed:
+                        # Mouvement de souris avec molette pressée détecté
+                        x, y = event.rel  # Déplacement relatif
+                        Holder.Game.relative_offset[0] += x
+                        Holder.Game.relative_offset[1] += y
 
             Holder.Game.zoom_factor = min(1,max(Holder.Game.zoom_factor, 0.1))
 
@@ -159,8 +176,8 @@ class RelativeCamera(Gameobject.Component):
 
         camera_transform = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform) #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
-        newpositionx = (transform.x - camera_transform.x)*active_scale + Holder.Game.LARGEUR//2
-        newpositiony = (transform.y - camera_transform.y)*active_scale + Holder.Game.HAUTEUR//2
+        newpositionx = (transform.x - camera_transform.x)*active_scale + Holder.Game.LARGEUR//2 + Holder.Game.relative_offset[0]
+        newpositiony = (transform.y - camera_transform.y)*active_scale + Holder.Game.HAUTEUR//2 + Holder.Game.relative_offset[1]
         self.position = (newpositionx, newpositiony)
 
         renderer = game_object.get_component(SpriteRenderer)
