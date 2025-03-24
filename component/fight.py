@@ -107,7 +107,6 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
 
         # Rotation progressive vers l'angle désiré
         angle_diff = (target_angle - current_angle + math.pi) % (2 * math.pi) - math.pi
-        print(angle_diff)
         if abs(angle_diff) > self.rotation_speed:
             transform.angle += self.rotation_speed * (1 if angle_diff > 0 else -1)
 
