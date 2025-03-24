@@ -5,7 +5,7 @@ import SceneManager
 import math
 from component.movement import SpaceMovement
 from component.collision import DeleteOnCollision, DamageCollision
-
+from component.ai import AITarget
 
 class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
     def __init__(self, parent, fire_rate = 0.07, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06):
@@ -64,6 +64,7 @@ class Turret_Holder(Gameobject.Component, Gameobject.Cooldown):
         self.turret.add_self_updated_component(SpriteRenderer(self.turret, self.turret_path, self.scale))
         if game_object.has_component(RelativeCamera):
             self.turret.add_standard_component(RelativeCamera(self.turret))
+        self.turret.add_standard_component(Turret_AI(self.turret, game_object))
         SceneManager.Scene.add_object(self.turret, front=True)
 
 
@@ -81,6 +82,69 @@ class Turret_Holder(Gameobject.Component, Gameobject.Cooldown):
         SceneManager.Scene.remove_object(self.turret)
 
 
+class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
+    def __init__(self, parent, spaceship_parent, fire_rate = 0.2, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06, rotation_speed = 0.1):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, fire_rate)
+        self.speed = speed
+        self.space_ship = spaceship_parent
+        self.path_file = bullet_pathfile
+        self.scale = scale
+        self.rotation_speed = rotation_speed
+
+    def move(self):
+        game_object = self.parent
+        transform = game_object.get_component(Gameobject.Transform)
+        target = self.space_ship.get_component(AITarget).target
+        if target is None:
+            return
+        target_x, target_y = target
+        dx, dy = target_x - transform.x, target_y - transform.y
+
+        target_angle = math.atan2(dy, dx)
+
+        current_angle = transform.angle - math.radians(90)
+
+        # Rotation progressive vers l'angle désiré
+        angle_diff = (target_angle - current_angle + math.pi) % (2 * math.pi) - math.pi
+        print(angle_diff)
+        if abs(angle_diff) > self.rotation_speed:
+            transform.angle += self.rotation_speed * (1 if angle_diff > 0 else -1)
+
+    def shoot(self):
+        Gameobject.Cooldown.reset(self)
+        transform = self.parent.get_component(Gameobject.Transform)
+        #Creating bullet Gameobject
+        bullet = Gameobject.GameObject((transform.x, transform.y), angle=transform.angle)
+        bullet.add_self_updated_component(SpriteRenderer(bullet, self.path_file, self.scale))
+
+        if self.space_ship.has_component(RelativeCamera):
+            bullet.add_standard_component(RelativeCamera(bullet))
+        bullet.add_standard_component(SpaceMovement(bullet))
+        bullet.add_quick_updated_component(Gameobject.Velocity(bullet, x= self.speed * math.cos(transform.angle - math.radians(90)), y= self.speed * math.sin(transform.angle - math.radians(90))))
+        if self.space_ship.has_component(Gameobject.Velocity):
+            game_object_velocity = self.space_ship.get_component(Gameobject.Velocity)
+            bullet_velocity = bullet.get_component(Gameobject.Velocity)
+            bullet_velocity.x += game_object_velocity.x
+            bullet_velocity.y += game_object_velocity.y
+
+        bullet.add_standard_component(DamageCollision(bullet, damage_on_other=10, cooldown=0.30))
+        bullet.add_standard_component(BulletLifeTime(bullet, life_time= 7))
+        bullet.add_standard_component(DeleteOnCollision(bullet, screen_limit=False, planet_collision_ratio=1 ,seconds_before_start=.30))
+        SceneManager.Scene.add_object(bullet)
+
+    def update(self):
+        self.move()
+
+        if Gameobject.Cooldown.is_ready(self):
+            self.shoot()
+
+
+
+
+
+    def boot_up(self):
+        Gameobject.Cooldown.reset(self)
 
 
 class BulletLifeTime(Gameobject.Component,Gameobject.Cooldown):
