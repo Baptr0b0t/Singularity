@@ -89,7 +89,6 @@ class GameObject:
         for component in self.late_updated_components:
             component.delete()
         del self
-        gc.collect()
         #print("deleted : ", gc.collect())
 
 
