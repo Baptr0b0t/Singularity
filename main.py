@@ -75,10 +75,14 @@ while running:
     Holder.Game.delta_time = delta_time
     Holder.Game.time += delta_time
     #print("Time :", Holder.Game.time)
-    for event in pygame.event.get():
+    Holder.Game.event_manager.pygame_events = pygame.event.get()
+    for event in Holder.Game.event_manager.pygame_events:
         if event.type == pygame.QUIT:
             print("Quit")
             running = False
+
+
+
     keys = pygame.key.get_pressed()
     if keys[pygame.K_ESCAPE]:
         if Holder.Game.actual_scene is space_scene:

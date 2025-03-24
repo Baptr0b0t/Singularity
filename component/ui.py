@@ -98,7 +98,7 @@ class Health_UI(Gameobject.Component, Gameobject.Cooldown):
     Need FontRenderer and a Gameobject with "PLAYER" tag exist
     :param color exemple value (255,255,255) or "BLANK"
     """
-    def __init__(self, parent, begining_texte = "Health  ", color = (0,255,0), size = 1, show_max = True, cooldown = 1):
+    def __init__(self, parent, begining_texte = "Health  ", color = (0,255,0), size = 1, show_max = True, cooldown = 0.2):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
         self.color = color
@@ -135,7 +135,7 @@ class Fuel_Rectangle(Gameobject.Component, Gameobject.Cooldown):
     """
     :param color exemple value (255,255,255) or "BLANK"
     """
-    def __init__(self, parent, color = (0,255,0), size = (90,10), cooldown = 1):
+    def __init__(self, parent, color = (0,255,0), size = (90,10), cooldown = 0.5):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
         self.color = color

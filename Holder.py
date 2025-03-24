@@ -6,6 +6,7 @@ class EventManager:
     """
     def __init__(self):
         self.events = []  # Stocke les événements récupérés
+        self.pygame_events = []
         self.reset()
 
     def reset(self):
@@ -35,6 +36,7 @@ class Game:
     actual_scene = None
     music_player = None
     event_manager = None
+    zoom_factor = 1
     delta_time = 0
     time = 0
     @classmethod

@@ -6,6 +6,7 @@ import taglist
 import SceneManager
 import Holder
 from colorlist import * #used by globals()
+from taglist import PLAYER
 
 missing_texture = "./resources/missing_texture.jpg"
 def load_image(image_path):
@@ -124,27 +125,38 @@ class RectangleRenderer(Gameobject.Component):
 
 class RelativeCamera(Gameobject.Component):
     """
-    :param scale_factor_long_view Warning: Magic Number
-    :param scale_factor_short_view Warning: Magic Number #Todo Add at Game Holder
+    :param scale_factor_view factor
     :param distance factor of distance the sprite simulate
     These param must never be different from other GameObject in same Scene
     """
-    def __init__(self, parent, scale_factor_long_view = 0.2,scale_factor_short_view = 1, distance = 1):
+    def __init__(self, parent, scale_factor_view = 1, distance = 1):
         super().__init__(parent)
         self.position = (0,0) #Add x,y property
-        #self.active = True
         self.scale = (0,0)
-        self.distance = distance
-        self.scale_factor_long_view = scale_factor_long_view * (1/distance)
-        self.scale_factor_short_view = scale_factor_short_view * (1/distance)
+
+        self.scale_factor_view = scale_factor_view * (1/distance)
+
 
     def update(self):
         game_object = self.parent
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_TAB]:
-            active_scale = self.scale_factor_long_view
-        else:
-            active_scale = self.scale_factor_short_view
+        if game_object.has_tag(PLAYER):
+            keys = pygame.key.get_pressed()
+            if keys[pygame.K_TAB]:
+                Holder.Game.zoom_factor = 1
+
+            for event in Holder.Game.event_manager.pygame_events:
+                # Détection du scroll de la souris avec pygame.MOUSEWHEEL
+                if event.type == pygame.MOUSEWHEEL:
+                    if event.y > 0:
+                        Holder.Game.zoom_factor *= 1.03
+                    elif event.y < 0:
+                        Holder.Game.zoom_factor *= 0.97
+
+            Holder.Game.zoom_factor = min(1,max(Holder.Game.zoom_factor, 0.1))
+
+        active_scale = Holder.Game.zoom_factor * self.scale_factor_view
+
+
         camera_transform = SceneManager.Scene.find_by_tag(taglist.MAIN_CAMERA)[0].get_component(Gameobject.Transform) #not crash proof
         transform = game_object.get_component(Gameobject.Transform)
         newpositionx = (transform.x - camera_transform.x)*active_scale + Holder.Game.LARGEUR//2
