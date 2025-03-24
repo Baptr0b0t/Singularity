@@ -88,7 +88,7 @@ class Scene:
 
         Holder.Game.actual_scene.scene_objects.append(game_object)
         cls.alive_objects.append(game_object)
-        print(cls.alive_objects)
+        #print(cls.alive_objects)
 
     @classmethod
     def remove_object(cls, game_object):
@@ -102,6 +102,7 @@ class Scene:
         if game_object in cls.alive_objects:
             cls.alive_objects.remove(game_object)
         game_object.delete()
+        gc.collect()
 
 
     @classmethod
