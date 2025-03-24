@@ -35,6 +35,7 @@ class Scene:
     component_memory = {}
     def __init__(self, scene_path_file):
         self.sprite_group = pygame.sprite.Group()
+        self.front_sprite_group = pygame.sprite.Group()
         self.scene_objects = []
         Holder.Game.actual_scene = self #Une scene cree est automatiquement la scene active
         LARGEUR = Holder.Game.LARGEUR
@@ -61,7 +62,8 @@ class Scene:
                     else:
                         print("Composant introuvable :", comp_name)
 
-            Scene.add_object(obj)
+
+            Scene.add_object(obj, front= data["front_layer"])
 
     def boot_up_all(self):
         for game_object in self.scene_objects:
@@ -72,13 +74,17 @@ class Scene:
         for game_object in self.scene_objects:
             game_object.update()
         self.sprite_group.update()
+        self.front_sprite_group.update()
         #self.event_manager.reset() # Reset les événements
-        return self.sprite_group
+        return self.sprite_group, self.front_sprite_group
 
     @classmethod
-    def add_object(cls, game_object):
+    def add_object(cls, game_object, front = False):
+        if front:
+            Holder.Game.actual_scene.front_sprite_group.add(game_object.get_component(SpriteRenderer))
+        else:
+            Holder.Game.actual_scene.sprite_group.add(game_object.get_component(SpriteRenderer))
 
-        Holder.Game.actual_scene.sprite_group.add(game_object.get_component(SpriteRenderer))
         Holder.Game.actual_scene.scene_objects.append(game_object)
         cls.alive_objects.append(game_object)
         print(cls.alive_objects)
@@ -87,6 +93,8 @@ class Scene:
     def remove_object(cls, game_object):
         #TODO: Use queue list
         Holder.Game.actual_scene.sprite_group.remove(game_object.get_component(SpriteRenderer))
+        Holder.Game.actual_scene.front_sprite_group.remove(game_object.get_component(SpriteRenderer))
+
         Holder.Game.actual_scene.scene_objects.remove(game_object)
         if game_object in cls.alive_objects:
             cls.alive_objects.remove(game_object)

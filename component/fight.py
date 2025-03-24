@@ -50,6 +50,38 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
     def boot_up(self):
         Gameobject.Cooldown.reset(self)
 
+class Turret_Holder(Gameobject.Component, Gameobject.Cooldown):
+    def __init__(self, parent, fire_rate = 0.07, offset = 10, turret_pathfile = "./resources/enemy_ship_turret.png", scale = 0.3):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, fire_rate)
+        self.turret_path = turret_pathfile
+        self.scale = scale
+        self.offset = offset
+
+        game_object = self.parent
+        transform = game_object.get_component(Gameobject.Transform)
+        self.turret = Gameobject.GameObject((transform.x, transform.y), angle=0)
+        self.turret.add_self_updated_component(SpriteRenderer(self.turret, self.turret_path, self.scale))
+        if game_object.has_component(RelativeCamera):
+            self.turret.add_standard_component(RelativeCamera(self.turret))
+        SceneManager.Scene.add_object(self.turret, front=True)
+
+
+    def update(self):
+        game_object = self.parent
+        transform = game_object.get_component(Gameobject.Transform)
+        turret_transform = self.turret.get_component(Gameobject.Transform)
+
+
+        turret_transform.x = transform.x + self.offset * math.cos(transform.angle-math.radians(90))
+        turret_transform.y = transform.y + self.offset * math.sin(transform.angle-math.radians(90))
+
+
+    def delete(self):
+        SceneManager.Scene.remove_object(self.turret)
+
+
+
 
 class BulletLifeTime(Gameobject.Component,Gameobject.Cooldown):
     """

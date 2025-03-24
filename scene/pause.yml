@@ -3,6 +3,7 @@ game_objects:
     position: [ LARGEUR//2, HAUTEUR//2 ]
     angle: 90
     tags: { }
+    front_layer : false
     components:
       self_updated:
         SpriteRenderer:
@@ -16,6 +17,7 @@ game_objects:
     position: [LARGEUR-120, HAUTEUR-140]
     angle: 0
     tags: { }
+    front_layer : false
     components:
       self_updated:
         SpriteRenderer:
@@ -31,6 +33,7 @@ game_objects:
     position: [ LARGEUR-120, HAUTEUR-30 ]
     angle: 0
     tags: { }
+    front_layer : false
     components:
       self_updated:
         SpriteRenderer:
@@ -46,6 +49,7 @@ game_objects:
     position: [LARGEUR//2, HAUTEUR//2]
     angle: 0
     tags: { }
+    front_layer : false
     components:
       self_updated:
         SpriteRenderer: { }

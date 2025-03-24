@@ -97,11 +97,12 @@ while running:
     # Dessin
     fenetre.fill(NOIR)
 
-    sprite_group = Holder.Game.actual_scene.update_all()
+    sprite_group, front_sprite_group = Holder.Game.actual_scene.update_all()
 
 
     #main_sprite_group.update()
     sprite_group.draw(fenetre)
+    front_sprite_group.draw(fenetre)
 
 
     #appliquer_filtre_8bit(fenetre, Holder.Game.LARGEUR, Holder.Game.HAUTEUR, 1)
