@@ -96,7 +96,9 @@ class Scene:
         Holder.Game.actual_scene.sprite_group.remove(game_object.get_component(SpriteRenderer))
         Holder.Game.actual_scene.front_sprite_group.remove(game_object.get_component(SpriteRenderer))
 
-        Holder.Game.actual_scene.scene_objects.remove(game_object)
+        if game_object in Holder.Game.actual_scene.scene_objects:
+            Holder.Game.actual_scene.scene_objects.remove(game_object)
+
         if game_object in cls.alive_objects:
             cls.alive_objects.remove(game_object)
         game_object.delete()
