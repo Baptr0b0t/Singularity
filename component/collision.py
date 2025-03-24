@@ -190,4 +190,4 @@ class Checkpoint(Gameobject.Component):
             position = [coordonnees.x, coordonnees.y]
             if self.top_left[0]<=position[0]<=self.bottom_right[0] and self.top_left[1]<=position[1]<=self.bottom_right[0]:
                 Holder.Game.post_event(eventlist.SCENE_MENU)
-                print("SIUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUUU")
+
