@@ -47,7 +47,8 @@ game_objects:
         Button_with_cost:
           event_on_click: "BOUGHT_HEALTH_UPGRADE"
           cost: 20
-        Grow_on_Hover: { }
+        Grow_on_Hover:
+          cost: 20
       late_updated: { }
 
   Money_UI:

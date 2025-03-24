@@ -45,16 +45,21 @@ class Button_with_cost(Button):
 
 
 class Grow_on_Hover(Gameobject.Component):
-    def __init__(self, parent, factor = 1.2):
+    """
+    :param cost How much to have in plaer bank for grow on hober
+    """
+    def __init__(self, parent, factor = 1.2, cost = 0):
         super().__init__(parent)
         self.factor = factor
         self.is_grown = False
+        self.cost = cost
 
     def update(self):
+        money = Holder.Game.money
         mouse_pos = pygame.mouse.get_pos()
 
         renderer = self.parent.get_component(SpriteRenderer)
-        if renderer.rect.collidepoint(mouse_pos):
+        if renderer.rect.collidepoint(mouse_pos) and not money < self.cost:
             if not self.is_grown:
                 renderer.set_scale((renderer.scale[0] * self.factor, renderer.scale[1] * self.factor))
                 self.is_grown = True
