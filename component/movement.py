@@ -53,7 +53,7 @@ class Gravity(Gameobject.Component):
                     object_transform = obj.get_component(Gameobject.Transform)
                     dx = transform.x - object_transform.x
                     dy = transform.y - object_transform.y
-                    distance = math.sqrt(dx**2 + dy**2) * 100
+                    distance = math.sqrt(dx**2 + dy**2) * 70
                     if distance <= 1: #For not make black hole
                         continue
                     force = self.G * (mass * obj.get_component(Mass).mass) / (distance ** 2)

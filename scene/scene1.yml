@@ -99,7 +99,8 @@ game_objects:
           image_path: "./resources/planet_1.png"
           scale_factor: 0.8
       quick_updated:
-        Velocity: { }
+        Velocity:
+          x: 50
       standard:
         Mass:
           mass: 59740000000000000000000
