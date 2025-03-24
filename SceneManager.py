@@ -80,10 +80,11 @@ class Scene:
 
     @classmethod
     def add_object(cls, game_object, front = False):
-        if front:
-            Holder.Game.actual_scene.front_sprite_group.add(game_object.get_component(SpriteRenderer))
-        else:
-            Holder.Game.actual_scene.sprite_group.add(game_object.get_component(SpriteRenderer))
+        if game_object.has_component(SpriteRenderer):
+            if front:
+                Holder.Game.actual_scene.front_sprite_group.add(game_object.get_component(SpriteRenderer))
+            else:
+                Holder.Game.actual_scene.sprite_group.add(game_object.get_component(SpriteRenderer))
 
         Holder.Game.actual_scene.scene_objects.append(game_object)
         cls.alive_objects.append(game_object)

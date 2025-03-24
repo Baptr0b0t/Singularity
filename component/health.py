@@ -1,4 +1,3 @@
-from pygments.styles import get_all_styles
 import Holder
 import Gameobject
 import SceneManager
