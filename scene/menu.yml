@@ -14,11 +14,107 @@ game_objects:
         PlayMusic:
           filename: "./resources/audio/Final flash of existence REMIX.mp3"
       late_updated: { }
+  ai_ship:
+    position: [ LARGEUR//2, HAUTEUR//2+100 ]
+    angle: 0
+    tags:
+      - AI_TARGETED
+    front_layer: False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/enemy_ship_1.png"
+          scale_factor: 0.3
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 1000
+        PlanetCollision:
+          ratio: 0.8
+          restitution: 1
+        AITargetMovement:
+          max_acceleration: 40
+        AITarget: { }
+        AIMaxSpeed: { }
+        Gravity: { }
+        SpeedLimit:
+          speedlimit: 80
+      late_updated:
+        ScreenLimit:
+          bounce: True
+        SpaceMovement: { }
+        Velocity_Arrow: { }
+        Turret_Holder: { }
+  ai_ship2:
+    position: [ LARGEUR//2, HAUTEUR//2-100 ]
+    angle: 0
+    tags:
+      - AI_TARGETED
+    front_layer: False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/enemy_ship_1.png"
+          scale_factor: 0.3
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 1000
+        PlanetCollision:
+          ratio: 0.8
+          restitution: 1
+        AITargetMovement:
+          max_acceleration: 40
+        AITarget: { }
+        AIMaxSpeed: { }
+        Gravity: { }
+        SpeedLimit:
+          speedlimit: 80
+      late_updated:
+        ScreenLimit:
+          bounce: True
+        SpaceMovement: { }
+        Velocity_Arrow: { }
+        Turret_Holder: { }
+  ai_ship3:
+    position: [ LARGEUR//2+300, HAUTEUR//2+200 ]
+    angle: 0
+    tags:
+      - AI_TARGETED
+    front_layer: False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/enemy_ship_1.png"
+          scale_factor: 0.3
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 1000
+        PlanetCollision:
+          ratio: 0.8
+          restitution: 1
+        AITargetMovement:
+          max_acceleration: 40
+        AITarget: { }
+        AIMaxSpeed: { }
+        Gravity: { }
+        SpeedLimit:
+          speedlimit: 80
+      late_updated:
+        ScreenLimit:
+          bounce: True
+        SpaceMovement: { }
+        Velocity_Arrow: { }
+        Turret_Holder: { }
   quit_button:
     position: [LARGEUR-120, HAUTEUR-140]
     angle: 0
     tags: { }
-    front_layer : false
+    front_layer : true
     components:
       self_updated:
         SpriteRenderer:
@@ -34,7 +130,7 @@ game_objects:
     position: [ LARGEUR-120, HAUTEUR-30 ]
     angle: 0
     tags: { }
-    front_layer : false
+    front_layer : true
     components:
       self_updated:
         SpriteRenderer:
@@ -50,7 +146,7 @@ game_objects:
     position: [LARGEUR//2, HAUTEUR//2]
     angle: 0
     tags: { }
-    front_layer : false
+    front_layer : true
     components:
       self_updated:
         SpriteRenderer: { }

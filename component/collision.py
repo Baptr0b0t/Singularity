@@ -102,18 +102,13 @@ class ScreenLimit(Gameobject.Component):
 
             velocity = game_object.get_component(Gameobject.Velocity)
             if velocity:
-
-                #TODO : Avoid bug where the spaceship keep bouncing on border
-                if transform.x >= Holder.Game.LARGEUR or transform.x <= 0:
+                if transform.x > Holder.Game.LARGEUR or transform.x < 0:
                     velocity.x += -self.force * velocity.x
-                    #transform.x = max(0, min(Holder.Game.LARGEUR, transform.x))
 
-                if transform.y >= Holder.Game.LARGEUR or transform.y <= 0:
+                if transform.y > Holder.Game.LARGEUR or transform.y < 0:
                     velocity.y += -self.force * velocity.y
-                    #transform.y = max(0, min(Holder.Game.HAUTEUR, transform.y))
-        else:
-            transform.x = max(0, min(Holder.Game.LARGEUR, transform.x))
-            transform.y = max(0, min(Holder.Game.HAUTEUR, transform.y))
+        transform.x = max(0, min(Holder.Game.LARGEUR, transform.x))
+        transform.y = max(0, min(Holder.Game.HAUTEUR, transform.y))
 
 
 class DeleteOnCollision(Gameobject.Component, Gameobject.Cooldown):
