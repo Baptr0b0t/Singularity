@@ -36,8 +36,8 @@ class Game:
     actual_scene = None
     music_player = None
     event_manager = None
-    zoom_factor = 1
-    relative_offset =[0, 0]
+    zoom_factor = 1.0
+    relative_offset = [0, 0]
     delta_time = 0
     time = 0
     @classmethod

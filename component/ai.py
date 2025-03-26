@@ -1,16 +1,23 @@
 import Gameobject
 import math
 import pygame
+import SceneManager
+from taglist import PLAYER
 
-
-class AITarget(Gameobject.Component):
-    def __init__(self, parent):
-        super().__init__(parent)
+class AITarget(Gameobject.Component, Gameobject.Cooldown):
+    def __init__(self, parent, cooldown = 2):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, cooldown, start_ready=False)
         self.target = (500,400)  # Position cible
+        self.shooting_target = None
 
     def update(self):
-        self.target = pygame.mouse.get_pos()
-        pass
+        if Gameobject.Cooldown.is_ready(self):
+            player_object = SceneManager.Scene.find_by_tag(PLAYER)[0]
+            player_transform = player_object.get_component(Gameobject.Transform)
+            self.target = (player_transform.x, player_transform.y)
+            self.shooting_target = (player_transform.x, player_transform.y)
+            Gameobject.Cooldown.reset(self)
 
 class AIMaxSpeed(Gameobject.Component):
     """
@@ -50,9 +57,10 @@ class AITargetMovement(Gameobject.Component):
     :param max_distance: Distance maximale avant de se rapprocher
     """
 
-    def __init__(self, parent, acceleration=80, rotation_speed=0.05, min_distance=10, max_distance=80):
+    def __init__(self, parent, min_acceleration=20, max_acceleration = 80, rotation_speed=0.05, min_distance=40, max_distance=300):
         super().__init__(parent)
-        self.acceleration = acceleration
+        self.min_acceleration = min_acceleration
+        self.max_acceleration = max_acceleration
         self.rotation_speed = rotation_speed
         self.min_distance = min_distance
         self.max_distance = max_distance
@@ -92,7 +100,13 @@ class AITargetMovement(Gameobject.Component):
         if abs(angle_diff) > self.rotation_speed:
             transform.angle += self.rotation_speed * (1 if angle_diff > 0 else -1)
 
+        # Calcul proportionnel de l'accélération entre min_distance et max_distance
+        distance_clamped = max(min(distance, self.max_distance), self.min_distance)
+        proportion = (distance_clamped - self.min_distance) / (self.max_distance - self.min_distance)
+        # Interpolation linéaire entre min et max acceleration
+        acceleration = self.min_acceleration + proportion * (self.max_acceleration - self.min_acceleration)
+
         # Appliquer l'accélération uniquement si l'angle est bien aligné
         if abs(angle_diff) < math.radians(10):  # Seuil pour éviter les oscillations
-            velocity.ax += self.acceleration * math.cos(transform.angle - math.radians(90))
-            velocity.ay += self.acceleration * math.sin(transform.angle - math.radians(90))
+            velocity.ax += acceleration * math.cos(transform.angle - math.radians(90))
+            velocity.ay += acceleration * math.sin(transform.angle - math.radians(90))

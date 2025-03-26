@@ -5,14 +5,14 @@ game_objects:
     tags: { }
     front_layer : False
     components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/background.jpeg"
-          scale_factor: 10
+      self_updated: {}
+        #SpriteRenderer:
+        #  image_path: "./resources/background.jpeg"
+        #  scale_factor: 10
       quick_updated: { }
       standard:
-        RelativeCamera:
-          distance: 10
+        #RelativeCamera:
+        #  distance: 10
         PlayMusic:
           filename : "./resources/audio/Final flash of existence REMIX.mp3"
       late_updated: { }

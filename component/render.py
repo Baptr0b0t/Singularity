@@ -30,6 +30,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
         self.surface = load_image(image_path)
         self.scale = (self.surface.get_size()[0] * scale_factor,self.surface.get_size()[1] * scale_factor)
         self.use_topleft = use_topleft
+        self.cached_scaled_surfaces = {}  # Cache des images zoomées
         self.visible_off_screen = visible_off_screen
 
         transform = self.game_object.get_component(Gameobject.Transform)
@@ -40,6 +41,11 @@ class SpriteRenderer(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(center=(transform.x, transform.y))
         self.visible = True
 
+
+    def get_cached_scaled_surface(self, surface, scale):
+        if scale not in self.cached_scaled_surfaces:
+            self.cached_scaled_surfaces[scale] = pygame.transform.scale(surface, scale)
+        return self.cached_scaled_surfaces[scale]
 
     def set_scale(self, scale):
         self.scale = scale
@@ -68,7 +74,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
         else:
             position, scale = (transform.x, transform.y), self.scale
 
-        self.image = pygame.transform.scale(self.surface, scale)
+        self.image = self.get_cached_scaled_surface(self.surface, scale) #self.image = pygame.transform.scale(self.surface, scale)
         self.image = pygame.transform.rotate(self.image, angle)
         if self.use_topleft:
             self.rect = self.image.get_rect(topleft=position)
@@ -143,7 +149,7 @@ class RelativeCamera(Gameobject.Component):
         if game_object.has_tag(PLAYER):
             keys = pygame.key.get_pressed()
             if keys[pygame.K_TAB]:
-                Holder.Game.zoom_factor = 1
+                Holder.Game.zoom_factor = 0.7
                 Holder.Game.relative_offset = [0,0]
 
             for event in Holder.Game.event_manager.pygame_events:
@@ -169,7 +175,7 @@ class RelativeCamera(Gameobject.Component):
                         Holder.Game.relative_offset[0] += x
                         Holder.Game.relative_offset[1] += y
 
-            Holder.Game.zoom_factor = min(1,max(Holder.Game.zoom_factor, 0.1))
+            Holder.Game.zoom_factor = min(1.5,max(Holder.Game.zoom_factor, 0.1))
 
         active_scale = Holder.Game.zoom_factor * self.scale_factor_view
 

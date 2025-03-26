@@ -84,6 +84,9 @@ while running:
 
 
     keys = pygame.key.get_pressed()
+    if keys[pygame.K_F11]:
+        pygame.display.toggle_fullscreen()
+        Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
     if keys[pygame.K_ESCAPE]:
         if Holder.Game.actual_scene is space_scene:
             Holder.Game.set_actual_scene(pause_scene)
