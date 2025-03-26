@@ -83,7 +83,7 @@ class Turret_Holder(Gameobject.Component, Gameobject.Cooldown):
 
 
 class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, spaceship_parent, fire_rate = 0.2, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06, rotation_speed = 0.1):
+    def __init__(self, parent, spaceship_parent, fire_rate = 0.2, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06, rotation_speed = 0.3):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, fire_rate)
         self.speed = speed
@@ -92,10 +92,9 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
         self.scale = scale
         self.rotation_speed = rotation_speed
 
-    def move(self):
+    def move(self, target):
         game_object = self.parent
         transform = game_object.get_component(Gameobject.Transform)
-        target = self.space_ship.get_component(AITarget).target
         if target is None:
             return
         target_x, target_y = target
@@ -111,7 +110,6 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
             transform.angle += self.rotation_speed * (1 if angle_diff > 0 else -1)
 
     def shoot(self):
-        Gameobject.Cooldown.reset(self)
         transform = self.parent.get_component(Gameobject.Transform)
         #Creating bullet Gameobject
         bullet = Gameobject.GameObject((transform.x, transform.y), angle=transform.angle)
@@ -133,10 +131,17 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
         SceneManager.Scene.add_object(bullet)
 
     def update(self):
-        self.move()
+        target = self.space_ship.get_component(AITarget).shooting_target
+        if target is None:
+            return
+        self.move(target)
 
-        if Gameobject.Cooldown.is_ready(self):
+        transform = self.parent.get_component(Gameobject.Transform)
+        dx, dy = target[0] - transform.x, target[1] - transform.y
+        distance = math.hypot(dx, dy)
+        if Gameobject.Cooldown.is_ready(self) and distance <= 300:
             self.shoot()
+            Gameobject.Cooldown.reset(self)
 
 
 
