@@ -2,21 +2,38 @@ import Gameobject
 import math
 import pygame
 import SceneManager
-from taglist import PLAYER
+from random import randint, choice
+from taglist import AI_TARGETED
 
 class AITarget(Gameobject.Component, Gameobject.Cooldown):
     def __init__(self, parent, cooldown = 2):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown, start_ready=False)
-        self.target = (500,400)  # Position cible
+
+        self.target = (randint(200,900),randint(200,600))  # Position cible
         self.shooting_target = None
+        self.target_obj = None
 
     def update(self):
         if Gameobject.Cooldown.is_ready(self):
-            player_object = SceneManager.Scene.find_by_tag(PLAYER)[0]
-            player_transform = player_object.get_component(Gameobject.Transform)
-            self.target = (player_transform.x, player_transform.y)
-            self.shooting_target = (player_transform.x, player_transform.y)
+
+            target_object = SceneManager.Scene.find_by_tag(AI_TARGETED)
+            if self.target_obj in target_object: #Keep his target until unfoundable
+                return
+
+            if self.parent in target_object:
+                target_object.remove(self.parent) #Don't target himself
+            if not len(target_object)>=1:
+                return
+
+
+
+
+            target_object = choice(target_object)
+            self.target_obj = target_object
+            target_transform = target_object.get_component(Gameobject.Transform)
+            self.target = (target_transform.x, target_transform.y)
+            self.shooting_target = (target_transform.x, target_transform.y)
             Gameobject.Cooldown.reset(self)
 
 class AIMaxSpeed(Gameobject.Component):
