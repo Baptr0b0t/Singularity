@@ -55,7 +55,7 @@ game_objects:
     position: [ 100, 400 ]
     angle: 0
     tags: { }
-    front_layer : false
+    front_layer : true
     components:
       self_updated:
         SpriteRenderer: { }

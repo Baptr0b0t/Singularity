@@ -43,14 +43,20 @@ class SpriteRenderer(pygame.sprite.Sprite):
 
 
     def get_cached_scaled_surface(self, surface, scale):
-        if scale not in self.cached_scaled_surfaces:
-            self.cached_scaled_surfaces[scale] = pygame.transform.scale(surface, scale)
-        return self.cached_scaled_surfaces[scale]
+        int_scale = (int(scale[0]), int(scale[1]))
+
+        if int_scale not in self.cached_scaled_surfaces:
+            self.cached_scaled_surfaces[int_scale] = pygame.transform.scale(surface, int_scale)
+        return self.cached_scaled_surfaces[int_scale]
+
+    def reset_cached_scaled_surfaces(self):
+        self.cached_scaled_surfaces = {}
 
     def set_scale(self, scale):
         self.scale = scale
 
     def set_sprite(self, surface, scale_factor = 1.0):
+        self.reset_cached_scaled_surfaces()
         self.surface = surface
         self.scale = (surface.get_size()[0] * scale_factor, surface.get_size()[1] * scale_factor)
 
@@ -174,6 +180,13 @@ class RelativeCamera(Gameobject.Component):
                         x, y = event.rel  # Déplacement relatif
                         Holder.Game.relative_offset[0] += x
                         Holder.Game.relative_offset[1] += y
+                        MIN_OFFSET_X, MAX_OFFSET_X = -Holder.Game.LARGEUR//2, Holder.Game.LARGEUR//2
+                        MIN_OFFSET_Y, MAX_OFFSET_Y = -Holder.Game.HAUTEUR // 2, Holder.Game.HAUTEUR // 2
+                        # Mise à jour avec clamp (limitation)
+                        Holder.Game.relative_offset[0] = max(MIN_OFFSET_X,
+                                                             min(MAX_OFFSET_X, Holder.Game.relative_offset[0] + x))
+                        Holder.Game.relative_offset[1] = max(MIN_OFFSET_Y,
+                                                             min(MAX_OFFSET_Y, Holder.Game.relative_offset[1] + y))
 
             Holder.Game.zoom_factor = min(1.5,max(Holder.Game.zoom_factor, 0.1))
 
