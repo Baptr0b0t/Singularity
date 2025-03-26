@@ -38,7 +38,7 @@ class Scene:
         self.front_sprite_group = pygame.sprite.Group()
         self.scene_objects = []
         Holder.Game.actual_scene = self #Une scene cree est automatiquement la scene active
-        LARGEUR = Holder.Game.LARGEUR
+        LARGEUR = Holder.Game.LARGEUR #used at eval()
         HAUTEUR = Holder.Game.HAUTEUR
         with open(scene_path_file, "r") as file:
             scene = yaml.safe_load(file)

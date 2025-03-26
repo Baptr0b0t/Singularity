@@ -7,7 +7,7 @@ game_objects:
     components:
       self_updated: {}
         #SpriteRenderer:
-        #  image_path: "./resources/background.jpeg"
+        #  image_path: "./resources/background.png"
         #  scale_factor: 10
       quick_updated: { }
       standard:
