@@ -35,9 +35,10 @@ class Game:
     LARGEUR, HAUTEUR = 1000, 600
     actual_scene = None
     music_player = None
+    sound_player = None
     event_manager = None
-    zoom_factor = 1
-    relative_offset =[0, 0]
+    zoom_factor = 1.0
+    relative_offset = [0, 0]
     delta_time = 0
     time = 0
     @classmethod

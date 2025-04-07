@@ -8,7 +8,7 @@ import SceneManager
 import taglist
 from component.render import *
 from component.movement import *
-from component.audio import MusicPlayer
+from component.audio import MusicPlayer, SoundEffectManager
 import Holder
 import eventlist
 
@@ -59,6 +59,7 @@ Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size
 
 Holder.Game.music_player = MusicPlayer()
 Holder.Game.event_manager = Holder.EventManager()
+Holder.Game.sound_player = SoundEffectManager()
 
 menu_scene = SceneManager.Scene("./scene/menu.yml")
 space_scene = SceneManager.Scene("./scene/scene1.yml")
@@ -84,6 +85,9 @@ while running:
 
 
     keys = pygame.key.get_pressed()
+    if keys[pygame.K_F11]:
+        pygame.display.toggle_fullscreen()
+        Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
     if keys[pygame.K_ESCAPE]:
         if Holder.Game.actual_scene is space_scene:
             Holder.Game.set_actual_scene(pause_scene)
