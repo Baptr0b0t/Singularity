@@ -1,0 +1,361 @@
+game_objects:
+  background:
+    position: [ LARGEUR//2, HAUTEUR//2 ]
+    angle: 45
+    tags: { }
+    front_layer : False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/background.png"
+          scale_factor: 0.3
+      quick_updated: { }
+      standard:
+        ConstantRotation:
+          degree_per_second: 3
+        #RelativeCamera:
+        #  distance: 10
+        PlayMusic:
+          filename : "./resources/audio/Singularity_Main_Theme.mp3"
+        #PlaySound:
+        #  name: "test"
+      late_updated: { }
+  checkpoint:
+    position: [0,0]
+    angle: 0
+    tags: { }
+    front_layer : False
+    components:
+      self_updated: { }
+      quick_updated: { }
+      standard: { }
+        #Checkpoint:
+        #  top_left: [ 1000,1000 ]
+        #  bottom_right: [ 2000,2000 ]
+      late_updated: { }
+  player:
+    position: [LARGEUR//2, HAUTEUR//2+200]
+    angle: 0
+    tags:
+      - MAIN_CAMERA
+      - PLAYER
+    front_layer : false
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/spaceship.png"
+          scale_factor: 0.2
+      quick_updated:
+        Velocity: { }
+      standard:
+        #ScreenLimit:
+        #  bounce: True
+        Fuel: { }
+        Health: { }
+        Upgrade_Event:
+          event_name: "BOUGHT_HEALTH_UPGRADE"
+          component: Health
+        HealthRegen: { }
+        DamageCollision:
+          ratio: 0.8
+        Mass:
+          mass : 1000
+        PlanetCollision:
+          ratio : 0.8
+          restitution : 0.95
+        PlayerSpaceMovement:
+          acceleration_speed: 70
+        Gravity: { }
+        RelativeCamera: {}
+        PlayerShot: { }
+        SpeedLimit:
+          speedlimit: 200
+      late_updated:
+        SpaceMovement: {}
+        Velocity_Arrow: {}
+  ai_ship:
+    position: [LARGEUR//2, HAUTEUR//2+100]
+    angle: 0
+    tags: { }
+    front_layer : False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/enemy_ship_1.png"
+          scale_factor: 0.3
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass : 1000
+        PlanetCollision:
+          ratio : 0.8
+          restitution : 1
+        Health: { }
+        DestroyOnNoHealth: { }
+        DamageCollision:
+          ratio: 0.8
+
+        AITargetMovement: {}
+        AITarget: { }
+        AIMaxSpeed: { }
+        Gravity: { }
+        RelativeCamera: {}
+        #SpeedLimit:
+        #  speedlimit: 80
+      late_updated:
+        #ScreenLimit:
+        #  bounce: True
+        SpaceMovement: {}
+        Velocity_Arrow: {}
+        Turret_Holder: {}
+  planet1:
+    position: [LARGEUR/3, HAUTEUR*2]
+    angle: 0
+    tags:
+      - PLANET
+    front_layer : False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/planet_1.png"
+          scale_factor: 0.5
+      quick_updated:
+        Velocity:
+          {}
+      standard:
+        Mass:
+          mass: 59740000000000000000000
+        PlanetCollision:
+          ratio: 0.7
+          restitution : 1
+        ConstantRotation: { }
+        RelativeCamera: { }
+        Gravity:
+          fixed : True
+        #SpeedLimit:
+        #  speedlimit: 1000
+      late_updated:
+        SpaceMovement: { }
+  planet3:
+    position: [ LARGEUR*5, HAUTEUR*3 ]
+    angle: 80
+    tags:
+      - PLANET
+    front_layer : False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/planet_2.png"
+          scale_factor: 1.3
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 89610000000000000000000
+        PlanetCollision:
+          restitution : 1
+          ratio: 0.7
+        RelativeCamera: { }
+        Gravity:
+          fixed : True
+        #SpeedLimit:
+        #  speedlimit: 1000
+
+      late_updated:
+        SpaceMovement: { }
+
+  planet2:
+    position: [ LARGEUR*2, HAUTEUR ]
+    angle: 80
+    tags:
+      - PLANET
+    front_layer: False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/planet_2.png"
+          scale_factor: 1
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 59740000000000000000000
+        PlanetCollision:
+          restitution: 1
+          ratio: 0.7
+        RelativeCamera: { }
+        Gravity:
+          fixed: True
+        #SpeedLimit:
+        #  speedlimit: 1000
+
+      late_updated:
+        SpaceMovement: { }
+
+  planet4:
+    position: [ LARGEUR*3, HAUTEUR*4 ]
+    angle: 80
+    tags:
+      - PLANET
+    front_layer: False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/planet_1.png"
+          scale_factor: 1
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 89610000000000000000000
+        PlanetCollision:
+          restitution: 1
+          ratio: 0.7
+        RelativeCamera: { }
+        Gravity:
+          fixed: True
+        #SpeedLimit:
+        #  speedlimit: 1000
+
+      late_updated:
+        SpaceMovement: { }
+
+
+  black_hole:
+    position: [ 600, 500 ]
+    angle: 0
+    tags:
+      - PLANET
+    front_layer : False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/black_hole.png"
+          scale_factor: 0.02
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 1000
+        PlanetCollision:
+          ratio : 0.6
+          restitution : 1
+        RelativeCamera: { }
+        Gravity:
+          fixed : True
+        #ScreenLimit:
+        #  bounce : True
+      late_updated:
+        SpaceMovement: { }
+
+  black_hole2:
+    position: [ LARGEUR*4.3 , -HAUTEUR*0.5 ]
+    angle: 0
+    tags:
+      - PLANET
+    front_layer: False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/black_hole.png"
+          scale_factor: 0.2
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 29610000000000000000000
+        PlanetCollision:
+          ratio: 0.6
+          restitution: 1
+        RelativeCamera: { }
+        Gravity:
+          fixed: True
+        #ScreenLimit:
+        #  bounce : True
+      late_updated:
+        SpaceMovement: { }
+
+
+  #Interface utilisateur
+  FPS_UI:
+    position: [ 100, 80 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        FPS_UI: { }
+      late_updated: { }
+  Health_UI:
+    position: [ 100, 130 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Health_UI: { }
+      late_updated: { }
+  Coordinate_UI:
+    position: [ 100, 200 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Coordinate_UI: { }
+      late_updated: { }
+  Speed_UI:
+    position: [ 100, 300 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Speed_UI: { }
+      late_updated: { }
+  Money_UI:
+    position: [ 100, 400 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Money_UI: { }
+      late_updated: { }
+
+  Rectangle_UI:
+    position: [40, HAUTEUR//2 - 60]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer:
+          use_topleft: True
+      quick_updated: { }
+      standard:
+        RectangleRenderer:
+          color: "FUEL"
+        Fuel_Rectangle: { }
+      late_updated: { }

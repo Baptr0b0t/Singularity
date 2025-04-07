@@ -98,7 +98,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
             return
 
 class FontRenderer(Gameobject.Component):
-    def __init__(self, parent, font_path = "resources/SAIBA-45.ttf", font_size = 25, texte = "", color = "BLANK", size = 1):
+    def __init__(self, parent, font_path = "resources/RobotInvaders.ttf", font_size = 25, texte = "", color = "BLANK", size = 1):
         super().__init__(parent)
         self.font = pygame.font.Font(font_path, font_size)
 
