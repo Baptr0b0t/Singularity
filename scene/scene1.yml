@@ -1,20 +1,24 @@
 game_objects:
   background:
     position: [ LARGEUR//2, HAUTEUR//2 ]
-    angle: 0
+    angle: 45
     tags: { }
     front_layer : False
     components:
-      self_updated: {}
-        #SpriteRenderer:
-        #  image_path: "./resources/background.png"
-        #  scale_factor: 10
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/background.png"
+          scale_factor: 0.3
       quick_updated: { }
       standard:
+        ConstantRotation:
+          degree_per_second: 0.05
         #RelativeCamera:
         #  distance: 10
         PlayMusic:
-          filename : "./resources/audio/Final flash of existence REMIX.mp3"
+          filename : "./resources/audio/Singularity_Main_Theme.mp3"
+        #PlaySound:
+        #  name: "test"
       late_updated: { }
   checkpoint:
     position: [0,0]
