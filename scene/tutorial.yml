@@ -60,7 +60,8 @@ game_objects:
           component: Health
         HealthRegen: { }
         DamageCollision:
-          ratio: 0.8
+          ratio: 0.81
+          damage_on_other: 20
         Mass:
           mass : 1000
         PlanetCollision:
@@ -97,7 +98,8 @@ game_objects:
         Health: { }
         DestroyOnNoHealth: { }
         DamageCollision:
-          ratio: 0.8
+          ratio: 0.81
+          damage_on_other: 20
 
         AITargetMovement: {}
         AITarget: { }
@@ -131,6 +133,9 @@ game_objects:
         PlanetCollision:
           ratio: 0.7
           restitution : 1
+        DamageCollision:
+          ratio: 0.71
+          damage_on_other: 1
         ConstantRotation: { }
         RelativeCamera: { }
         Gravity:

@@ -142,23 +142,21 @@ game_objects:
           texte: "QUIT"
           font_size: 40
       late_updated: { }
-  Play_text_button:
+  Play_button:
     position: [LARGEUR//2, HAUTEUR//2]
     angle: 0
     tags: { }
     front_layer : true
     components:
       self_updated:
-        SpriteRenderer: { }
+        SpriteRenderer:
+          image_path: "./resources/ui/button_main.png"
+          scale_factor: 0.7
       quick_updated: { }
       standard:
         Button:
           event_on_click: "SCENE_SPACE"
         Grow_on_Hover: { }
-        FontRenderer:
-          texte: "PLAY"
-          font_size: 90
-          color: "GREEN"
       late_updated: { }
   Tutorial_text_button:
     position: [LARGEUR//2, HAUTEUR//2-200]
