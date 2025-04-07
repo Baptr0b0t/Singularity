@@ -101,8 +101,10 @@ while running:
     if Holder.Game.has_event(eventlist.SCENE_SPACE):
         Holder.Game.set_actual_scene(space_scene)
     if Holder.Game.has_event(eventlist.SCENE_MENU):
-        space_scene = SceneManager.Scene("./scene/scene1.yml")
         Holder.Game.set_actual_scene(menu_scene)
+    if Holder.Game.has_event(eventlist.SCENE_TUTORIAL):
+        tutorial_scene = SceneManager.Scene("./scene/tutorial.yml")
+        Holder.Game.set_actual_scene(tutorial_scene)
 
 
     # Dessin
