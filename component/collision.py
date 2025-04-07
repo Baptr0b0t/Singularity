@@ -53,6 +53,9 @@ class PlanetCollision(Gameobject.Component):
                     obj_mass = obj.get_component(Mass).mass
                     obj_transform = obj.get_component(Gameobject.Transform)
                     obj_velocity = obj.get_component(Gameobject.Velocity)
+                    if not obj_velocity:
+                        obj_velocity.x = 0
+                        obj_velocity.y = 0
                     obj_collision = obj.get_component(PlanetCollision)
 
                     normal_x = obj_transform.x - transform.x
@@ -171,18 +174,16 @@ class DamageCollision(Gameobject.Component, Gameobject.Cooldown):
 
 
 class Checkpoint(Gameobject.Component):
-    def __init__(self, parent, top_left, bottom_right):
+    def __init__(self, parent, ratio = 1):
         Gameobject.Component.__init__(self, parent)
-        self.top_left=top_left
-        self.bottom_right = bottom_right
+        self.planet_collision_ratio = ratio
 
     def update(self):
-        ObjectList = SceneManager.Scene.find_by_tag(PLAYER)
-        for object in ObjectList:
-            if object == self.parent:
+        game_object = self.parent
+        objectlist = SceneManager.Scene.find_by_tag(PLAYER)
+        for obj in objectlist:
+            if obj == game_object:
                 continue
-            coordonnees = object.get_component(Gameobject.Transform)
-            position = [coordonnees.x, coordonnees.y]
-            if self.top_left[0]<=position[0]<=self.bottom_right[0] and self.top_left[1]<=position[1]<=self.bottom_right[0]:
+            if collide_circle(game_object, obj, self.planet_collision_ratio, 1):
                 Holder.Game.post_event(eventlist.SCENE_MENU)
 
