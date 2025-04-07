@@ -264,7 +264,7 @@ game_objects:
         Velocity: { }
       standard:
         Mass:
-          mass: 49610000000000000000000
+          mass: 29610000000000000000000
         PlanetCollision:
           ratio: 0.6
           restitution: 1
