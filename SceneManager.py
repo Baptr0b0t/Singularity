@@ -38,7 +38,7 @@ class Scene:
         self.front_sprite_group = pygame.sprite.Group()
         self.scene_objects = []
         Holder.Game.actual_scene = self #Une scene cree est automatiquement la scene active
-        LARGEUR = Holder.Game.LARGEUR
+        LARGEUR = Holder.Game.LARGEUR #used at eval()
         HAUTEUR = Holder.Game.HAUTEUR
         with open(scene_path_file, "r") as file:
             scene = yaml.safe_load(file)
@@ -118,7 +118,7 @@ class Scene:
         key = (tag, search_active_scene)
 
         if key in cls.tag_memory:
-            return cls.tag_memory[key]
+            return cls.tag_memory[key][:]
 
         if search_active_scene:
             result = [obj for obj in Holder.Game.actual_scene.scene_objects if obj.has_tag(tag)]
@@ -126,7 +126,7 @@ class Scene:
             result = [obj for obj in cls.alive_objects if obj.has_tag(tag)]
 
         cls.tag_memory[key] = result
-        return result
+        return result[:] #Renvoie une copie de la liste
 
     @classmethod
     def find_by_component(cls, component, search_active_scene = True):
@@ -141,9 +141,9 @@ class Scene:
             result = [obj for obj in cls.alive_objects if obj.has_component(component)]
 
         cls.component_memory[key] = result
-        return result
+        return result[:]
 
     @classmethod
     def get_all_alive(cls):
-        return cls.alive_objects
+        return cls.alive_objects[:]
 

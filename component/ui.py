@@ -106,8 +106,6 @@ class Health_UI(Gameobject.Component, Gameobject.Cooldown):
         self.begining_texte = begining_texte
         self.show_max = show_max
 
-
-
     def update(self):
         if Gameobject.Cooldown.is_ready(self):
             game_object = self.parent
