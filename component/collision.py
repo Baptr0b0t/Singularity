@@ -145,7 +145,7 @@ class DeleteOnCollision(Gameobject.Component, Gameobject.Cooldown):
 
 
 class DamageCollision(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, ratio = 1, damage_on_other = 10, cooldown = 0.2):
+    def __init__(self, parent, ratio = 1, damage_on_other = 10, cooldown = 5):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
         self.planet_collision_ratio = ratio
