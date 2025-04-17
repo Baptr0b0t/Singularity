@@ -37,7 +37,7 @@ class Game:
     music_player = None
     sound_player = None
     event_manager = None
-    zoom_factor = 1.0
+    zoom_factor = 0.5
     relative_offset = [0, 0]
     delta_time = 0
     time = 0
