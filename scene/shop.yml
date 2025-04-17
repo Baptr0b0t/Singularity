@@ -66,12 +66,31 @@ game_objects:
     components:
       self_updated:
         SpriteRenderer:
-          image_path: "./resources/sante.png"
-          scale_factor: 0.2
+          image_path: "./resources/button_shield.png"
+          scale_factor: 0.8
       quick_updated: { }
       standard:
         Button_with_cost:
           event_on_click: "BOUGHT_HEALTH_UPGRADE"
+          cost: 20
+        Grow_on_Hover:
+          cost: 20
+      late_updated: { }
+
+  buy_fuel_button:
+    position: [ LARGEUR-320, HAUTEUR-140 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/button_shield.png"
+          scale_factor: 0.8
+      quick_updated: { }
+      standard:
+        Button_with_cost:
+          event_on_click: "BOUGHT_FUEL_UPGRADE"
           cost: 20
         Grow_on_Hover:
           cost: 20
