@@ -32,6 +32,32 @@ game_objects:
           font_size: 25
           color: "BLANK"
       late_updated: { }
+  text_health_button:
+    position: [ LARGEUR-120, HAUTEUR-80 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "+10 max health"
+      late_updated: { }
+  price_health_button:
+    position: [ LARGEUR-120, HAUTEUR-50 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "$20"
+      late_updated: { }
   buy_health_button:
     position: [LARGEUR-120, HAUTEUR-140]
     angle: 0
@@ -40,8 +66,8 @@ game_objects:
     components:
       self_updated:
         SpriteRenderer:
-          image_path: "./resources/black_hole.png"
-          scale_factor: 0.1
+          image_path: "./resources/sante.png"
+          scale_factor: 0.2
       quick_updated: { }
       standard:
         Button_with_cost:
