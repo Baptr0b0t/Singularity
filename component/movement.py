@@ -29,6 +29,11 @@ class Fuel(Gameobject.Component):
     def update(self):
         self.fuel = min(self.max_fuel, self.fuel)
 
+    def upgrade(self, value):
+        self.max_fuel+=value
+        self.fuel+=value
+
+
 class Gravity(Gameobject.Component):
     """
     Composant de gravitation de l'objet, s'attire vers les autres objets avec le meme composant.
