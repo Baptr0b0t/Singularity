@@ -97,6 +97,7 @@ game_objects:
           restitution : 1
         Health: { }
         DestroyOnNoHealth: { }
+        LootMoney: {}
         DamageCollision:
           ratio: 0.8
 

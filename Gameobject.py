@@ -131,7 +131,6 @@ class Component:
 
     def delete(self):
         pass
-        #del self #ne semble pas necessaire
 
 
 #Position

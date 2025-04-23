@@ -4,7 +4,7 @@ from component.render import SpriteRenderer, RelativeCamera
 import SceneManager
 import math
 from component.movement import SpaceMovement
-from component.collision import DeleteOnCollision, DamageCollision
+from component.collision import DamageCollision
 from component.ai import AITarget
 
 class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
@@ -125,9 +125,9 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
             bullet_velocity.x += game_object_velocity.x
             bullet_velocity.y += game_object_velocity.y
 
-        bullet.add_standard_component(DamageCollision(bullet, damage_on_other=10, cooldown=0.30))
+        bullet.add_standard_component(DamageCollision(bullet, damage_on_other=10, cooldown=0.30, do_delete=True))
         bullet.add_standard_component(BulletLifeTime(bullet, life_time= 7))
-        bullet.add_standard_component(DeleteOnCollision(bullet, screen_limit=False, planet_collision_ratio=1 ,seconds_before_start=.30))
+        #bullet.add_standard_component(DeleteOnCollision(bullet, screen_limit=False, planet_collision_ratio=1 ,seconds_before_start=.30))
         SceneManager.Scene.add_object(bullet)
 
     def update(self):
