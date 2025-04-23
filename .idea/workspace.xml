@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add play button png">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gameobject.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gameobject.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SceneManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/SceneManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/collision.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/money.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/money.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/scene1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene1.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/scene2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene2.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -154,15 +159,7 @@
       <workItem from="1744027252634" duration="7231000" />
       <workItem from="1744892669609" duration="89000" />
       <workItem from="1745419295800" duration="2000" />
-      <workItem from="1745447991300" duration="1302000" />
-    </task>
-    <task id="LOCAL-00032" summary="Add speed indication for velocity arrow.&#10;Add visible property for SpriteRender">
-      <option name="closed" value="true" />
-      <created>1740924632776</created>
-      <option name="number" value="00032" />
-      <option name="presentableId" value="LOCAL-00032" />
-      <option name="project" value="LOCAL" />
-      <updated>1740924632776</updated>
+      <workItem from="1745447991300" duration="4106000" />
     </task>
     <task id="LOCAL-00033" summary="Clean up SpriteRenderer">
       <option name="closed" value="true" />
@@ -548,7 +545,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744034496491</updated>
     </task>
-    <option name="localTasksCounter" value="81" />
+    <task id="LOCAL-00081" summary="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same">
+      <option name="closed" value="true" />
+      <created>1745449407146</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1745449407146</updated>
+    </task>
+    <option name="localTasksCounter" value="82" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -572,7 +577,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add Music Player&#10;Add bootup method for component (used when the scene change)" />
     <MESSAGE value="Add Money_UI&#10;Use money on upgrade&#10;Draft of find_by_tag, no object found bug" />
     <MESSAGE value="Fix damage on player when shooting and pause the game&#10;Add more boot_up function usage" />
     <MESSAGE value="Add draft shop.yml&#10;Money is no more bond to Gameobject but directly from the game for let modification from outside of the scene&#10;AI spaceship have a higher movement speed" />
@@ -597,9 +601,20 @@
     <MESSAGE value="Add resource" />
     <MESSAGE value="Draft Tutorial" />
     <MESSAGE value="Add play button png" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add play button png" />
+    <MESSAGE value="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/component/render.py</url>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1745449226988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1745452114626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

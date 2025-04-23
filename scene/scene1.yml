@@ -99,7 +99,7 @@ game_objects:
         DestroyOnNoHealth: { }
         DamageCollision:
           ratio: 0.8
-
+        LootMoney: {}
         AITargetMovement: {}
         AITarget: { }
         AIMaxSpeed: { }

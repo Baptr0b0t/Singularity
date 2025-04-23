@@ -115,11 +115,13 @@ class ScreenLimit(Gameobject.Component):
 
 
 class DeleteOnCollision(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, screen_limit = True, planet_collision_ratio = 1, seconds_before_start = 0):
+    def __init__(self, parent, screen_limit = False, planet_collision_ratio = 1, seconds_before_start = 0, reward_money = 0, tag_filter=None):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, seconds_before_start) #Timer for not be destroyed by the Gameobject generator
         self.screen_limit = screen_limit
         self.planet_collision_ratio = planet_collision_ratio
+        self.reward_money = reward_money
+        self.tag_filter = tag_filter
         Gameobject.Cooldown.reset(self)
 
 
@@ -134,12 +136,17 @@ class DeleteOnCollision(Gameobject.Component, Gameobject.Cooldown):
                 return
 
         if self.planet_collision_ratio > 0:
-            ObjectList = SceneManager.Scene.find_by_component(PlanetCollision)
+            if self.tag_filter is None:
+                ObjectList = SceneManager.Scene.find_by_component(PlanetCollision)
+            else:
+                ObjectList = SceneManager.Scene.find_by_tag(self.tag_filter)
             for obj in ObjectList:
                 if obj == game_object:
                     continue
 
                 if collide_circle(game_object, obj, self.planet_collision_ratio, obj.get_component(PlanetCollision).collision_ratio):
+                    if self.reward_money>0:
+                        Holder.Game.add_money(self.reward_money)
                     SceneManager.Scene.remove_object(game_object)
                     return
 

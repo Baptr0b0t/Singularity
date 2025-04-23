@@ -42,11 +42,11 @@ class Scene:
         HAUTEUR = Holder.Game.HAUTEUR
         with open(scene_path_file, "r") as file:
             scene = yaml.safe_load(file)
-        print(scene)
+        print("charging", scene_path_file, scene)
 
         for name, data in scene["game_objects"].items():
             position = (eval(str(data["position"][0])),eval(str(data["position"][1]))) #Transforme "LARGEUR" et "HAUTEUR"
-            print(position)
+            print("adding object at :", position)
             obj = Gameobject.GameObject(position, math.radians(data["angle"]))
 
             # Ajout des tags
@@ -57,6 +57,7 @@ class Scene:
             for update_type, components in data["components"].items():
                 for comp_name, args in components.items():
                     if comp_name in globals():  # Vérifie si la classe existe
+                        print("adding component :", comp_name)
                         component_instance = resolve_component(comp_name)(obj, **args)  # Instancie avec arguments
                         getattr(obj, f"add_{update_type}_component")(component_instance)
                     else:
