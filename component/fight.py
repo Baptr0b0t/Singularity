@@ -42,9 +42,9 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
                 bullet_velocity.x += game_object_velocity.x
                 bullet_velocity.y += game_object_velocity.y
 
-            bullet.add_standard_component(DamageCollision(bullet, damage_on_other=10))
+            bullet.add_standard_component(DamageCollision(bullet, damage_on_other=10, do_delete=True))
             bullet.add_standard_component(BulletLifeTime(bullet, life_time= 10))
-            bullet.add_standard_component(DeleteOnCollision(bullet, screen_limit=False, planet_collision_ratio=1 ,seconds_before_start=.26))
+            #bullet.add_standard_component(DeleteOnCollision(bullet, screen_limit=False, planet_collision_ratio=0.5 ,seconds_before_start=.26))
             SceneManager.Scene.add_object(bullet)
 
     def boot_up(self):

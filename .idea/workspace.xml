@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6640bd12-3403-4169-b34e-ec3c60b4de1c" name="Changes" comment="Heahth upgrade UI improved in SHOP">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add play button png">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/movement.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/movement.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eventlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/eventlist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/sante.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/scene1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene1.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/shop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/shop.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/collision.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +26,7 @@
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/Baptr0b0t/Singularity.git",
-    "accountId": "7ea10636-709d-4878-b895-ea61cb91d8d4"
+    "accountId": "2a5add4a-8553-448d-8a0d-f6858a2c4e70"
   }
 }]]></component>
   <component name="ProjectColorInfo">{
@@ -49,47 +46,560 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "C:/Cours/Programmation/projet/Singularity",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RunManager">
+    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="Singularity" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="SDK_NAME" value="Python 3.11" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-fb887030ada0-aa17d162503b-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-243.21565.199" />
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-PY-243.21565.199" />
+        <option value="bundled-python-sdk-cab1f2013843-4ae2d6a61b08-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-243.21565.199" />
       </set>
     </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="6640bd12-3403-4169-b34e-ec3c60b4de1c" name="Changes" comment="" />
-      <created>1739796479033</created>
+      <changelist id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="" />
+      <created>1738248042479</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1739796479033</updated>
+      <updated>1738248042479</updated>
+      <workItem from="1738248043895" duration="1431000" />
+      <workItem from="1738565730862" duration="1193000" />
+      <workItem from="1738567388252" duration="5806000" />
+      <workItem from="1738573518964" duration="1060000" />
+      <workItem from="1738585907724" duration="15173000" />
+      <workItem from="1738760019952" duration="8083000" />
+      <workItem from="1738772521281" duration="287000" />
+      <workItem from="1738774988954" duration="940000" />
+      <workItem from="1738843464061" duration="1277000" />
+      <workItem from="1738845328557" duration="5917000" />
+      <workItem from="1738915778683" duration="2018000" />
+      <workItem from="1738917891186" duration="603000" />
+      <workItem from="1738919218971" duration="128000" />
+      <workItem from="1739175009014" duration="21313000" />
+      <workItem from="1739259024941" duration="3134000" />
+      <workItem from="1739262608781" duration="4205000" />
+      <workItem from="1739448954877" duration="169000" />
+      <workItem from="1739454977201" duration="2728000" />
+      <workItem from="1739457978443" duration="3775000" />
+      <workItem from="1739532472048" duration="490000" />
+      <workItem from="1739775536996" duration="27511000" />
+      <workItem from="1739864783489" duration="6107000" />
+      <workItem from="1739877924247" duration="222000" />
+      <workItem from="1739969953571" duration="8268000" />
+      <workItem from="1740056201915" duration="7875000" />
+      <workItem from="1740250334303" duration="1154000" />
+      <workItem from="1740919534041" duration="10442000" />
+      <workItem from="1740985083730" duration="8124000" />
+      <workItem from="1740994271860" duration="4795000" />
+      <workItem from="1741000667311" duration="135000" />
+      <workItem from="1741006296853" duration="7619000" />
+      <workItem from="1741072273163" duration="479000" />
+      <workItem from="1741073082053" duration="7121000" />
+      <workItem from="1741083339920" duration="3787000" />
+      <workItem from="1741179420281" duration="7838000" />
+      <workItem from="1741267371521" duration="5710000" />
+      <workItem from="1741331264520" duration="7533000" />
+      <workItem from="1742195317066" duration="252000" />
+      <workItem from="1742195600163" duration="11524000" />
+      <workItem from="1742293139398" duration="3463000" />
+      <workItem from="1742389087437" duration="7685000" />
+      <workItem from="1742553602667" duration="3079000" />
+      <workItem from="1742800472769" duration="2748000" />
+      <workItem from="1742804013809" duration="11124000" />
+      <workItem from="1742819731907" duration="8340000" />
+      <workItem from="1742998454930" duration="7867000" />
+      <workItem from="1743008727711" duration="396000" />
+      <workItem from="1743083009022" duration="3960000" />
+      <workItem from="1743092755455" duration="17000" />
+      <workItem from="1743093022479" duration="2217000" />
+      <workItem from="1743095420174" duration="10000" />
+      <workItem from="1743400279951" duration="605000" />
+      <workItem from="1743401638779" duration="99000" />
+      <workItem from="1743608865307" duration="1183000" />
+      <workItem from="1744027252634" duration="7231000" />
+      <workItem from="1744892669609" duration="89000" />
+      <workItem from="1745419295800" duration="2000" />
+      <workItem from="1745447991300" duration="1302000" />
     </task>
-    <task id="LOCAL-00001" summary="Sccale factor changes (bullets and camera)">
+    <task id="LOCAL-00032" summary="Add speed indication for velocity arrow.&#10;Add visible property for SpriteRender">
       <option name="closed" value="true" />
-      <created>1744882300170</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
+      <created>1740924632776</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
       <option name="project" value="LOCAL" />
-      <updated>1744882300170</updated>
+      <updated>1740924632776</updated>
     </task>
-    <task id="LOCAL-00002" summary="Heahth upgrade UI improved in SHOP">
+    <task id="LOCAL-00033" summary="Clean up SpriteRenderer">
       <option name="closed" value="true" />
-      <created>1744885182455</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
+      <created>1740925725153</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
       <option name="project" value="LOCAL" />
-      <updated>1744885182455</updated>
+      <updated>1740925725153</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00034" summary="Add first ai&#10;Add empty health.py file&#10;Add bullet generator&#10;    add bullet destroy on collision&#10;&#10;Add Scene Delete method&#10;     Add Gameobject delete method">
+      <option name="closed" value="true" />
+      <created>1740993618832</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1740993618832</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Draft Test for multiple scene">
+      <option name="closed" value="true" />
+      <created>1740995993092</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1740995993092</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Add active component Wrapper">
+      <option name="closed" value="true" />
+      <created>1740999140609</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1740999140609</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Add blast_red png">
+      <option name="closed" value="true" />
+      <created>1741012243778</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1741012243778</updated>
+    </task>
+    <task id="LOCAL-00038" summary="super().parent -&gt; self.parent&#10;add menu.py">
+      <option name="closed" value="true" />
+      <created>1741073635137</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1741073635137</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Add button and Grow_on_Hover component for menu&#10;add menu.yml">
+      <option name="closed" value="true" />
+      <created>1741075726381</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1741075726383</updated>
+    </task>
+    <task id="LOCAL-00040" summary="add Change scene event">
+      <option name="closed" value="true" />
+      <created>1741076632343</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1741076632343</updated>
+    </task>
+    <task id="LOCAL-00041" summary="add Coordinate_UI">
+      <option name="closed" value="true" />
+      <created>1741077967843</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1741077967843</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Add speed_ui">
+      <option name="closed" value="true" />
+      <created>1741078894084</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1741078894084</updated>
+    </task>
+    <task id="LOCAL-00043" summary="Big planet time">
+      <option name="closed" value="true" />
+      <created>1741080128021</created>
+      <option name="number" value="00043" />
+      <option name="presentableId" value="LOCAL-00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1741080128021</updated>
+    </task>
+    <task id="LOCAL-00044" summary="Add Bullet damage&#10;Add DEATH (not gameover, just other ship destroy)">
+      <option name="closed" value="true" />
+      <created>1741087170137</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1741087170137</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Add RectangleRenderer&#10;Add color by name management">
+      <option name="closed" value="true" />
+      <created>1741181021292</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1741181021294</updated>
+    </task>
+    <task id="LOCAL-00046" summary="Change Menu.yml &#10;remove debug print">
+      <option name="closed" value="true" />
+      <created>1741183151422</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1741183151422</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Add max_health_point param to Health">
+      <option name="closed" value="true" />
+      <created>1741185483248</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1741185483248</updated>
+    </task>
+    <task id="LOCAL-00048" summary="RelativeCamera change to have 2 vision scale">
+      <option name="closed" value="true" />
+      <created>1741186956257</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1741186956257</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Add draft background image  &#10;Add some todo">
+      <option name="closed" value="true" />
+      <created>1741269282589</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1741269282589</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Add ConstantRotation">
+      <option name="closed" value="true" />
+      <created>1741272126190</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1741272126192</updated>
+    </task>
+    <task id="LOCAL-00051" summary="Add perspective to Relative Camera with distance">
+      <option name="closed" value="true" />
+      <created>1741332183607</created>
+      <option name="number" value="00051" />
+      <option name="presentableId" value="LOCAL-00051" />
+      <option name="project" value="LOCAL" />
+      <updated>1741332183608</updated>
+    </task>
+    <task id="LOCAL-00052" summary="Fix restitution&#10;FIX bug to be stuck by collision">
+      <option name="closed" value="true" />
+      <created>1741333553227</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1741333553227</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Add fuel component (no recharge point yet)">
+      <option name="closed" value="true" />
+      <created>1741334603490</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1741334603490</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Add fuel UI">
+      <option name="closed" value="true" />
+      <created>1741337845676</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1741337845676</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Add Pause menu">
+      <option name="closed" value="true" />
+      <created>1742197289481</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1742197289485</updated>
+    </task>
+    <task id="LOCAL-00056" summary="Add Music Player&#10;Add bootup method for component (used when the scene change)">
+      <option name="closed" value="true" />
+      <created>1742207543606</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1742207543608</updated>
+    </task>
+    <task id="LOCAL-00057" summary="Add Money_UI&#10;Use money on upgrade&#10;Draft of find_by_tag, no object found bug">
+      <option name="closed" value="true" />
+      <created>1742295444110</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1742295444111</updated>
+    </task>
+    <task id="LOCAL-00058" summary="Fix damage on player when shooting and pause the game&#10;Add more boot_up function usage">
+      <option name="closed" value="true" />
+      <created>1742389542716</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1742389542717</updated>
+    </task>
+    <task id="LOCAL-00059" summary="Add draft shop.yml&#10;Money is no more bond to Gameobject but directly from the game for let modification from outside of the scene&#10;AI spaceship have a higher movement speed">
+      <option name="closed" value="true" />
+      <created>1742390849928</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1742390849928</updated>
+    </task>
+    <task id="LOCAL-00060" summary="Not working draft of &#10;TODO : Put event manager global in Holder.game">
+      <option name="closed" value="true" />
+      <created>1742393355125</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1742393355125</updated>
+    </task>
+    <task id="LOCAL-00061" summary="fix event manager as a global class in Holder.game">
+      <option name="closed" value="true" />
+      <created>1742394078439</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1742394078440</updated>
+    </task>
+    <task id="LOCAL-00062" summary="Not Enough Button (Button Update)&#10;Button now only accept 1 click">
+      <option name="closed" value="true" />
+      <created>1742394869980</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1742394869982</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Add shop.webp made by AI">
+      <option name="closed" value="true" />
+      <created>1742396198475</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1742396198476</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Add optimisation by non showing off-screen sprite.">
+      <option name="closed" value="true" />
+      <created>1742556601248</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1742556601248</updated>
+    </task>
+    <task id="LOCAL-00065" summary="Performance for find_by_tag/component">
+      <option name="closed" value="true" />
+      <created>1742802926774</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1742802926774</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Add inactive Turret for enemy ship&#10;Add Front Layer sprite group&#10;relative cam factor change">
+      <option name="closed" value="true" />
+      <created>1742807117614</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1742807117614</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Add Turret AI">
+      <option name="closed" value="true" />
+      <created>1742813179689</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1742813179689</updated>
+    </task>
+    <task id="LOCAL-00068" summary="Remove a lost print">
+      <option name="closed" value="true" />
+      <created>1742813809364</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1742813809364</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Fix crash bug&#10;Comment annoying game restarter">
+      <option name="closed" value="true" />
+      <created>1742821047124</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1742821047124</updated>
+    </task>
+    <task id="LOCAL-00070" summary="UI reduce refresh cooldown&#10;Add pygame event manager&#10;Add Scrollwheel for zoom">
+      <option name="closed" value="true" />
+      <created>1742823665982</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1742823665982</updated>
+    </task>
+    <task id="LOCAL-00071" summary="Try to use Garbage collector less">
+      <option name="closed" value="true" />
+      <created>1742824054515</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1742824054516</updated>
+    </task>
+    <task id="LOCAL-00072" summary="Add Grow on Hover cost">
+      <option name="closed" value="true" />
+      <created>1742824437535</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1742824437536</updated>
+    </task>
+    <task id="LOCAL-00073" summary="Add Relative Offset using middle mouse button">
+      <option name="closed" value="true" />
+      <created>1742825516402</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1742825516403</updated>
+    </task>
+    <task id="LOCAL-00074" summary="AI fighting update &#10;Zoomed rendering lag fixed using Cached image">
+      <option name="closed" value="true" />
+      <created>1742999344874</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1742999344875</updated>
+    </task>
+    <task id="LOCAL-00075" summary="Bug fix with Cached Scale Render">
+      <option name="closed" value="true" />
+      <created>1743002419740</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1743002419744</updated>
+    </task>
+    <task id="LOCAL-00076" summary="Add some AI at main menu&#10;Some find_by_tag/Component bug list &#10;Some AI improvement with AI_TARGETED tag">
+      <option name="closed" value="true" />
+      <created>1743006919302</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1743006919302</updated>
+    </task>
+    <task id="LOCAL-00077" summary="Add 2 music&#10;Add sounds manager">
+      <option name="closed" value="true" />
+      <created>1744028879755</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1744028879755</updated>
+    </task>
+    <task id="LOCAL-00078" summary="Add resource">
+      <option name="closed" value="true" />
+      <created>1744029534110</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1744029534110</updated>
+    </task>
+    <task id="LOCAL-00079" summary="Draft Tutorial">
+      <option name="closed" value="true" />
+      <created>1744032747016</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1744032747016</updated>
+    </task>
+    <task id="LOCAL-00080" summary="Add play button png">
+      <option name="closed" value="true" />
+      <created>1744034496491</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1744034496491</updated>
+    </task>
+    <option name="localTasksCounter" value="81" />
     <servers />
   </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Sccale factor changes (bullets and camera)" />
-    <MESSAGE value="Heahth upgrade UI improved in SHOP" />
-    <option name="LAST_COMMIT_MESSAGE" value="Heahth upgrade UI improved in SHOP" />
+    <MESSAGE value="Add Music Player&#10;Add bootup method for component (used when the scene change)" />
+    <MESSAGE value="Add Money_UI&#10;Use money on upgrade&#10;Draft of find_by_tag, no object found bug" />
+    <MESSAGE value="Fix damage on player when shooting and pause the game&#10;Add more boot_up function usage" />
+    <MESSAGE value="Add draft shop.yml&#10;Money is no more bond to Gameobject but directly from the game for let modification from outside of the scene&#10;AI spaceship have a higher movement speed" />
+    <MESSAGE value="Not working draft of &#10;TODO : Put event manager global in Holder.game" />
+    <MESSAGE value="fix event manager as a global class in Holder.game" />
+    <MESSAGE value="Not Enough Button (Button Update)&#10;Button now only accept 1 click" />
+    <MESSAGE value="Add shop.webp made by AI" />
+    <MESSAGE value="Add optimisation by non showing off-screen sprite." />
+    <MESSAGE value="Performance for find_by_tag/component" />
+    <MESSAGE value="Add inactive Turret for enemy ship&#10;Add Front Layer sprite group&#10;relative cam factor change" />
+    <MESSAGE value="Add Turret AI" />
+    <MESSAGE value="Remove a lost print" />
+    <MESSAGE value="Fix crash bug&#10;Comment annoying game restarter" />
+    <MESSAGE value="UI reduce refresh cooldown&#10;Add pygame event manager&#10;Add Scrollwheel for zoom" />
+    <MESSAGE value="Try to use Garbage collector less" />
+    <MESSAGE value="Add Grow on Hover cost" />
+    <MESSAGE value="Add Relative Offset using middle mouse button" />
+    <MESSAGE value="AI fighting update &#10;Zoomed rendering lag fixed using Cached image" />
+    <MESSAGE value="Bug fix with Cached Scale Render" />
+    <MESSAGE value="Add some AI at main menu&#10;Some find_by_tag/Component bug list &#10;Some AI improvement with AI_TARGETED tag" />
+    <MESSAGE value="Add 2 music&#10;Add sounds manager" />
+    <MESSAGE value="Add resource" />
+    <MESSAGE value="Draft Tutorial" />
+    <MESSAGE value="Add play button png" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add play button png" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1745449226988" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

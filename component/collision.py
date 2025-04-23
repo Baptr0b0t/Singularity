@@ -145,11 +145,15 @@ class DeleteOnCollision(Gameobject.Component, Gameobject.Cooldown):
 
 
 class DamageCollision(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, ratio = 1, damage_on_other = 10, cooldown = 5):
+    """
+    Composant pour appliquer des damages lorsqu'il y a contact avec un object soumis a des collision par PlanetCollision
+    """
+    def __init__(self, parent, ratio = 1, damage_on_other = 10, cooldown = .26, do_delete = False):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
         self.planet_collision_ratio = ratio
         self.damage_on_other = damage_on_other
+        self.do_delete = do_delete
         Gameobject.Cooldown.reset(self)
 
 
@@ -159,18 +163,25 @@ class DamageCollision(Gameobject.Component, Gameobject.Cooldown):
         if not Gameobject.Cooldown.is_ready(self) or self.damage_on_other==0:
             return
 
-        ObjectList = SceneManager.Scene.find_by_component(DamageCollision)
+        ObjectList = SceneManager.Scene.find_by_component(PlanetCollision)
         for obj in ObjectList:
             if obj == game_object:
                 continue
-            if not obj.has_component(Health):
-                continue
-            if collide_circle(game_object, obj, self.planet_collision_ratio, obj.get_component(DamageCollision).planet_collision_ratio):
 
-                obj.get_component(Health).health_point -= self.damage_on_other
+            if collide_circle(game_object, obj, self.planet_collision_ratio, obj.get_component(PlanetCollision).collision_ratio):
+                if obj.has_component(Health):
+                    obj.get_component(Health).health_point -= self.damage_on_other
+                if self.do_delete:
+                    SceneManager.Scene.remove_object(game_object)
 
     def boot_up(self):
         Gameobject.Cooldown.reset(self) #Lors du retour en jeu, empeche les damages sur le joueur qui tire.
+
+
+
+
+
+
 
 
 class Checkpoint(Gameobject.Component):
