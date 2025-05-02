@@ -9,28 +9,33 @@ import pygame
 import time
 
 
-
-
-
-class Upgrade_Event(Gameobject.Component):
+class PlayerUpgradeEventListener(Gameobject.Component):
     """
-    Event Receiver who upgrade his Gameobject component.
+    Event Receiver that upgrades specified Gameobject components when corresponding events occur.
+
+    `event_map` should be a dictionary: {event_name: component_class}
     """
-    def __init__(self, parent, event_name, component = Gameobject.Component, upgrade_value = 10):
-        Gameobject.Component.__init__(self, parent)
-        self.name_component = component
-        self.event_name = event_name
-        self.value = upgrade_value
+
+    def __init__(self, parent):
+        super().__init__(parent)
+        self.event_map = {"BOUGHT_FUEL_UPGRADE":("Fuel",1000),"BOUGHT_HEALTH_UPGRADE":("Health", 10)} # Dict[str, Component]
 
     def update(self):
+        game_object = self.parent
 
-        if Holder.Game.has_event(SceneManager.resolve_event(self.event_name)):
-            print(SceneManager.resolve_event(self.event_name))
+        for event_name, component_cls in self.event_map.items():
+            resolved_event = SceneManager.resolve_event(event_name)
+            if Holder.Game.has_event(resolved_event):
+                print(f"Event triggered: {resolved_event}")
 
-            game_object = self.parent
+                resolved_component = SceneManager.resolve_component(component_cls[0])
+                component = game_object.get_component(resolved_component)
 
-            component = game_object.get_component(SceneManager.resolve_component(self.name_component))
-            component.upgrade(self.value)
+                if component:
+                    component.upgrade(component_cls[1])
+                else:
+                    print(f"Component {resolved_component} not found on {game_object}")
+
 
 class LootMoney(Gameobject.Component):
     def __init__(self, parent, money_pathfile = "./resources/credit.png", value = 15):
