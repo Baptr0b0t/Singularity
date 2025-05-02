@@ -4,15 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Added loot credit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gameobject.py" beforeDir="false" afterPath="$PROJECT_DIR$/Gameobject.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/SceneManager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/collision.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Holder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Holder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/health.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/health.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/money.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/money.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/render.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/render.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scene/scene1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene1.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/scene2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene2.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,12 +28,12 @@
     &quot;assignee&quot;: &quot;MatthieuGalland&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Baptr0b0t/Singularity.git",
-    "accountId": "2a5add4a-8553-448d-8a0d-f6858a2c4e70"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Baptr0b0t/Singularity.git&quot;,
+    &quot;accountId&quot;: &quot;2a5add4a-8553-448d-8a0d-f6858a2c4e70&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -42,24 +42,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Holder.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.movement.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Cours/Programmation/projet/Singularity",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Holder.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.movement.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Cours/Programmation/projet/Singularity&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Singularity" />
@@ -159,15 +159,11 @@
       <workItem from="1744027252634" duration="7231000" />
       <workItem from="1744892669609" duration="89000" />
       <workItem from="1745419295800" duration="2000" />
-      <workItem from="1745447991300" duration="4106000" />
-    </task>
-    <task id="LOCAL-00033" summary="Clean up SpriteRenderer">
-      <option name="closed" value="true" />
-      <created>1740925725153</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1740925725153</updated>
+      <workItem from="1745447991300" duration="4299000" />
+      <workItem from="1746020539229" duration="384000" />
+      <workItem from="1746027511332" duration="389000" />
+      <workItem from="1746176590348" duration="1101000" />
+      <workItem from="1746178536354" duration="564000" />
     </task>
     <task id="LOCAL-00034" summary="Add first ai&#10;Add empty health.py file&#10;Add bullet generator&#10;    add bullet destroy on collision&#10;&#10;Add Scene Delete method&#10;     Add Gameobject delete method">
       <option name="closed" value="true" />
@@ -553,7 +549,15 @@
       <option name="project" value="LOCAL" />
       <updated>1745449407146</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="Added loot credit">
+      <option name="closed" value="true" />
+      <created>1745452416433</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1745452416433</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -577,7 +581,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add Money_UI&#10;Use money on upgrade&#10;Draft of find_by_tag, no object found bug" />
     <MESSAGE value="Fix damage on player when shooting and pause the game&#10;Add more boot_up function usage" />
     <MESSAGE value="Add draft shop.yml&#10;Money is no more bond to Gameobject but directly from the game for let modification from outside of the scene&#10;AI spaceship have a higher movement speed" />
     <MESSAGE value="Not working draft of &#10;TODO : Put event manager global in Holder.game" />
@@ -602,7 +605,8 @@
     <MESSAGE value="Draft Tutorial" />
     <MESSAGE value="Add play button png" />
     <MESSAGE value="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same" />
+    <MESSAGE value="Added loot credit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added loot credit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -615,6 +619,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1745452114626" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746179074222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

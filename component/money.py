@@ -39,7 +39,6 @@ class LootMoney(Gameobject.Component):
         self.value = value
 
     def delete(self):
-        print("Loot Money")
         transform = self.parent.get_component(Gameobject.Transform)
         #Creating bullet Gameobject
         money = Gameobject.GameObject((transform.x, transform.y), angle=transform.angle)

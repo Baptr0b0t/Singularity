@@ -117,6 +117,26 @@ class Health_UI(Gameobject.Component, Gameobject.Cooldown):
             game_object.get_component(FontRenderer).change_text(texte, self.color, self.size)
             Gameobject.Cooldown.reset(self)
 
+class Score_UI(Gameobject.Component, Gameobject.Cooldown):
+    """
+    Need FontRenderer and a Gameobject with "PLAYER" tag exist
+    :param color exemple value (255,255,255) or "BLANK"
+    """
+    def __init__(self, parent, begining_texte = "Score : ", color = (255,255,255), size = 1, cooldown = 0.1):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, cooldown)
+        self.color = color
+        self.size = size
+        self.begining_texte = begining_texte
+
+    def update(self):
+        if Gameobject.Cooldown.is_ready(self):
+            game_object = self.parent
+            player_score = Holder.Game.score
+            texte = self.begining_texte + str(round(player_score))
+            game_object.get_component(FontRenderer).change_text(texte, self.color, self.size)
+            Gameobject.Cooldown.reset(self)
+
 class Health_Rectangle(Gameobject.Component, Gameobject.Cooldown):
     """
     :param color exemple value (255,255,255) or "BLANK"

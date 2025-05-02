@@ -52,6 +52,13 @@ class Game:
         if cls.actual_scene is not None:
             cls.actual_scene.boot_up_all()
 
+    #Score
+    score = 0
+    @classmethod
+    def add_score(cls, value):
+        cls.score+=value
+
+
     #Money
     money = 100
 

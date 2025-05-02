@@ -58,3 +58,12 @@ class EventOnNoHealth(Gameobject.Component):
         health = game_object.get_component(Health)
         if health.health_point<0:
             Holder.Game.post_event(eval(str("eventlist." + self.event)))
+
+
+class ScoreOnDestroy(Gameobject.Component):
+    def __init__(self, parent, value = 15):
+        super().__init__(parent)
+        self.value = value
+
+    def delete(self):
+        Holder.Game.add_score(self.value)

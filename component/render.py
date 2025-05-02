@@ -178,8 +178,8 @@ class RelativeCamera(Gameobject.Component):
                     if self.middle_button_pressed:
                         # Mouvement de souris avec molette pressée détecté
                         x, y = event.rel  # Déplacement relatif
-                        Holder.Game.relative_offset[0] += x
-                        Holder.Game.relative_offset[1] += y
+                        Holder.Game.relative_offset[0] += 2*x
+                        Holder.Game.relative_offset[1] += 2*y
                         MIN_OFFSET_X, MAX_OFFSET_X = -Holder.Game.LARGEUR//2, Holder.Game.LARGEUR//2
                         MIN_OFFSET_Y, MAX_OFFSET_Y = -Holder.Game.HAUTEUR // 2, Holder.Game.HAUTEUR // 2
                         # Mise à jour avec clamp (limitation)

@@ -62,7 +62,7 @@ Holder.Game.event_manager = Holder.EventManager()
 Holder.Game.sound_player = SoundEffectManager()
 
 menu_scene = SceneManager.Scene("./scene/menu.yml")
-space_scene = SceneManager.Scene("./scene/scene2.yml")
+space_scene = SceneManager.Scene("./scene/scene1.yml")
 pause_scene = SceneManager.Scene("./scene/pause.yml")
 shop_scene = SceneManager.Scene("./scene/shop.yml")
 
