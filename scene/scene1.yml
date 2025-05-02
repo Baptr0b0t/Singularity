@@ -99,6 +99,8 @@ game_objects:
         DestroyOnNoHealth: { }
         DamageCollision:
           ratio: 0.8
+        ScoreOnDestroy:
+          value: 10
         LootMoney: {}
         AITargetMovement: {}
         AITarget: { }
@@ -258,6 +260,19 @@ game_objects:
       standard:
         FontRenderer: { }
         Money_UI: { }
+      late_updated: { }
+  Score_UI:
+    position: [ 100, 500 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Score_UI: { }
       late_updated: { }
 
   Rectangle_UI:
