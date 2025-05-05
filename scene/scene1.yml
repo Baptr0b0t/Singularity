@@ -39,6 +39,7 @@ game_objects:
     tags:
       - MAIN_CAMERA
       - PLAYER
+      - AI_TARGETED
     front_layer : false
     components:
       self_updated:
@@ -71,44 +72,17 @@ game_objects:
       late_updated:
         SpaceMovement: {}
         Velocity_Arrow: {}
-  ai_ship:
+  ai_ship_generator:
     position: [LARGEUR//2, HAUTEUR//2+100]
     angle: 0
     tags: { }
     front_layer : False
     components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/enemy_ship_1.png"
-          scale_factor: 0.3
-      quick_updated:
-        Velocity: { }
+      self_updated: { }
+      quick_updated: { }
       standard:
-        Mass:
-          mass : 1000
-        PlanetCollision:
-          ratio : 0.8
-          restitution : 1
-        Health: { }
-        DestroyOnNoHealth: { }
-        DamageCollision:
-          ratio: 0.8
-        ScoreOnDestroy:
-          value: 10
-        LootMoney: {}
-        AITargetMovement: {}
-        AITarget: { }
-        AIMaxSpeed: { }
-        Gravity: { }
-        RelativeCamera: {}
-        #SpeedLimit:
-        #  speedlimit: 80
-      late_updated:
-        #ScreenLimit:
-        #  bounce: True
-        SpaceMovement: {}
-        Velocity_Arrow: {}
-        Turret_Holder: {}
+        EnemySpawner: {}
+      late_updated: { }
   planet1:
     position: [0, 0]
     angle: 0
