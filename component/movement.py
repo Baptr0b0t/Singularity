@@ -31,7 +31,7 @@ class Fuel(Gameobject.Component):
 
     def upgrade(self, value):
         self.max_fuel+=value
-        self.fuel+=value
+        self.fuel=self.max_fuel
 
 
 class Gravity(Gameobject.Component):

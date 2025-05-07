@@ -6,6 +6,24 @@ from random import randint, choice
 from taglist import AI_TARGETED, AI_SWARM
 
 
+class Reputation(Gameobject.Component):
+    def __init__(self, parent, hostility = 0):
+        super().__init__(parent)
+        self.hostility = hostility
+        self.shot_done = 0
+
+    def action_shooting(self):
+        self.shot_done += 1
+        if self.shot_done >= 20:
+            self.hostility = 1
+
+        if self.shot_done >= 70:
+            self.hostility = 2
+
+        if self.shot_done >= 200:
+            self.hostility = 3
+
+
 class AITarget(Gameobject.Component, Gameobject.Cooldown):
     def __init__(self, parent, cooldown = 0.1):
         Gameobject.Component.__init__(self, parent)
@@ -30,8 +48,11 @@ class AITarget(Gameobject.Component, Gameobject.Cooldown):
             target_object = choice(target_object)
             self.target_obj = target_object
             target_transform = target_object.get_component(Gameobject.Transform)
-            self.target = (target_transform.x, target_transform.y)
-            self.shooting_target = (target_transform.x, target_transform.y)
+            if target_object.has_component(Reputation):
+                if target_object.get_component(Reputation).hostility >= 2:
+                    self.target = (target_transform.x, target_transform.y)
+                if target_object.get_component(Reputation).hostility >= 1:
+                    self.shooting_target = (target_transform.x, target_transform.y)
             Gameobject.Cooldown.reset(self)
 
 class AIMaxSpeed(Gameobject.Component):
@@ -94,7 +115,7 @@ class AITargetMovement(Gameobject.Component):
             return
         target_x, target_y = target
         dx, dy = target_x - transform.x, target_y - transform.y
-        distance = math.hypot(dx, dy)  # TODO: REPLACE every distance calcul
+        distance = math.hypot(dx, dy)
 
         target_angle = math.atan2(dy, dx)
 
