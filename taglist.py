@@ -4,5 +4,6 @@ PLANET = 340
 
 
 
+AI_SWARM = 450
 
 AI_TARGETED = 500 #AI will attack the gameobject with this tag

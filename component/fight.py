@@ -1,11 +1,18 @@
+import random
+
 import Gameobject
 import pygame
+from component.health import Health, DestroyOnNoHealth, ScoreOnDestroy
+from component.money import LootMoney
 from component.render import SpriteRenderer, RelativeCamera
 import SceneManager
 import math
-from component.movement import SpaceMovement
-from component.collision import DamageCollision
-from component.ai import AITarget
+from component.movement import SpaceMovement, Mass, Gravity
+from component.collision import DamageCollision, PlanetCollision
+from component.ai import AITarget, AITargetMovement, AIMaxSpeed, AISwarmBehavior
+from component.ui import Velocity_Arrow
+from taglist import AI_SWARM
+
 
 class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
     def __init__(self, parent, fire_rate = 0.07, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.12):
@@ -83,7 +90,7 @@ class Turret_Holder(Gameobject.Component, Gameobject.Cooldown):
 
 
 class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, spaceship_parent, fire_rate = 0.2, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06, rotation_speed = 0.3):
+    def __init__(self, parent, spaceship_parent, fire_rate = 0.2, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06, rotation_speed = 0.05):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, fire_rate)
         self.speed = speed
@@ -143,10 +150,6 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
             self.shoot()
             Gameobject.Cooldown.reset(self)
 
-
-
-
-
     def boot_up(self):
         Gameobject.Cooldown.reset(self)
 
@@ -166,3 +169,52 @@ class BulletLifeTime(Gameobject.Component,Gameobject.Cooldown):
         SceneManager.Scene.remove_object(self.parent)
         return
 
+class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
+    def __init__(self, parent, time = 10, spawn_radius=10):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, time)
+        self.spawn_radius = spawn_radius
+
+    def update(self):
+        if not Gameobject.Cooldown.is_ready(self):
+            return
+        self.spawn_enemy()
+        Gameobject.Cooldown.reset(self)
+        return
+
+    def spawn_enemy(self):
+        transform = self.parent.get_component(Gameobject.Transform)
+        angle_rad = random.uniform(0, 2 * math.pi)
+        spawn_x = transform.x + self.spawn_radius * math.cos(angle_rad)
+        spawn_y = transform.y + self.spawn_radius * math.sin(angle_rad)
+        enemy = Gameobject.GameObject((spawn_x, spawn_y), angle=0)
+        enemy.add_tag(AI_SWARM)
+
+        # Self updated component
+        enemy.add_self_updated_component(SpriteRenderer(enemy, "./resources/enemy_ship_1.png", 0.3))
+
+        # Quick updated component
+        enemy.add_quick_updated_component(Gameobject.Velocity(enemy))
+
+        # Standard components
+        enemy.add_standard_component(Mass(enemy, mass=1000))
+        enemy.add_standard_component(PlanetCollision(enemy, ratio=0.8, restitution=1))
+        enemy.add_standard_component(Health(enemy))
+        enemy.add_standard_component(DestroyOnNoHealth(enemy))
+        enemy.add_standard_component(DamageCollision(enemy, ratio=0.8))
+        enemy.add_standard_component(ScoreOnDestroy(enemy, value=10))
+        enemy.add_standard_component(LootMoney(enemy))
+        #enemy.add_standard_component(AITargetMovement(enemy))
+        enemy.add_standard_component(AITarget(enemy))
+        enemy.add_standard_component(AISwarmBehavior(enemy))
+        enemy.add_standard_component(AIMaxSpeed(enemy))
+        enemy.add_standard_component(Gravity(enemy))
+        enemy.add_standard_component(RelativeCamera(enemy))
+
+        # Late updated components
+        enemy.add_late_updated_component(SpaceMovement(enemy))
+        enemy.add_late_updated_component(Velocity_Arrow(enemy))
+        enemy.add_late_updated_component(Turret_Holder(enemy))
+
+        # Ajouter à la scène
+        SceneManager.Scene.add_object(enemy)
