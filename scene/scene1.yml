@@ -34,7 +34,7 @@ game_objects:
         #  bottom_right: [ 2000,2000 ]
       late_updated: { }
   player:
-    position: [LARGEUR//2, HAUTEUR//2+200]
+    position: [1000, 0]
     angle: 0
     tags:
       - MAIN_CAMERA
@@ -55,13 +55,12 @@ game_objects:
         Health: { }
         PlayerUpgradeEventListener: { }
         HealthRegen: { }
-        DamageCollision:
-          ratio: 0.8
         Mass:
           mass : 1000
         PlanetCollision:
           ratio : 0.8
           restitution : 0.95
+          damage_on_other: 10
         PlayerSpaceMovement:
           acceleration_speed: 50
         Gravity: { }
@@ -73,7 +72,7 @@ game_objects:
         SpaceMovement: {}
         Velocity_Arrow: {}
   ai_ship_generator:
-    position: [LARGEUR//2, HAUTEUR//2+100]
+    position: [1000, 1000]
     angle: 0
     tags: { }
     front_layer : False
@@ -102,6 +101,7 @@ game_objects:
         PlanetCollision:
           ratio: 0.7
           restitution : 1
+          damage_on_other: 10
         ConstantRotation: { }
         RelativeCamera: { }
         Gravity:
@@ -129,6 +129,7 @@ game_objects:
         PlanetCollision:
           restitution : 1
           ratio: 0.7
+          damage_on_other: 10
         RelativeCamera: { }
         Gravity:
           fixed : True
@@ -156,6 +157,7 @@ game_objects:
         PlanetCollision:
           ratio: 0.7
           restitution: 1
+          damage_on_other: 10
         ConstantRotation: { }
         RelativeCamera: { }
         Gravity:
@@ -183,6 +185,7 @@ game_objects:
         PlanetCollision:
           ratio: 0.5
           restitution: 1
+          damage_on_other: 10
         ConstantRotation: { }
         RelativeCamera: { }
         Gravity:
@@ -210,6 +213,7 @@ game_objects:
         PlanetCollision:
           ratio: 0.7
           restitution: 1
+          damage_on_other: 10
         ConstantRotation: { }
         RelativeCamera: { }
         Gravity:
@@ -237,6 +241,7 @@ game_objects:
         PlanetCollision:
           ratio: 0.7
           restitution: 1
+          damage_on_other: 10
         ConstantRotation: { }
         RelativeCamera: { }
         Gravity:
