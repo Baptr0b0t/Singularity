@@ -4,15 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Added loot credit">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add enemies generator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Holder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Holder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/health.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/health.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/money.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/money.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/render.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/render.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/ai.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/collision.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scene/scene1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene1.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/taglist.py" beforeDir="false" afterPath="$PROJECT_DIR$/taglist.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,31 +161,12 @@
       <workItem from="1746020539229" duration="384000" />
       <workItem from="1746027511332" duration="389000" />
       <workItem from="1746176590348" duration="1101000" />
-      <workItem from="1746178536354" duration="564000" />
-    </task>
-    <task id="LOCAL-00034" summary="Add first ai&#10;Add empty health.py file&#10;Add bullet generator&#10;    add bullet destroy on collision&#10;&#10;Add Scene Delete method&#10;     Add Gameobject delete method">
-      <option name="closed" value="true" />
-      <created>1740993618832</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1740993618832</updated>
-    </task>
-    <task id="LOCAL-00035" summary="Draft Test for multiple scene">
-      <option name="closed" value="true" />
-      <created>1740995993092</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1740995993092</updated>
-    </task>
-    <task id="LOCAL-00036" summary="Add active component Wrapper">
-      <option name="closed" value="true" />
-      <created>1740999140609</created>
-      <option name="number" value="00036" />
-      <option name="presentableId" value="LOCAL-00036" />
-      <option name="project" value="LOCAL" />
-      <updated>1740999140609</updated>
+      <workItem from="1746178536354" duration="1932000" />
+      <workItem from="1746427691346" duration="1850000" />
+      <workItem from="1746429631232" duration="204000" />
+      <workItem from="1746437390682" duration="3550000" />
+      <workItem from="1746618217954" duration="511000" />
+      <workItem from="1746629992490" duration="1675000" />
     </task>
     <task id="LOCAL-00037" summary="Add blast_red png">
       <option name="closed" value="true" />
@@ -557,7 +536,31 @@
       <option name="project" value="LOCAL" />
       <updated>1745452416433</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="Added score system">
+      <option name="closed" value="true" />
+      <created>1746179257398</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1746179257398</updated>
+    </task>
+    <task id="LOCAL-00084" summary="Updated PlayerUpradeEventListener for use a event map for multiple event listenener">
+      <option name="closed" value="true" />
+      <created>1746180539161</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1746180539162</updated>
+    </task>
+    <task id="LOCAL-00085" summary="Add enemies generator">
+      <option name="closed" value="true" />
+      <created>1746429688466</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1746429688467</updated>
+    </task>
+    <option name="localTasksCounter" value="86" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,9 +584,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix damage on player when shooting and pause the game&#10;Add more boot_up function usage" />
-    <MESSAGE value="Add draft shop.yml&#10;Money is no more bond to Gameobject but directly from the game for let modification from outside of the scene&#10;AI spaceship have a higher movement speed" />
-    <MESSAGE value="Not working draft of &#10;TODO : Put event manager global in Holder.game" />
     <MESSAGE value="fix event manager as a global class in Holder.game" />
     <MESSAGE value="Not Enough Button (Button Update)&#10;Button now only accept 1 click" />
     <MESSAGE value="Add shop.webp made by AI" />
@@ -606,7 +606,10 @@
     <MESSAGE value="Add play button png" />
     <MESSAGE value="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same" />
     <MESSAGE value="Added loot credit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added loot credit" />
+    <MESSAGE value="Added score system" />
+    <MESSAGE value="Updated PlayerUpradeEventListener for use a event map for multiple event listenener" />
+    <MESSAGE value="Add enemies generator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add enemies generator" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -619,6 +622,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746179074222" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746631367383" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
