@@ -26,11 +26,12 @@ class PlanetCollision(Gameobject.Component):
     :param restitution: Coefficient de collision.
     :param ratio: Coefficient de la taille de collision par rapport au sprite.
     """
-    def __init__(self, parent, restitution = 1, ratio=1):
+    def __init__(self, parent, restitution = 1, ratio=1, damage_on_other = 0):
         super().__init__(parent)
         self.restitution = restitution # 1 = collision parfaite, 0 = Perte totale d'energie
         self.collision_ratio = ratio
         self.handled_collision = []
+        self.damage_on_other = damage_on_other
 
     def update(self):
 
@@ -82,13 +83,18 @@ class PlanetCollision(Gameobject.Component):
 
                     self.handled_collision.append(obj)
 
-                    #Stuck Resolver #Todo: add a delay for don't bug other collision like DamageCollision or use a Collision detector will call all other method from the gameObject
+                    #Stuck Resolver
                     if mass<=obj_mass:
                         transform.x -= normal_x
                         transform.y -= normal_y
                     if mass>=obj_mass:
                         obj_transform.x += normal_x
                         obj_transform.y += normal_y
+
+                    if obj.has_component(Health):
+                        obj.get_component(Health).health_point -= self.damage_on_other
+                    if game_object.has_component(Health):
+                        game_object.get_component(Health).health_point -= obj_collision.damage_on_other
 
 
 

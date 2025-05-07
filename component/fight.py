@@ -9,8 +9,9 @@ import SceneManager
 import math
 from component.movement import SpaceMovement, Mass, Gravity
 from component.collision import DamageCollision, PlanetCollision
-from component.ai import AITarget, AITargetMovement, AIMaxSpeed
+from component.ai import AITarget, AITargetMovement, AIMaxSpeed, AISwarmBehavior
 from component.ui import Velocity_Arrow
+from taglist import AI_SWARM
 
 
 class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
@@ -89,7 +90,7 @@ class Turret_Holder(Gameobject.Component, Gameobject.Cooldown):
 
 
 class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, spaceship_parent, fire_rate = 0.2, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06, rotation_speed = 0.3):
+    def __init__(self, parent, spaceship_parent, fire_rate = 0.2, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06, rotation_speed = 0.05):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, fire_rate)
         self.speed = speed
@@ -149,10 +150,6 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
             self.shoot()
             Gameobject.Cooldown.reset(self)
 
-
-
-
-
     def boot_up(self):
         Gameobject.Cooldown.reset(self)
 
@@ -191,6 +188,7 @@ class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
         spawn_x = transform.x + self.spawn_radius * math.cos(angle_rad)
         spawn_y = transform.y + self.spawn_radius * math.sin(angle_rad)
         enemy = Gameobject.GameObject((spawn_x, spawn_y), angle=0)
+        enemy.add_tag(AI_SWARM)
 
         # Self updated component
         enemy.add_self_updated_component(SpriteRenderer(enemy, "./resources/enemy_ship_1.png", 0.3))
@@ -206,8 +204,9 @@ class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
         enemy.add_standard_component(DamageCollision(enemy, ratio=0.8))
         enemy.add_standard_component(ScoreOnDestroy(enemy, value=10))
         enemy.add_standard_component(LootMoney(enemy))
-        enemy.add_standard_component(AITargetMovement(enemy))
+        #enemy.add_standard_component(AITargetMovement(enemy))
         enemy.add_standard_component(AITarget(enemy))
+        enemy.add_standard_component(AISwarmBehavior(enemy))
         enemy.add_standard_component(AIMaxSpeed(enemy))
         enemy.add_standard_component(Gravity(enemy))
         enemy.add_standard_component(RelativeCamera(enemy))
