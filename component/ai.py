@@ -23,6 +23,9 @@ class Reputation(Gameobject.Component):
         if self.shot_done >= 200:
             self.hostility = 3
 
+        if self.shot_done >= 400:
+            self.hostility = self.shot_done*0.01
+
 
 class AITarget(Gameobject.Component, Gameobject.Cooldown):
     def __init__(self, parent, cooldown = 0.1):
