@@ -76,6 +76,32 @@ game_objects:
         Grow_on_Hover:
           cost: 20
       late_updated: { }
+  text_fuel_button:
+    position: [ LARGEUR-330, HAUTEUR-80 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "+10 max health"
+      late_updated: { }
+  price_fuel_button:
+    position: [ LARGEUR-330, HAUTEUR-50 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "$20"
+      late_updated: { }
 
   buy_fuel_button:
     position: [ LARGEUR-320, HAUTEUR-140 ]
@@ -85,7 +111,7 @@ game_objects:
     components:
       self_updated:
         SpriteRenderer:
-          image_path: "./resources/button_shield.png"
+          image_path: "./resources/button_fuel.png"
           scale_factor: 0.8
       quick_updated: { }
       standard:
