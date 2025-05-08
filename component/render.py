@@ -40,6 +40,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
         else:
             self.rect = self.image.get_rect(center=(transform.x, transform.y))
         self.visible = True
+        self.force_hide = False
 
 
     def get_cached_scaled_surface(self, surface, scale):
@@ -91,7 +92,7 @@ class SpriteRenderer(pygame.sprite.Sprite):
             # Mise à jour de la visibilité en fonction de la position du sprite
             self.visible = self.is_visible_on_screen()
 
-        if not self.visible:
+        if not self.visible or self.force_hide:
             self.image = pygame.Surface((0, 0), pygame.SRCALPHA)
             #self.image = pygame.transform.scale(self.surface, (100,100)) #use when want to see what sprite is invisible
             self.rect.topleft = (0, 0)
