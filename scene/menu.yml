@@ -174,7 +174,9 @@ game_objects:
         Button:
           event_on_click: "SCENE_SPACE_2"
         Grow_on_Hover: { }
-      late_updated: { }
+      late_updated:
+        Score_for_Visible:
+          score_needed: 10
   Play_level3_button:
     position: [LARGEUR//2, 600]
     angle: 0

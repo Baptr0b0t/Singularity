@@ -68,3 +68,14 @@ class Grow_on_Hover(Gameobject.Component):
                 renderer.set_scale((renderer.scale[0] * (1/self.factor), renderer.scale[1] * (1/self.factor)))
                 self.is_grown = False
 
+class Score_for_Visible(Gameobject.Component):
+    def __init__(self, parent, score_needed = 10):
+        super().__init__(parent)
+        self.score_needed = score_needed
+
+    def boot_up(self):
+        game_holder = Holder.Game
+        if game_holder.score>=self.score_needed:
+            self.parent.get_component(SpriteRenderer).force_hide = False
+        else:
+            self.parent.get_component(SpriteRenderer).force_hide = True
