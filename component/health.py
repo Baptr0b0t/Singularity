@@ -62,7 +62,7 @@ class EventOnNoHealth(Gameobject.Component):
 
 
 class ScoreOnDestroy(Gameobject.Component):
-    def __init__(self, parent, value = 15):
+    def __init__(self, parent, value = 1):
         super().__init__(parent)
         self.value = value
 
