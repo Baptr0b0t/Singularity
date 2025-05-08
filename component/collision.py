@@ -83,18 +83,32 @@ class PlanetCollision(Gameobject.Component):
 
                     self.handled_collision.append(obj)
 
-                    #Stuck Resolver
-                    if mass<=obj_mass:
-                        transform.x -= normal_x
-                        transform.y -= normal_y
-                    if mass>=obj_mass:
-                        obj_transform.x += normal_x
-                        obj_transform.y += normal_y
+                    #Stuck Resolver - Start
+                    radius_self =  self.collision_ratio
+                    radius_other = obj_collision.collision_ratio
 
+                    distance = math.sqrt((obj_transform.x - transform.x) ** 2 + (obj_transform.y - transform.y) ** 2)
+
+                    penetration_depth = radius_self + radius_other - distance
+                    if penetration_depth > 0:
+                        total_mass = mass + obj_mass
+                        if total_mass == 0:
+                            total_mass = 1  # éviter division par zéro
+
+                        push_self = (obj_mass / total_mass) * penetration_depth
+                        push_other = (mass / total_mass) * penetration_depth
+
+                        transform.x -= normal_x * push_self
+                        transform.y -= normal_y * push_self
+
+                        obj_transform.x += normal_x * push_other
+                        obj_transform.y += normal_y * push_other
+                    #Stuck Resolver - End
+                    damage_proportion = abs(v1n - v2n) * 0.01
                     if obj.has_component(Health):
-                        obj.get_component(Health).health_point -= self.damage_on_other
+                        obj.get_component(Health).health_point -= self.damage_on_other * damage_proportion
                     if game_object.has_component(Health):
-                        game_object.get_component(Health).health_point -= obj_collision.damage_on_other
+                        game_object.get_component(Health).health_point -= obj_collision.damage_on_other * damage_proportion
 
 
 
