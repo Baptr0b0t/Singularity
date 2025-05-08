@@ -1,20 +1,53 @@
 import json
+import os
 
-def next_level(curr_level):
-    with open("save.json","r") as save:
+SAVE_FILE = "./save/save.json"
+
+# Création du fichier save.json par défaut si absent
+def init_save_file():
+    if not os.path.exists(SAVE_FILE):
+        data = {
+            "Highest_score": 0,
+            "level": {}
+        }
+        with open(SAVE_FILE, "w") as save:
+            json.dump(data, save, indent=4)
+        print("Fichier de sauvegarde créé")
+
+# Fonction pour enregistrer un nouveau score
+def new_score(level: str, score: int):
+    with open(SAVE_FILE, "r") as save:
         data = json.load(save)
 
-    if data["level"][str(curr_level)]["best_score"] > 50:
-        data["current_level"]+=1
+    # Créer la section level si elle n'existe pas
+    if "level" not in data:
+        data["level"] = {}
 
-        with open("save.json","w") as save:
-            json.dump(data,save)
+    # Créer l'entrée pour ce niveau si elle n'existe pas
+    if level not in data["level"]:
+        data["level"][level] = {"best_score": 0}
 
-def new_best_score(new_score):
-    with open("save.json","r") as save:
-        data = json.load(save)
-        current_level = data["current_level"]
-        data["level"][str(current_level)]["best_score"] = new_score
+    # Vérifier et mettre à jour le best_score du niveau
+    current_best = data["level"][level]["best_score"]
+    if score > current_best:
+        data["level"][level]["best_score"] = score
 
-    with open("save.json","w") as save:
-        json.dump(data,save)
+    # Mettre à jour le Highest_score global si nécessaire
+    if score > data.get("Highest_score", 0):
+        data["Highest_score"] = score
+
+    # Sauvegarder les modifications
+    with open(SAVE_FILE, "w") as save:
+        json.dump(data, save, indent=4)
+
+def get_highest_score():
+    try:
+        with open(SAVE_FILE, "r") as save:
+            data = json.load(save)
+        return data.get("Highest_score", 0)
+    except FileNotFoundError:
+        print("Fichier de sauvegarde introuvable.")
+        return 0
+    except json.JSONDecodeError:
+        print("Erreur de lecture du fichier JSON.")
+        return 0
