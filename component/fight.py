@@ -9,7 +9,7 @@ import SceneManager
 import math
 from component.movement import SpaceMovement, Mass, Gravity
 from component.collision import DamageCollision, PlanetCollision
-from component.ai import AITarget, AITargetMovement, AIMaxSpeed, AISwarmBehavior
+from component.ai import AITarget, AITargetMovement, AIMaxSpeed, AISwarmBehavior, Reputation
 from component.ui import Velocity_Arrow
 from taglist import AI_SWARM
 
@@ -35,6 +35,7 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
 
         if mouse_presses[0]:
             Gameobject.Cooldown.reset(self)
+            game_object.get_component(Reputation).action_shooting()
             #Creating bullet Gameobject
             bullet = Gameobject.GameObject((transform.x, transform.y), angle=transform.angle)
             bullet.add_self_updated_component(SpriteRenderer(bullet, self.path_file, self.scale))
@@ -138,7 +139,9 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
         SceneManager.Scene.add_object(bullet)
 
     def update(self):
-        target = self.space_ship.get_component(AITarget).shooting_target
+        ai_target = self.space_ship.get_component(AITarget)
+        target = ai_target.shooting_target
+        target_obj = ai_target.target_obj
         if target is None:
             return
         self.move(target)
@@ -146,7 +149,11 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
         transform = self.parent.get_component(Gameobject.Transform)
         dx, dy = target[0] - transform.x, target[1] - transform.y
         distance = math.hypot(dx, dy)
-        if Gameobject.Cooldown.is_ready(self) and distance <= 300:
+        if target_obj.has_component(Reputation):
+            max_distance = 500 * target_obj.get_component(Reputation).hostility
+        else:
+            max_distance = 700
+        if Gameobject.Cooldown.is_ready(self) and distance <= max_distance:
             self.shoot()
             Gameobject.Cooldown.reset(self)
 
@@ -204,7 +211,7 @@ class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
         enemy.add_standard_component(DamageCollision(enemy, ratio=0.8))
         enemy.add_standard_component(ScoreOnDestroy(enemy, value=10))
         enemy.add_standard_component(LootMoney(enemy))
-        #enemy.add_standard_component(AITargetMovement(enemy))
+        enemy.add_standard_component(AITargetMovement(enemy))
         enemy.add_standard_component(AITarget(enemy))
         enemy.add_standard_component(AISwarmBehavior(enemy))
         enemy.add_standard_component(AIMaxSpeed(enemy))
