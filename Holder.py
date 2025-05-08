@@ -60,7 +60,7 @@ class Game:
 
 
     #Money
-    money = 100
+    money = 0
 
     @classmethod
     def add_money(cls, value):
