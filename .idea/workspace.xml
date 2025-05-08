@@ -4,9 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add GameOver event">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Collision damage and stuck resolver fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/collision.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/health.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/health.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eventlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/eventlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/menu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/menu.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/scene2.yml.off" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,15 +167,7 @@
       <workItem from="1746437390682" duration="3550000" />
       <workItem from="1746618217954" duration="511000" />
       <workItem from="1746629992490" duration="4686000" />
-      <workItem from="1746719113575" duration="2829000" />
-    </task>
-    <task id="LOCAL-00042" summary="Add speed_ui">
-      <option name="closed" value="true" />
-      <created>1741078894084</created>
-      <option name="number" value="00042" />
-      <option name="presentableId" value="LOCAL-00042" />
-      <option name="project" value="LOCAL" />
-      <updated>1741078894084</updated>
+      <workItem from="1746719113575" duration="3963000" />
     </task>
     <task id="LOCAL-00043" summary="Big planet time">
       <option name="closed" value="true" />
@@ -557,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746721763432</updated>
     </task>
-    <option name="localTasksCounter" value="91" />
+    <task id="LOCAL-00091" summary="Collision damage and stuck resolver fix">
+      <option name="closed" value="true" />
+      <created>1746722384046</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1746722384046</updated>
+    </task>
+    <option name="localTasksCounter" value="92" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -581,7 +585,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Performance for find_by_tag/component" />
     <MESSAGE value="Add inactive Turret for enemy ship&#10;Add Front Layer sprite group&#10;relative cam factor change" />
     <MESSAGE value="Add Turret AI" />
     <MESSAGE value="Remove a lost print" />
@@ -606,7 +609,8 @@
     <MESSAGE value="AI hostility level" />
     <MESSAGE value="Add volume to audio" />
     <MESSAGE value="Add GameOver event" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add GameOver event" />
+    <MESSAGE value="Collision damage and stuck resolver fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Collision damage and stuck resolver fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -619,6 +623,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746722305519" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746723089400" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

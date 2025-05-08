@@ -143,8 +143,8 @@ game_objects:
           texte: "QUIT"
           font_size: 40
       late_updated: { }
-  Play_button:
-    position: [LARGEUR//2, HAUTEUR//2]
+  Play_level1_button:
+    position: [LARGEUR//2, 200]
     angle: 0
     tags: { }
     front_layer : true
@@ -157,6 +157,38 @@ game_objects:
       standard:
         Button:
           event_on_click: "SCENE_SPACE"
+        Grow_on_Hover: { }
+      late_updated: { }
+  Play_level2_button:
+    position: [LARGEUR//2, 400]
+    angle: 0
+    tags: { }
+    front_layer : true
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/ui/button_main.png"
+          scale_factor: 0.7
+      quick_updated: { }
+      standard:
+        Button:
+          event_on_click: "SCENE_SPACE_2"
+        Grow_on_Hover: { }
+      late_updated: { }
+  Play_level3_button:
+    position: [LARGEUR//2, 600]
+    angle: 0
+    tags: { }
+    front_layer : true
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/ui/button_main.png"
+          scale_factor: 0.7
+      quick_updated: { }
+      standard:
+        Button:
+          event_on_click: "SCENE_SPACE_3"
         Grow_on_Hover: { }
       late_updated: { }
   Tutorial_text_button:

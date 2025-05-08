@@ -209,7 +209,7 @@ class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
         enemy.add_standard_component(Health(enemy))
         enemy.add_standard_component(DestroyOnNoHealth(enemy))
         enemy.add_standard_component(DamageCollision(enemy, ratio=0.8))
-        enemy.add_standard_component(ScoreOnDestroy(enemy, value=10))
+        enemy.add_standard_component(ScoreOnDestroy(enemy, value=1))
         enemy.add_standard_component(LootMoney(enemy))
         enemy.add_standard_component(AITargetMovement(enemy))
         enemy.add_standard_component(AITarget(enemy))
