@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="AI hostility level">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add volume to audio">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/audio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/menu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/menu.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/shop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/shop.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/health.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/health.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eventlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/eventlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/scene1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene1.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -165,15 +166,7 @@
       <workItem from="1746437390682" duration="3550000" />
       <workItem from="1746618217954" duration="511000" />
       <workItem from="1746629992490" duration="4686000" />
-      <workItem from="1746719113575" duration="1652000" />
-    </task>
-    <task id="LOCAL-00040" summary="add Change scene event">
-      <option name="closed" value="true" />
-      <created>1741076632343</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1741076632343</updated>
+      <workItem from="1746719113575" duration="2218000" />
     </task>
     <task id="LOCAL-00041" summary="add Coordinate_UI">
       <option name="closed" value="true" />
@@ -559,7 +552,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746634772843</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="Add volume to audio">
+      <option name="closed" value="true" />
+      <created>1746721284290</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1746721284292</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -583,7 +584,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add shop.webp made by AI" />
     <MESSAGE value="Add optimisation by non showing off-screen sprite." />
     <MESSAGE value="Performance for find_by_tag/component" />
     <MESSAGE value="Add inactive Turret for enemy ship&#10;Add Front Layer sprite group&#10;relative cam factor change" />
@@ -608,7 +608,8 @@
     <MESSAGE value="Add enemies generator" />
     <MESSAGE value="Ai small updade and collision damage" />
     <MESSAGE value="AI hostility level" />
-    <option name="LAST_COMMIT_MESSAGE" value="AI hostility level" />
+    <MESSAGE value="Add volume to audio" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add volume to audio" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -621,6 +622,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746721155507" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746721691255" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

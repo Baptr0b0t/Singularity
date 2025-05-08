@@ -107,6 +107,11 @@ while running:
         Holder.Game.set_actual_scene(tutorial_scene)
 
 
+    if Holder.Game.has_event(eventlist.GAME_OVER):
+        space_scene = SceneManager.Scene("./scene/scene1.yml")
+        Holder.Game.set_actual_scene(menu_scene)
+
+
     # Dessin
     fenetre.fill(NOIR)
 

@@ -1,6 +1,7 @@
 import Holder
 import Gameobject
 import SceneManager
+import eventlist
 
 class Health(Gameobject.Component):
     """
@@ -56,7 +57,7 @@ class EventOnNoHealth(Gameobject.Component):
     def update(self):
         game_object = self.parent
         health = game_object.get_component(Health)
-        if health.health_point<0:
+        if health.health_point<=0:
             Holder.Game.post_event(eval(str("eventlist." + self.event)))
 
 
