@@ -13,6 +13,7 @@ game_objects:
       standard:
         PlayMusic:
           filename: "./resources/audio/Final flash of existence REMIX.mp3"
+          volume : 0.7
       late_updated: { }
   ai_ship:
     position: [ LARGEUR//2, HAUTEUR//2+100 ]

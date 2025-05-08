@@ -12,12 +12,13 @@ class MusicPlayer:
         self.current_music = None
         self.is_paused = False
 
-    def play_music(self, music_file, loops=-1):
+    def play_music(self, music_file, loops=-1, volume = 1):
         if self.current_music != music_file: #Music playing
             pygame.mixer.music.load(music_file)
             pygame.mixer.music.play(loops)
             self.current_music = music_file
             self.is_paused = False
+            pygame.mixer.music.set_volume(volume)
         elif self.is_paused: #Music unpaused
             pygame.mixer.music.unpause()
             self.is_paused = False
@@ -43,12 +44,13 @@ class PlayMusic(Gameobject.Component):
     """
     Play or unpause music when activate the scene with the GameObject
     """
-    def __init__(self, parent, filename = ""):
+    def __init__(self, parent, filename = "", volume = 1):
         super().__init__(parent)
         self.filename = filename
+        self.volume = volume
 
     def boot_up(self):
-        Holder.Game.music_player.play_music(self.filename)
+        Holder.Game.music_player.play_music(self.filename, volume=self.volume)
 
 
 

@@ -12,7 +12,7 @@ game_objects:
       quick_updated: { }
       standard:
         PlayMusic:
-          filename: "./resources/audio/Final flash of existence REMIX.mp3"
+          filename : "./resources/audio/Singularity_Main_Theme.mp3"
       late_updated: { }
   return_text_button:
     position: [LARGEUR//2, 100]
