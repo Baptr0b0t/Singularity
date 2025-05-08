@@ -2,7 +2,7 @@ import gc
 import math
 
 import pygame
-
+import save.save as saving_system
 import Gameobject
 import SceneManager
 import taglist
@@ -62,12 +62,14 @@ Holder.Game.event_manager = Holder.EventManager()
 Holder.Game.sound_player = SoundEffectManager()
 
 menu_scene = SceneManager.Scene("./scene/menu.yml")
-space_scene = SceneManager.Scene("./scene/scene1.yml")
 pause_scene = SceneManager.Scene("./scene/pause.yml")
 shop_scene = SceneManager.Scene("./scene/shop.yml")
 
-Holder.Game.set_actual_scene(menu_scene)
+saving_system.init_save_file()
+Holder.Game.score = saving_system.get_highest_score()
+print("SCORE :", Holder.Game.score)
 
+Holder.Game.set_actual_scene(menu_scene)
 
 # Boucle principale
 running = True
@@ -99,8 +101,11 @@ while running:
     if Holder.Game.has_event(eventlist.QUIT):
         running = False
     if Holder.Game.has_event(eventlist.SCENE_SPACE):
+        space_scene = SceneManager.Scene("./scene/scene1.yml")
+        Holder.Game.score = 0
         Holder.Game.set_actual_scene(space_scene)
     if Holder.Game.has_event(eventlist.SCENE_MENU):
+        Holder.Game.score = saving_system.get_highest_score()
         Holder.Game.set_actual_scene(menu_scene)
     if Holder.Game.has_event(eventlist.SCENE_TUTORIAL):
         tutorial_scene = SceneManager.Scene("./scene/tutorial.yml")
@@ -108,7 +113,7 @@ while running:
 
 
     if Holder.Game.has_event(eventlist.GAME_OVER):
-        space_scene = SceneManager.Scene("./scene/scene1.yml")
+        saving_system.new_score(Holder.Game.actual_scene.scene_name, Holder.Game.score)
         Holder.Game.set_actual_scene(menu_scene)
 
 
