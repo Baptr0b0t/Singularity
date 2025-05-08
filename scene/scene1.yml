@@ -51,6 +51,7 @@ game_objects:
       standard:
         #ScreenLimit:
         #  bounce: True
+        Reputation: {}
         Fuel: { }
         Health: { }
         PlayerUpgradeEventListener: { }
