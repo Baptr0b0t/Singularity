@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add Condition of score for visibility of button">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add score in mainmenu and redo save system">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Holder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Holder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/SceneManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/SceneManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/save.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/save/save.py" beforeDir="false" afterPath="$PROJECT_DIR$/save/save.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/menu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/menu.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/shop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/shop.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,15 +167,7 @@
       <workItem from="1746437390682" duration="3550000" />
       <workItem from="1746618217954" duration="511000" />
       <workItem from="1746629992490" duration="4686000" />
-      <workItem from="1746719113575" duration="5864000" />
-    </task>
-    <task id="LOCAL-00045" summary="Add RectangleRenderer&#10;Add color by name management">
-      <option name="closed" value="true" />
-      <created>1741181021292</created>
-      <option name="number" value="00045" />
-      <option name="presentableId" value="LOCAL-00045" />
-      <option name="project" value="LOCAL" />
-      <updated>1741181021294</updated>
+      <workItem from="1746719113575" duration="7265000" />
     </task>
     <task id="LOCAL-00046" summary="Change Menu.yml &#10;remove debug print">
       <option name="closed" value="true" />
@@ -561,7 +553,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746724127662</updated>
     </task>
-    <option name="localTasksCounter" value="94" />
+    <task id="LOCAL-00094" summary="Add score in mainmenu and redo save system">
+      <option name="closed" value="true" />
+      <created>1746725673883</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1746725673893</updated>
+    </task>
+    <option name="localTasksCounter" value="95" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +585,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Remove a lost print" />
     <MESSAGE value="Fix crash bug&#10;Comment annoying game restarter" />
     <MESSAGE value="UI reduce refresh cooldown&#10;Add pygame event manager&#10;Add Scrollwheel for zoom" />
     <MESSAGE value="Try to use Garbage collector less" />
@@ -610,7 +609,8 @@
     <MESSAGE value="Collision damage and stuck resolver fix" />
     <MESSAGE value="Add 2 more button level" />
     <MESSAGE value="Add Condition of score for visibility of button" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Condition of score for visibility of button" />
+    <MESSAGE value="Add score in mainmenu and redo save system" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add score in mainmenu and redo save system" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -623,6 +623,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746725428135" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746726807055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

@@ -211,3 +211,18 @@ game_objects:
           font_size: 70
           color: "BLANK"
       late_updated: { }
+
+
+  Score_UI:
+    position: [ 100, 500 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Score_UI: { }
+      late_updated: { }

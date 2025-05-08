@@ -8,6 +8,7 @@ def init_save_file():
     if not os.path.exists(SAVE_FILE):
         data = {
             "Highest_score": 0,
+            "money": 0,
             "level": {}
         }
         with open(SAVE_FILE, "w") as save:
@@ -51,3 +52,23 @@ def get_highest_score():
     except json.JSONDecodeError:
         print("Erreur de lecture du fichier JSON.")
         return 0
+
+def get_money():
+    try:
+        with open(SAVE_FILE, "r") as save:
+            data = json.load(save)
+        return data.get("money", 0)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return 0
+
+def set_money(amount):
+    try:
+        with open(SAVE_FILE, "r") as save:
+            data = json.load(save)
+    except (FileNotFoundError, json.JSONDecodeError):
+        data = {}
+
+    data["money"] = amount
+
+    with open(SAVE_FILE, "w") as save:
+        json.dump(data, save, indent=4)

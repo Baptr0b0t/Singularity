@@ -68,6 +68,7 @@ shop_scene = SceneManager.Scene("./scene/shop.yml")
 saving_system.init_save_file()
 Holder.Game.score = saving_system.get_highest_score()
 print("SCORE :", Holder.Game.score)
+Holder.Game.money = saving_system.get_money()
 
 Holder.Game.set_actual_scene(menu_scene)
 
@@ -82,6 +83,7 @@ while running:
     for event in Holder.Game.event_manager.pygame_events:
         if event.type == pygame.QUIT:
             print("Quit")
+            saving_system.set_money(Holder.Game.money)
             running = False
 
 
@@ -99,9 +101,21 @@ while running:
             Holder.Game.set_actual_scene(shop_scene)
 
     if Holder.Game.has_event(eventlist.QUIT):
+        saving_system.set_money(Holder.Game.money)
         running = False
+
+
+
     if Holder.Game.has_event(eventlist.SCENE_SPACE):
         space_scene = SceneManager.Scene("./scene/scene1.yml")
+        Holder.Game.score = 0
+        Holder.Game.set_actual_scene(space_scene)
+    if Holder.Game.has_event(eventlist.SCENE_SPACE_2):
+        space_scene = SceneManager.Scene("./scene/scene2.yml")
+        Holder.Game.score = 0
+        Holder.Game.set_actual_scene(space_scene)
+    if Holder.Game.has_event(eventlist.SCENE_SPACE_3):
+        space_scene = SceneManager.Scene("./scene/scene3.yml")
         Holder.Game.score = 0
         Holder.Game.set_actual_scene(space_scene)
     if Holder.Game.has_event(eventlist.SCENE_MENU):
@@ -114,6 +128,7 @@ while running:
 
     if Holder.Game.has_event(eventlist.GAME_OVER):
         saving_system.new_score(Holder.Game.actual_scene.scene_name, Holder.Game.score)
+        Holder.Game.score = saving_system.get_highest_score()
         Holder.Game.set_actual_scene(menu_scene)
 
 
