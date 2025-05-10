@@ -93,7 +93,7 @@ while running:
         pygame.display.toggle_fullscreen()
         Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
     if keys[pygame.K_ESCAPE]:
-        if Holder.Game.actual_scene is space_scene:
+        if Holder.Game.actual_scene.scene_name in ["scene1","scene2","scene3"]:
             Holder.Game.set_actual_scene(pause_scene)
 
     if keys[pygame.K_r]:
@@ -105,19 +105,16 @@ while running:
         running = False
 
 
+    if Holder.Game.has_event(eventlist.LOAD_SCENE_SPACE_1):
+        space_scene = SceneManager.Scene("./scene/scene1.yml")
+    if Holder.Game.has_event(eventlist.LOAD_SCENE_SPACE_2):
+        space_scene = SceneManager.Scene("./scene/scene2.yml")
+    if Holder.Game.has_event(eventlist.LOAD_SCENE_SPACE_3):
+        space_scene = SceneManager.Scene("./scene/scene3.yml")
 
     if Holder.Game.has_event(eventlist.SCENE_SPACE):
-        space_scene = SceneManager.Scene("./scene/scene1.yml")
-        Holder.Game.score = 0
         Holder.Game.set_actual_scene(space_scene)
-    if Holder.Game.has_event(eventlist.SCENE_SPACE_2):
-        space_scene = SceneManager.Scene("./scene/scene2.yml")
-        Holder.Game.score = 0
-        Holder.Game.set_actual_scene(space_scene)
-    if Holder.Game.has_event(eventlist.SCENE_SPACE_3):
-        space_scene = SceneManager.Scene("./scene/scene3.yml")
-        Holder.Game.score = 0
-        Holder.Game.set_actual_scene(space_scene)
+
     if Holder.Game.has_event(eventlist.SCENE_MENU):
         Holder.Game.score = saving_system.get_highest_score()
         Holder.Game.set_actual_scene(menu_scene)
