@@ -18,7 +18,7 @@ def collide_circle(obj1, obj2, obj1ratio=1, obj2ratio=1):
     ydistance = obj1.get_component(Gameobject.Transform).y - obj2.get_component(Gameobject.Transform).y
     distancesquared = xdistance**2 + ydistance**2
 
-    # Rayon approximé basé sur l’échelle du sprite
+    # Rayon basé sur l’échelle du sprite
     obj1radius = 0.5 * ((obj1.get_component(SpriteRenderer).scale[0] ** 2 + obj1.get_component(SpriteRenderer).scale[1] ** 2) ** 0.5)
     obj2radius = 0.5 * ((obj2.get_component(SpriteRenderer).scale[0] ** 2 + obj2.get_component(SpriteRenderer).scale[1] ** 2) ** 0.5)
 
