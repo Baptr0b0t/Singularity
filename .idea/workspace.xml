@@ -4,14 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="idk">
-      <change afterPath="$PROJECT_DIR$/resources/audio/sounds/purchase.mp3" afterDir="false" />
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add shooting + buying + notbuying sound">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/audio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/collision.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eventlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/eventlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/audio/sounds.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/sounds.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/audio/sounds/test.mp3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/menu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/menu.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,15 +175,7 @@
       <workItem from="1746719113575" duration="7871000" />
       <workItem from="1746775629154" duration="388000" />
       <workItem from="1746863320942" duration="367000" />
-      <workItem from="1746895116751" duration="914000" />
-    </task>
-    <task id="LOCAL-00047" summary="Add max_health_point param to Health">
-      <option name="closed" value="true" />
-      <created>1741185483248</created>
-      <option name="number" value="00047" />
-      <option name="presentableId" value="LOCAL-00047" />
-      <option name="project" value="LOCAL" />
-      <updated>1741185483248</updated>
+      <workItem from="1746895116751" duration="1667000" />
     </task>
     <task id="LOCAL-00048" summary="RelativeCamera change to have 2 vision scale">
       <option name="closed" value="true" />
@@ -570,7 +561,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746727014356</updated>
     </task>
-    <option name="localTasksCounter" value="96" />
+    <task id="LOCAL-00096" summary="Add shooting + buying + notbuying sound">
+      <option name="closed" value="true" />
+      <created>1746896200407</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1746896200409</updated>
+    </task>
+    <option name="localTasksCounter" value="97" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,7 +593,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="UI reduce refresh cooldown&#10;Add pygame event manager&#10;Add Scrollwheel for zoom" />
     <MESSAGE value="Try to use Garbage collector less" />
     <MESSAGE value="Add Grow on Hover cost" />
     <MESSAGE value="Add Relative Offset using middle mouse button" />
@@ -619,7 +617,8 @@
     <MESSAGE value="Add Condition of score for visibility of button" />
     <MESSAGE value="Add score in mainmenu and redo save system" />
     <MESSAGE value="idk" />
-    <option name="LAST_COMMIT_MESSAGE" value="idk" />
+    <MESSAGE value="Add shooting + buying + notbuying sound" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add shooting + buying + notbuying sound" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -628,10 +627,14 @@
           <url>file://$PROJECT_DIR$/component/render.py</url>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/component/collision.py</url>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746896012308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746896756206" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

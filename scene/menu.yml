@@ -156,7 +156,7 @@ game_objects:
       quick_updated: { }
       standard:
         Button:
-          event_on_click: "SCENE_SPACE"
+          event_on_click: "LOAD_SCENE_SPACE_1"
         Grow_on_Hover: { }
       late_updated: { }
   Play_level2_button:
@@ -172,7 +172,7 @@ game_objects:
       quick_updated: { }
       standard:
         Button:
-          event_on_click: "SCENE_SPACE_2"
+          event_on_click: "LOAD_SCENE_SPACE_2"
         Grow_on_Hover: { }
       late_updated:
         Score_for_Visible:
@@ -190,7 +190,7 @@ game_objects:
       quick_updated: { }
       standard:
         Button:
-          event_on_click: "SCENE_SPACE_3"
+          event_on_click: "LOAD_SCENE_SPACE_3"
         Grow_on_Hover: { }
       late_updated: { }
   Tutorial_text_button:
