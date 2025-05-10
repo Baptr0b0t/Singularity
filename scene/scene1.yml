@@ -49,8 +49,8 @@ game_objects:
       quick_updated:
         Velocity: { }
       standard:
-        #ScreenLimit:
-        #  bounce: True
+        EventOnNoHealth:
+          event: "GAME_OVER"
         Reputation: {}
         Fuel: { }
         Health: { }

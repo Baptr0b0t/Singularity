@@ -1,5 +1,5 @@
 import math
-
+import os
 import yaml
 
 from component.render import *
@@ -37,6 +37,7 @@ class Scene:
         self.sprite_group = pygame.sprite.Group()
         self.front_sprite_group = pygame.sprite.Group()
         self.scene_objects = []
+        self.scene_name = os.path.splitext(os.path.basename(scene_path_file))[0]
         Holder.Game.actual_scene = self #Une scene cree est automatiquement la scene active
         LARGEUR = Holder.Game.LARGEUR #used at eval()
         HAUTEUR = Holder.Game.HAUTEUR

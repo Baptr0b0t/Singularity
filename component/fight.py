@@ -2,6 +2,7 @@ import random
 
 import Gameobject
 import pygame
+import Holder
 from component.health import Health, DestroyOnNoHealth, ScoreOnDestroy
 from component.money import LootMoney
 from component.render import SpriteRenderer, RelativeCamera
@@ -55,11 +56,13 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
             #bullet.add_standard_component(DeleteOnCollision(bullet, screen_limit=False, planet_collision_ratio=0.5 ,seconds_before_start=.26))
             SceneManager.Scene.add_object(bullet)
 
+            Holder.Game.sound_player.play_sound(f"laser{random.randint(1, 2)}")
+
     def boot_up(self):
         Gameobject.Cooldown.reset(self)
 
 class Turret_Holder(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, fire_rate = 0.07, offset = 10, turret_pathfile = "./resources/enemy_ship_turret.png", scale = 0.3):
+    def __init__(self, parent, fire_rate = 0.07, offset = 10, turret_pathfile = "./resources/enemy_ship_turret.png", scale = 0.12):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, fire_rate)
         self.turret_path = turret_pathfile
@@ -91,7 +94,7 @@ class Turret_Holder(Gameobject.Component, Gameobject.Cooldown):
 
 
 class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, spaceship_parent, fire_rate = 0.2, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.06, rotation_speed = 0.05):
+    def __init__(self, parent, spaceship_parent, fire_rate = 0.2, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.12, rotation_speed = 0.05):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, fire_rate)
         self.speed = speed
@@ -137,6 +140,7 @@ class Turret_AI(Gameobject.Component, Gameobject.Cooldown):
         bullet.add_standard_component(BulletLifeTime(bullet, life_time= 7))
         #bullet.add_standard_component(DeleteOnCollision(bullet, screen_limit=False, planet_collision_ratio=1 ,seconds_before_start=.30))
         SceneManager.Scene.add_object(bullet)
+        Holder.Game.sound_player.play_sound(f"laser3", volume=0.01)
 
     def update(self):
         ai_target = self.space_ship.get_component(AITarget)
@@ -209,7 +213,7 @@ class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
         enemy.add_standard_component(Health(enemy))
         enemy.add_standard_component(DestroyOnNoHealth(enemy))
         enemy.add_standard_component(DamageCollision(enemy, ratio=0.8))
-        enemy.add_standard_component(ScoreOnDestroy(enemy, value=10))
+        enemy.add_standard_component(ScoreOnDestroy(enemy, value=1))
         enemy.add_standard_component(LootMoney(enemy))
         enemy.add_standard_component(AITargetMovement(enemy))
         enemy.add_standard_component(AITarget(enemy))

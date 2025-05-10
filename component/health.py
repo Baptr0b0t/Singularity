@@ -1,6 +1,7 @@
 import Holder
 import Gameobject
 import SceneManager
+import eventlist
 
 class Health(Gameobject.Component):
     """
@@ -56,12 +57,12 @@ class EventOnNoHealth(Gameobject.Component):
     def update(self):
         game_object = self.parent
         health = game_object.get_component(Health)
-        if health.health_point<0:
+        if health.health_point<=0:
             Holder.Game.post_event(eval(str("eventlist." + self.event)))
 
 
 class ScoreOnDestroy(Gameobject.Component):
-    def __init__(self, parent, value = 15):
+    def __init__(self, parent, value = 1):
         super().__init__(parent)
         self.value = value
 

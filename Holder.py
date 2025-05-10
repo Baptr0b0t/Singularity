@@ -47,7 +47,7 @@ class Game:
 
     @classmethod
     def set_actual_scene(cls, value):
-        print("Set : ",value)
+        print("Set scene : ",value.scene_name)
         cls.actual_scene = value
         if cls.actual_scene is not None:
             cls.actual_scene.boot_up_all()
@@ -60,7 +60,7 @@ class Game:
 
 
     #Money
-    money = 100
+    money = 0
 
     @classmethod
     def add_money(cls, value):

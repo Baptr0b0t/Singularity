@@ -2,7 +2,7 @@ import gc
 import math
 
 import pygame
-
+import save.save as saving_system
 import Gameobject
 import SceneManager
 import taglist
@@ -62,12 +62,15 @@ Holder.Game.event_manager = Holder.EventManager()
 Holder.Game.sound_player = SoundEffectManager()
 
 menu_scene = SceneManager.Scene("./scene/menu.yml")
-space_scene = SceneManager.Scene("./scene/scene1.yml")
 pause_scene = SceneManager.Scene("./scene/pause.yml")
 shop_scene = SceneManager.Scene("./scene/shop.yml")
 
-Holder.Game.set_actual_scene(menu_scene)
+saving_system.init_save_file()
+Holder.Game.score = saving_system.get_highest_score()
+print("SCORE :", Holder.Game.score)
+Holder.Game.money = saving_system.get_money()
 
+Holder.Game.set_actual_scene(menu_scene)
 
 # Boucle principale
 running = True
@@ -80,6 +83,7 @@ while running:
     for event in Holder.Game.event_manager.pygame_events:
         if event.type == pygame.QUIT:
             print("Quit")
+            saving_system.set_money(Holder.Game.money)
             running = False
 
 
@@ -89,7 +93,7 @@ while running:
         pygame.display.toggle_fullscreen()
         Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
     if keys[pygame.K_ESCAPE]:
-        if Holder.Game.actual_scene is space_scene:
+        if Holder.Game.actual_scene.scene_name in ["scene1","scene2","scene3"]:
             Holder.Game.set_actual_scene(pause_scene)
 
     if keys[pygame.K_r]:
@@ -97,14 +101,32 @@ while running:
             Holder.Game.set_actual_scene(shop_scene)
 
     if Holder.Game.has_event(eventlist.QUIT):
+        saving_system.set_money(Holder.Game.money)
         running = False
+
+
+    if Holder.Game.has_event(eventlist.LOAD_SCENE_SPACE_1):
+        space_scene = SceneManager.Scene("./scene/scene1.yml")
+    if Holder.Game.has_event(eventlist.LOAD_SCENE_SPACE_2):
+        space_scene = SceneManager.Scene("./scene/scene2.yml")
+    if Holder.Game.has_event(eventlist.LOAD_SCENE_SPACE_3):
+        space_scene = SceneManager.Scene("./scene/scene3.yml")
+
     if Holder.Game.has_event(eventlist.SCENE_SPACE):
         Holder.Game.set_actual_scene(space_scene)
+
     if Holder.Game.has_event(eventlist.SCENE_MENU):
+        Holder.Game.score = saving_system.get_highest_score()
         Holder.Game.set_actual_scene(menu_scene)
     if Holder.Game.has_event(eventlist.SCENE_TUTORIAL):
         tutorial_scene = SceneManager.Scene("./scene/tutorial.yml")
         Holder.Game.set_actual_scene(tutorial_scene)
+
+
+    if Holder.Game.has_event(eventlist.GAME_OVER):
+        saving_system.new_score(Holder.Game.actual_scene.scene_name, Holder.Game.score)
+        Holder.Game.score = saving_system.get_highest_score()
+        Holder.Game.set_actual_scene(menu_scene)
 
 
     # Dessin
