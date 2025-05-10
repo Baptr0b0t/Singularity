@@ -12,7 +12,7 @@ game_objects:
       quick_updated: { }
       standard:
         PlayMusic:
-          filename: "./resources/audio/Final flash of existence REMIX.mp3"
+          filename : "./resources/audio/Singularity_Main_Theme.mp3"
       late_updated: { }
   return_text_button:
     position: [LARGEUR//2, 100]
@@ -76,7 +76,7 @@ game_objects:
         Grow_on_Hover:
           cost: 20
       late_updated: { }
-  text_fuel_button:
+  text_fuel_text:
     position: [ LARGEUR-330, HAUTEUR-80 ]
     angle: 0
     tags: { }
@@ -87,10 +87,23 @@ game_objects:
       quick_updated: { }
       standard:
         FontRenderer:
-          texte: "+10 max health"
+          texte: "increase fuel"
+      late_updated: { }
+  text_fuel_text2:
+    position: [ LARGEUR-330, HAUTEUR-60 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "and refuel"
       late_updated: { }
   price_fuel_button:
-    position: [ LARGEUR-330, HAUTEUR-50 ]
+    position: [ LARGEUR-330, HAUTEUR-40 ]
     angle: 0
     tags: { }
     front_layer: false

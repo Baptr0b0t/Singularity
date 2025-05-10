@@ -1,3 +1,8 @@
 {
-    "test": "./resources/audio/sounds/test.mp3"
+    "laser1": "./resources/audio/sounds/laser-1.mp3",
+    "laser2": "./resources/audio/sounds/laser-2.mp3",
+    "laser3": "./resources/audio/sounds/laser-3.mp3",
+    "purchase": "./resources/audio/sounds/purchase.mp3",
+    "no_money": "./resources/audio/sounds/no_more_money.mp3",
+    "got_shot": "./resources/audio/sounds/got_shot.mp3"
 }

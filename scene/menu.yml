@@ -13,6 +13,7 @@ game_objects:
       standard:
         PlayMusic:
           filename: "./resources/audio/Final flash of existence REMIX.mp3"
+          volume : 0.7
       late_updated: { }
   ai_ship:
     position: [ LARGEUR//2, HAUTEUR//2+100 ]
@@ -142,8 +143,8 @@ game_objects:
           texte: "QUIT"
           font_size: 40
       late_updated: { }
-  Play_button:
-    position: [LARGEUR//2, HAUTEUR//2]
+  Play_level1_button:
+    position: [LARGEUR//2, 200]
     angle: 0
     tags: { }
     front_layer : true
@@ -155,7 +156,41 @@ game_objects:
       quick_updated: { }
       standard:
         Button:
-          event_on_click: "SCENE_SPACE"
+          event_on_click: "LOAD_SCENE_SPACE_1"
+        Grow_on_Hover: { }
+      late_updated: { }
+  Play_level2_button:
+    position: [LARGEUR//2, 400]
+    angle: 0
+    tags: { }
+    front_layer : true
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/ui/button_main.png"
+          scale_factor: 0.7
+      quick_updated: { }
+      standard:
+        Button:
+          event_on_click: "LOAD_SCENE_SPACE_2"
+        Grow_on_Hover: { }
+      late_updated:
+        Score_for_Visible:
+          score_needed: 10
+  Play_level3_button:
+    position: [LARGEUR//2, 600]
+    angle: 0
+    tags: { }
+    front_layer : true
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/ui/button_main.png"
+          scale_factor: 0.7
+      quick_updated: { }
+      standard:
+        Button:
+          event_on_click: "LOAD_SCENE_SPACE_3"
         Grow_on_Hover: { }
       late_updated: { }
   Tutorial_text_button:
@@ -175,4 +210,19 @@ game_objects:
           texte: "Tutorial"
           font_size: 70
           color: "BLANK"
+      late_updated: { }
+
+
+  Score_UI:
+    position: [ 100, 500 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Score_UI: { }
       late_updated: { }
