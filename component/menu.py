@@ -41,6 +41,9 @@ class Button_with_cost(Button):
                 game_holder.remove_money(self.cost)
 
                 Holder.Game.post_event(SceneManager.resolve_event(self.event_on_click))
+                Holder.Game.sound_player.play_sound(f"purchase")
+            else:
+                Holder.Game.sound_player.play_sound(f"no_money")
 
 
 

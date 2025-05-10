@@ -81,9 +81,11 @@ class SoundEffectManager:
         self.sounds[name] = pygame.mixer.Sound(filepath)
         print(f"Son chargé : {name}")
 
-    def play_sound(self, name):
+    def play_sound(self, name, volume = 1):
         if name in self.sounds:
+            self.sounds[name].set_volume(volume)
             self.sounds[name].play()
+
             print(f"Son joué : {name}")
         else:
             print(f"Son non trouvé : {name}")

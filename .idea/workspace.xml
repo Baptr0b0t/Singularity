@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add score in mainmenu and redo save system">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="idk">
+      <change afterPath="$PROJECT_DIR$/resources/audio/sounds/purchase.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Holder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Holder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/save.py" beforeDir="false" afterPath="$PROJECT_DIR$/save/save.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/menu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/menu.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/shop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/shop.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/audio.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/sounds.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/sounds.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/sounds/test.mp3" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +59,11 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Baptiste\PycharmProjects\Singularity\resources\audio\sounds" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="Singularity" />
@@ -167,15 +173,10 @@
       <workItem from="1746437390682" duration="3550000" />
       <workItem from="1746618217954" duration="511000" />
       <workItem from="1746629992490" duration="4686000" />
-      <workItem from="1746719113575" duration="7265000" />
-    </task>
-    <task id="LOCAL-00046" summary="Change Menu.yml &#10;remove debug print">
-      <option name="closed" value="true" />
-      <created>1741183151422</created>
-      <option name="number" value="00046" />
-      <option name="presentableId" value="LOCAL-00046" />
-      <option name="project" value="LOCAL" />
-      <updated>1741183151422</updated>
+      <workItem from="1746719113575" duration="7871000" />
+      <workItem from="1746775629154" duration="388000" />
+      <workItem from="1746863320942" duration="367000" />
+      <workItem from="1746895116751" duration="914000" />
     </task>
     <task id="LOCAL-00047" summary="Add max_health_point param to Health">
       <option name="closed" value="true" />
@@ -561,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746725673893</updated>
     </task>
-    <option name="localTasksCounter" value="95" />
+    <task id="LOCAL-00095" summary="idk">
+      <option name="closed" value="true" />
+      <created>1746727014355</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1746727014356</updated>
+    </task>
+    <option name="localTasksCounter" value="96" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -585,7 +594,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix crash bug&#10;Comment annoying game restarter" />
     <MESSAGE value="UI reduce refresh cooldown&#10;Add pygame event manager&#10;Add Scrollwheel for zoom" />
     <MESSAGE value="Try to use Garbage collector less" />
     <MESSAGE value="Add Grow on Hover cost" />
@@ -610,7 +618,8 @@
     <MESSAGE value="Add 2 more button level" />
     <MESSAGE value="Add Condition of score for visibility of button" />
     <MESSAGE value="Add score in mainmenu and redo save system" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add score in mainmenu and redo save system" />
+    <MESSAGE value="idk" />
+    <option name="LAST_COMMIT_MESSAGE" value="idk" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -623,6 +632,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746726807055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746896012308" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
