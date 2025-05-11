@@ -8,7 +8,7 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/shop.webp"
-          scale_factor: 0.6
+          scale_factor: 1
       quick_updated: { }
       standard:
         PlayMusic:
@@ -136,7 +136,7 @@ game_objects:
       late_updated: { }
 
   Money_UI:
-    position: [ 100, 400 ]
+    position: [LARGEUR-120, HAUTEUR-300]
     angle: 0
     tags: { }
     front_layer : true
@@ -145,6 +145,7 @@ game_objects:
         SpriteRenderer: { }
       quick_updated: { }
       standard:
-        FontRenderer: { }
+        FontRenderer:
+          font_size: 70
         Money_UI: { }
       late_updated: { }
