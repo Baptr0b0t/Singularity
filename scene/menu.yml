@@ -16,10 +16,10 @@ game_objects:
           volume : 0.7
       late_updated: { }
   ai_ship:
-    position: [ LARGEUR//2, HAUTEUR//2+100 ]
+    position: [ 0, 0 ]
     angle: 0
     tags:
-      - AI_TARGETED
+      - AI_SWARM
     front_layer: False
     components:
       self_updated:
@@ -34,9 +34,11 @@ game_objects:
         PlanetCollision:
           ratio: 0.8
           restitution: 1
-        AITargetMovement:
-          max_acceleration: 40
-        AITarget: { }
+        AISwarmBehavior:
+          stop_min_distance: 10
+          separation_distance: 200
+          acceleration: 150
+        AITarget: {}
         AIMaxSpeed: { }
         Gravity: { }
         SpeedLimit:
@@ -48,10 +50,10 @@ game_objects:
         Velocity_Arrow: { }
         Turret_Holder: { }
   ai_ship2:
-    position: [ LARGEUR//2, HAUTEUR//2-100 ]
+    position: [ LARGEUR, HAUTEUR ]
     angle: 0
     tags:
-      - AI_TARGETED
+      - AI_SWARM
     front_layer: False
     components:
       self_updated:
@@ -66,9 +68,11 @@ game_objects:
         PlanetCollision:
           ratio: 0.8
           restitution: 1
-        AITargetMovement:
-          max_acceleration: 40
-        AITarget: { }
+        AISwarmBehavior:
+          stop_min_distance: 10
+          separation_distance: 200
+          acceleration: 150
+        AITarget: {}
         AIMaxSpeed: { }
         Gravity: { }
         SpeedLimit:
@@ -83,7 +87,7 @@ game_objects:
     position: [ LARGEUR//2+300, HAUTEUR//2+200 ]
     angle: 0
     tags:
-      - AI_TARGETED
+      - AI_SWARM
     front_layer: False
     components:
       self_updated:
@@ -98,9 +102,45 @@ game_objects:
         PlanetCollision:
           ratio: 0.8
           restitution: 1
-        AITargetMovement:
-          max_acceleration: 40
-        AITarget: { }
+        AISwarmBehavior:
+          stop_min_distance: 10
+          separation_distance: 200
+          acceleration: 150
+        AITarget: {}
+        AIMaxSpeed: { }
+        Gravity: { }
+        SpeedLimit:
+          speedlimit: 80
+      late_updated:
+        ScreenLimit:
+          bounce: True
+        SpaceMovement: { }
+        Velocity_Arrow: { }
+        Turret_Holder: { }
+  ai_ship4:
+    position: [ LARGEUR//2-300, HAUTEUR//2-200 ]
+    angle: 0
+    tags:
+      - AI_SWARM
+    front_layer: False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/enemy_ship_1.png"
+          scale_factor: 0.3
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 1000
+        PlanetCollision:
+          ratio: 0.8
+          restitution: 1
+        AISwarmBehavior:
+          stop_min_distance: 10
+          separation_distance: 200
+          acceleration: 150
+        AITarget: {}
         AIMaxSpeed: { }
         Gravity: { }
         SpeedLimit:

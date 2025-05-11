@@ -152,13 +152,14 @@ class AITargetMovement(Gameobject.Component):
 
 
 class AISwarmBehavior(Gameobject.Component):
-    def __init__(self, parent, view_radius=4000, separation_distance=700, max_neighbors=10, rotation_speed=0.05, acceleration=90):
+    def __init__(self, parent, view_radius=4000, separation_distance=700, max_neighbors=10, rotation_speed=0.05, acceleration=90, stop_min_distance = 30):
         super().__init__(parent)
         self.view_radius = view_radius
         self.separation_distance = separation_distance
         self.max_neighbors = max_neighbors
         self.rotation_speed = rotation_speed
         self.acceleration = acceleration
+        self.stop_min_distance = stop_min_distance
 
     def update(self):
         game_object = self.parent
@@ -232,7 +233,7 @@ class AISwarmBehavior(Gameobject.Component):
 
         # Applique l’accélération vers l’avant si bien orienté
         if abs(angle_diff) < math.radians(10):
-            min_d = 30  # trop proche
+            min_d = self.stop_min_distance  # trop proche
             max_d = self.view_radius  # trop loin
             distance_to_steering = math.hypot(steer_x, steer_y)
             clamped_distance = max(min(distance_to_steering, max_d), min_d)

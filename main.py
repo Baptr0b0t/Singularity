@@ -107,10 +107,13 @@ while running:
 
     if Holder.Game.has_event(eventlist.LOAD_SCENE_SPACE_1):
         space_scene = SceneManager.Scene("./scene/scene1.yml")
+        Holder.Game.set_actual_scene(space_scene)
     if Holder.Game.has_event(eventlist.LOAD_SCENE_SPACE_2):
         space_scene = SceneManager.Scene("./scene/scene2.yml")
+        Holder.Game.set_actual_scene(space_scene)
     if Holder.Game.has_event(eventlist.LOAD_SCENE_SPACE_3):
         space_scene = SceneManager.Scene("./scene/scene3.yml")
+        Holder.Game.set_actual_scene(space_scene)
 
     if Holder.Game.has_event(eventlist.SCENE_SPACE):
         Holder.Game.set_actual_scene(space_scene)
