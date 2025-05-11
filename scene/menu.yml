@@ -232,7 +232,9 @@ game_objects:
         Button:
           event_on_click: "LOAD_SCENE_SPACE_3"
         Grow_on_Hover: { }
-      late_updated: { }
+      late_updated:
+        Score_for_Visible:
+          score_needed: 50
   Tutorial_text_button:
     position: [LARGEUR//2, HAUTEUR//2-200]
     angle: 0
