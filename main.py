@@ -132,6 +132,7 @@ while running:
 
 
     if Holder.Game.has_event(eventlist.GAME_OVER):
+        saving_system.new_score(space_scene.scene_name, Holder.Game.score)
         Holder.Game.set_actual_scene(gameover_scene)
 
 

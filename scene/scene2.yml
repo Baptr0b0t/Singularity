@@ -63,7 +63,7 @@ game_objects:
           restitution : 0.95
           damage_on_other: 10
         PlayerSpaceMovement:
-          acceleration_speed: 150
+          acceleration_speed: 100
         Gravity: { }
         RelativeCamera: {}
         PlayerShot: { }
@@ -81,7 +81,8 @@ game_objects:
       self_updated: { }
       quick_updated: { }
       standard:
-        EnemySpawner: {}
+        EnemySpawner:
+          level: 2
       late_updated: { }
   ai_ship_generator_2:
     position: [ -3000, 1000 ]
@@ -92,7 +93,20 @@ game_objects:
       self_updated: { }
       quick_updated: { }
       standard:
-        EnemySpawner: { }
+        EnemySpawner:
+          level: 2
+      late_updated: { }
+  ai_ship_generator_3:
+    position: [ 3000, 1000 ]
+    angle: 0
+    tags: { }
+    front_layer: False
+    components:
+      self_updated: { }
+      quick_updated: { }
+      standard:
+        EnemySpawner:
+          level: 2
       late_updated: { }
   planet1:
     position: [1000, -1000]

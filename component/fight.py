@@ -3,7 +3,7 @@ import random
 import Gameobject
 import pygame
 import Holder
-from component.health import Health, DestroyOnNoHealth, ScoreOnDestroy
+from component.health import Health, DestroyOnNoHealth, ScoreOnDestroy, HealthRegen
 from component.money import LootMoney
 from component.render import SpriteRenderer, RelativeCamera
 import SceneManager
@@ -16,7 +16,7 @@ from taglist import AI_SWARM
 
 
 class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
-    def __init__(self, parent, fire_rate = 0.07, speed = 220, bullet_pathfile = "./resources/blast_red.png", scale = 0.12):
+    def __init__(self, parent, fire_rate = 0.07, speed = 320, bullet_pathfile = "./resources/blast_red.png", scale = 0.12):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, fire_rate)
         self.speed = speed
@@ -182,10 +182,11 @@ class BulletLifeTime(Gameobject.Component,Gameobject.Cooldown):
         return
 
 class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
-    def __init__(self, parent, time = 7, spawn_radius=30):
+    def __init__(self, parent, time = 7, spawn_radius=30, level = 1):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, time)
         self.spawn_radius = spawn_radius
+        self.level = level
 
     def update(self):
         if not Gameobject.Cooldown.is_ready(self):
@@ -212,11 +213,12 @@ class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
         enemy.add_standard_component(Mass(enemy, mass=1000))
         enemy.add_standard_component(PlanetCollision(enemy, ratio=0.8, restitution=1))
         enemy.add_standard_component(Health(enemy))
+        enemy.add_standard_component(HealthRegen(enemy, 0.5*self.level))
         enemy.add_standard_component(DestroyOnNoHealth(enemy))
         enemy.add_standard_component(DamageCollision(enemy, ratio=0.8))
         enemy.add_standard_component(ScoreOnDestroy(enemy, value=1))
         enemy.add_standard_component(LootMoney(enemy))
-        enemy.add_standard_component(AITargetMovement(enemy))
+        enemy.add_standard_component(AITargetMovement(enemy, max_acceleration=80+20*self.level))
         enemy.add_standard_component(AITarget(enemy))
         enemy.add_standard_component(AISwarmBehavior(enemy))
         enemy.add_standard_component(AIMaxSpeed(enemy))

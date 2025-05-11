@@ -149,7 +149,7 @@ class Stat_UI(Gameobject.Component):
     def boot_up(self):
         game_object = self.parent
         holder = Holder.Game
-        texte = "Shot done : " + str(round(holder.Shot_done)) + ", Collision : " + str(round(holder.Collision_done)) + ", Money received : " + str(round(holder.Money_received)) + ", Enemy killed : " + str(round(holder.Enemy_killed))
+        texte = "Shot fired : " + str(round(holder.Shot_done)) + ", Collision : " + str(round(holder.Collision_done)) + ", Money received : " + str(round(holder.Money_received)) + ", Enemy killed : " + str(round(holder.Enemy_killed))
         game_object.get_component(FontRenderer).change_text(texte, self.color, self.size)
 
 

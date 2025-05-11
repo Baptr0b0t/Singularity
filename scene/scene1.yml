@@ -63,7 +63,7 @@ game_objects:
           restitution : 0.95
           damage_on_other: 10
         PlayerSpaceMovement:
-          acceleration_speed: 150
+          acceleration_speed: 100
         Gravity: { }
         RelativeCamera: {}
         PlayerShot: { }
@@ -167,7 +167,7 @@ game_objects:
         Mass:
           mass: 59740000000000000000000
         PlanetCollision:
-          ratio: 0.7
+          ratio: 0.58
           restitution: 1
           damage_on_other: 10
         ConstantRotation: { }
@@ -279,7 +279,7 @@ game_objects:
         Mass:
           mass: 59740000000000000000000
         PlanetCollision:
-          ratio: 0.7
+          ratio: 0.58
           restitution: 1
           damage_on_other: 10
         ConstantRotation: { }
