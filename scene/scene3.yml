@@ -16,7 +16,7 @@ game_objects:
         #RelativeCamera:
         #  distance: 10
         PlayMusic:
-          filename : "./resources/audio/Singularity_Main_Theme.mp3"
+          filename : "./resources/audio/Singularity_Fight.mp3"
         #PlaySound:
         #  name: "test"
       late_updated: { }
@@ -121,7 +121,18 @@ game_objects:
         EnemySpawner:
           level: 2
       late_updated: { }
-  Station_BOSS:
+  meteor_generator:
+    position: [ 0, 0 ]
+    angle: 0
+    tags: { }
+    front_layer: False
+    components:
+      self_updated: { }
+      quick_updated: { }
+      standard:
+        MeteorSpawner: { }
+      late_updated: { }
+  Station_Boss:
     position: [ 3000, 900 ]
     angle: 0
     tags:

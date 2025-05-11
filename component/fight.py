@@ -232,3 +232,53 @@ class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
 
         # Ajouter à la scène
         SceneManager.Scene.add_object(enemy)
+
+
+
+class MeteorSpawner(Gameobject.Component,Gameobject.Cooldown):
+    def __init__(self, parent, time = 7, spawn_radius=4000):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, time)
+        self.spawn_radius = spawn_radius
+
+    def update(self):
+        if not Gameobject.Cooldown.is_ready(self):
+            return
+        self.spawn_meteor()
+        Gameobject.Cooldown.reset(self)
+        return
+
+    def spawn_meteor(self):
+        transform = self.parent.get_component(Gameobject.Transform)
+        angle_rad = random.uniform(0, 2 * math.pi)
+        rotation_rad = random.uniform(0, 2 * math.pi)
+        speed_angle_rad = random.uniform(0, 2 * math.pi)
+
+        speed = random.randint(150, 500)
+        size = random.randrange(2, 10)/10
+        mass = size * 1000
+        spawn_x = transform.x + self.spawn_radius * math.cos(angle_rad)
+        spawn_y = transform.y + self.spawn_radius * math.sin(angle_rad)
+        speed_x = speed * math.cos(speed_angle_rad)
+        speed_y = speed * math.sin(speed_angle_rad)
+        meteor = Gameobject.GameObject((spawn_x, spawn_y), angle=rotation_rad)
+
+        # Self updated component
+        meteor.add_self_updated_component(SpriteRenderer(meteor, "./resources/asteroide.png", size))
+
+        # Quick updated component
+        meteor.add_quick_updated_component(Gameobject.Velocity(meteor, x=speed_x, y=speed_y))
+
+        # Standard components
+        meteor.add_standard_component(Mass(meteor, mass=mass))
+        meteor.add_standard_component(PlanetCollision(meteor, ratio=0.6, restitution=1, damage_on_other= 5))
+        meteor.add_standard_component(Health(meteor, health_point=mass/10, max_health_point=mass/10))
+        meteor.add_standard_component(DestroyOnNoHealth(meteor))
+        meteor.add_standard_component(Gravity(meteor))
+        meteor.add_standard_component(RelativeCamera(meteor))
+
+        # Late updated components
+        meteor.add_late_updated_component(SpaceMovement(meteor))
+
+        # Ajouter à la scène
+        SceneManager.Scene.add_object(meteor)

@@ -109,6 +109,17 @@ game_objects:
         EnemySpawner:
           level: 2
       late_updated: { }
+  meteor_generator:
+    position: [ 0, 0 ]
+    angle: 0
+    tags: { }
+    front_layer: False
+    components:
+      self_updated: { }
+      quick_updated: { }
+      standard:
+        MeteorSpawner: { }
+      late_updated: { }
   planet1:
     position: [1000, -1000]
     angle: 0
