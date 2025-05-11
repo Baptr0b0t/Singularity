@@ -277,8 +277,22 @@ game_objects:
         FontRenderer:
           texte: "Level 3 : 100 points"
       late_updated: { }
+
+  Singularity_tittle:
+    position: [LARGEUR//2, 60]
+    angle: 0
+    tags: { }
+    front_layer : true
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/Title.png"
+          scale_factor: 0.7
+      quick_updated: { }
+      standard: { }
+      late_updated: { }
   Tutorial_text_button:
-    position: [LARGEUR//2+400, 80]
+    position: [LARGEUR//2+400, 200]
     angle: 0
     tags: { }
     front_layer : true
@@ -292,7 +306,7 @@ game_objects:
         Grow_on_Hover: { }
         FontRenderer:
           texte: "Tutorial"
-          font_size: 70
+          font_size: 60
           color: "BLANK"
       late_updated: { }
   Reset_text_button:
