@@ -62,6 +62,13 @@ class Game:
     #Money
     money = 0
 
+
+    #Stat
+    Shot_done = 0
+    Enemy_killed = 0
+    Money_received = 0
+    Collision_done = 0
+
     @classmethod
     def add_money(cls, value):
         cls.money+=value

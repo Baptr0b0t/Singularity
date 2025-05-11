@@ -137,6 +137,22 @@ class Score_UI(Gameobject.Component, Gameobject.Cooldown):
             game_object.get_component(FontRenderer).change_text(texte, self.color, self.size)
             Gameobject.Cooldown.reset(self)
 
+class Stat_UI(Gameobject.Component):
+    """
+    Need FontRenderer
+    :param color exemple value (255,255,255) or "BLANK"
+    """
+    def __init__(self, parent, color = (255,255,255), size = 1):
+        Gameobject.Component.__init__(self, parent)
+        self.color = color
+        self.size = size
+    def boot_up(self):
+        game_object = self.parent
+        holder = Holder.Game
+        texte = "Shot done :" + str(round(holder.Shot_done)) + "Collision :" + str(round(holder.Collision_done)) + "Money received :" + str(round(holder.Money_received)) + "Enemy killed :" + str(round(holder.Enemy_killed))
+        game_object.get_component(FontRenderer).change_text(texte, self.color, self.size)
+
+
 class Health_Rectangle(Gameobject.Component, Gameobject.Cooldown):
     """
     :param color exemple value (255,255,255) or "BLANK"

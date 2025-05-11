@@ -11,6 +11,7 @@ game_objects:
           scale_factor: 0.6
       quick_updated: { }
       standard:
+        Scene_do_after: {}
         PlayMusic:
           filename: "./resources/audio/Final flash of existence REMIX.mp3"
       late_updated: { }
@@ -47,4 +48,17 @@ game_objects:
           texte: "MAIN MENU"
           font_size: 70
           color: "BLANK"
+      late_updated: { }
+  Score_UI:
+    position: [ LARGEUR//2 , HAUTEUR//2 +100 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Stat_UI: { }
       late_updated: { }

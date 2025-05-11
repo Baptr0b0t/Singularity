@@ -57,6 +57,7 @@ class PlayerShot(Gameobject.Component, Gameobject.Cooldown):
             SceneManager.Scene.add_object(bullet)
 
             Holder.Game.sound_player.play_sound(f"laser{random.randint(1, 2)}")
+            Holder.Game.Shot_done += 1
 
     def boot_up(self):
         Gameobject.Cooldown.reset(self)

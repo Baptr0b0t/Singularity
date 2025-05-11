@@ -114,6 +114,9 @@ class PlanetCollision(Gameobject.Component):
                         obj.get_component(Health).health_point -= self.damage_on_other * damage_proportion
                     if game_object.has_component(Health):
                         game_object.get_component(Health).health_point -= obj_collision.damage_on_other * damage_proportion
+                    if obj.has_tag(PLAYER) or game_object.has_tag(PLAYER):
+                        Holder.Game.sound_player.play_sound(f"planet_collision", volume=0.2)
+
 
 
 class ScreenLimit(Gameobject.Component):
@@ -208,6 +211,8 @@ class DamageCollision(Gameobject.Component, Gameobject.Cooldown):
             if collide_circle(game_object, obj, self.planet_collision_ratio, obj.get_component(PlanetCollision).collision_ratio):
                 if obj.has_component(Health):
                     obj.get_component(Health).health_point -= self.damage_on_other
+                    if obj.has_tag(PLAYER):
+                        Holder.Game.sound_player.play_sound(f"got_shot", volume=0.8)
                 if self.do_delete:
                     SceneManager.Scene.remove_object(game_object)
 
