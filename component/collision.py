@@ -24,6 +24,35 @@ def collide_circle(obj1, obj2, obj1ratio=1, obj2ratio=1):
 
     return distancesquared <= (obj1radius * obj1ratio + obj2radius * obj2ratio) ** 2
 
+def get_penetration_depth(obj1, obj2, obj1ratio=1, obj2ratio=1):
+    """
+    Renvoie la profondeur de pénétration entre deux objets circulaires.
+    Si les objets ne se chevauchent pas, retourne 0.
+    """
+    # Obtenir les positions
+    pos1 = obj1.get_component(Gameobject.Transform)
+    pos2 = obj2.get_component(Gameobject.Transform)
+
+    # Distance entre les centres
+    dx = pos1.x - pos2.x
+    dy = pos1.y - pos2.y
+    center_distance = (dx**2 + dy**2) ** 0.5
+
+    # Calcul des rayons basés sur l’échelle
+    scale1 = obj1.get_component(SpriteRenderer).scale
+    scale2 = obj2.get_component(SpriteRenderer).scale
+
+    radius1 = 0.5 * ((scale1[0] ** 2 + scale1[1] ** 2) ** 0.5) * obj1ratio
+    radius2 = 0.5 * ((scale2[0] ** 2 + scale2[1] ** 2) ** 0.5) * obj2ratio
+
+    # Somme des rayons
+    sum_radii = radius1 + radius2
+
+    # Profondeur de pénétration
+    penetration = sum_radii - center_distance
+    return max(0, penetration)  # Retourne 0 si pas de pénétration
+
+
 
 class PlanetCollision(Gameobject.Component):
     """
@@ -88,13 +117,7 @@ class PlanetCollision(Gameobject.Component):
 
                     self.handled_collision.append(obj)
 
-                    #Stuck Resolver - Start
-                    radius_self =  self.collision_ratio
-                    radius_other = obj_collision.collision_ratio
-
-                    distance = math.sqrt((obj_transform.x - transform.x) ** 2 + (obj_transform.y - transform.y) ** 2)
-
-                    penetration_depth = radius_self + radius_other - distance
+                    penetration_depth = get_penetration_depth(game_object, obj, self.collision_ratio, obj.get_component(PlanetCollision).collision_ratio)
                     if penetration_depth > 0:
                         total_mass = mass + obj_mass
                         if total_mass == 0:
