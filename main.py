@@ -55,7 +55,7 @@ def appliquer_filtre_8bit(surface, largeur, hauteur, facteur):
 
 clock = pygame.time.Clock()
 
-#pygame.display.toggle_fullscreen()
+pygame.display.toggle_fullscreen()
 Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
 
 Holder.Game.music_player = MusicPlayer()
@@ -95,7 +95,7 @@ while running:
         pygame.display.toggle_fullscreen()
         Holder.Game.LARGEUR, Holder.Game.HAUTEUR = pygame.display.get_surface().get_size()
     if keys[pygame.K_ESCAPE]:
-        if Holder.Game.actual_scene.scene_name in ["scene1","scene2","scene3"]:
+        if Holder.Game.actual_scene is space_scene:
             Holder.Game.set_actual_scene(pause_scene)
 
     if keys[pygame.K_r]:
@@ -121,15 +121,16 @@ while running:
         Holder.Game.set_actual_scene(space_scene)
 
     if Holder.Game.has_event(eventlist.SCENE_MENU):
-        saving_system.new_score(space_scene.scene_name, Holder.Game.score)
+        if space_scene:
+            saving_system.new_score(space_scene.scene_name, Holder.Game.score)
         Holder.Game.Shot_done = 0
         Holder.Game.Enemy_killed = 0
         Holder.Game.Money_received = 0
         Holder.Game.Collision_done = 0
         Holder.Game.set_actual_scene(menu_scene)
     if Holder.Game.has_event(eventlist.SCENE_TUTORIAL):
-        tutorial_scene = SceneManager.Scene("./scene/tutorial.yml")
-        Holder.Game.set_actual_scene(tutorial_scene)
+        space_scene = SceneManager.Scene("./scene/tutorial.yml")
+        Holder.Game.set_actual_scene(space_scene)
 
 
     if Holder.Game.has_event(eventlist.GAME_OVER):

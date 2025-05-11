@@ -194,8 +194,34 @@ game_objects:
         FontRenderer:
           texte: "r : shop"
       late_updated: { }
+  text_mouse:
+    position: [ LARGEUR-330, HAUTEUR-300 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "Middle-click + drag : move the camera"
+      late_updated: { }
+  text_scroll:
+    position: [ LARGEUR-330, HAUTEUR-250 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "Scroll : zoom"
+      late_updated: { }
   FPS_UI:
-    position: [ 100, 80 ]
+    position: [ 120, 80 ]
     angle: 0
     tags: { }
     front_layer : True
@@ -208,7 +234,7 @@ game_objects:
         FPS_UI: { }
       late_updated: { }
   Health_UI:
-    position: [ 100, 130 ]
+    position: [ 120, 130 ]
     angle: 0
     tags: { }
     front_layer : True
@@ -221,7 +247,7 @@ game_objects:
         Health_UI: { }
       late_updated: { }
   Coordinate_UI:
-    position: [ 100, 200 ]
+    position: [ 120, 200 ]
     angle: 0
     tags: { }
     front_layer : True
@@ -234,7 +260,7 @@ game_objects:
         Coordinate_UI: { }
       late_updated: { }
   Speed_UI:
-    position: [ 100, 300 ]
+    position: [ 120, 300 ]
     angle: 0
     tags: { }
     front_layer : True
@@ -247,7 +273,7 @@ game_objects:
         Speed_UI: { }
       late_updated: { }
   Money_UI:
-    position: [ 100, 400 ]
+    position: [ 120, 400 ]
     angle: 0
     tags: { }
     front_layer : True
@@ -259,9 +285,22 @@ game_objects:
         FontRenderer: { }
         Money_UI: { }
       late_updated: { }
+  Score_UI:
+    position: [ 120, 500 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Score_UI: { }
+      late_updated: { }
 
-  Rectangle_UI:
-    position: [40, HAUTEUR//2 - 60]
+  Fuel_Rectangle_UI:
+    position: [60, 350]
     angle: 0
     tags: { }
     front_layer : True

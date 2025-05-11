@@ -236,7 +236,7 @@ game_objects:
         Score_for_Visible:
           score_needed: 50
   Tutorial_text_button:
-    position: [LARGEUR//2, HAUTEUR//2+400]
+    position: [LARGEUR//2+400, 80]
     angle: 0
     tags: { }
     front_layer : true

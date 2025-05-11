@@ -4,20 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Fix of ratio collision and add no fuel sound">
-      <change afterPath="$PROJECT_DIR$/resources/audio/sounds/no_more_bullet.mp3" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scene/scene3.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/scene/win.yml" afterDir="false" />
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add scene 3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/ai.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/audio.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/audio.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/render.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/render.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eventlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/eventlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Holder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Holder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/menu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/menu.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/pause.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/pause.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scene/scene1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene1.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scene/scene2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/taglist.py" beforeDir="false" afterPath="$PROJECT_DIR$/taglist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/scene3.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene3.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/shop.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/shop.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/tutorial.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/tutorial.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,24 +44,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Python.Holder.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.movement.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/Baptiste/PycharmProjects/Singularity/scene",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Python.Holder.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.movement.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Baptiste/PycharmProjects/Singularity/scene&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Baptiste\PycharmProjects\Singularity\scene" />
@@ -187,15 +184,8 @@
       <workItem from="1746863320942" duration="367000" />
       <workItem from="1746895116751" duration="6941000" />
       <workItem from="1746953840204" duration="7378000" />
-      <workItem from="1746962054666" duration="7970000" />
-    </task>
-    <task id="LOCAL-00057" summary="Add Money_UI&#10;Use money on upgrade&#10;Draft of find_by_tag, no object found bug">
-      <option name="closed" value="true" />
-      <created>1742295444110</created>
-      <option name="number" value="00057" />
-      <option name="presentableId" value="LOCAL-00057" />
-      <option name="project" value="LOCAL" />
-      <updated>1742295444111</updated>
+      <workItem from="1746962054666" duration="8775000" />
+      <workItem from="1746979292208" duration="1901000" />
     </task>
     <task id="LOCAL-00058" summary="Fix damage on player when shooting and pause the game&#10;Add more boot_up function usage">
       <option name="closed" value="true" />
@@ -581,7 +571,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746965623341</updated>
     </task>
-    <option name="localTasksCounter" value="106" />
+    <task id="LOCAL-00106" summary="Add scene 3">
+      <option name="closed" value="true" />
+      <created>1746972065618</created>
+      <option name="number" value="00106" />
+      <option name="presentableId" value="LOCAL-00106" />
+      <option name="project" value="LOCAL" />
+      <updated>1746972065618</updated>
+    </task>
+    <option name="localTasksCounter" value="107" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +603,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add resource" />
     <MESSAGE value="Draft Tutorial" />
     <MESSAGE value="Add play button png" />
     <MESSAGE value="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same" />
@@ -630,7 +627,8 @@
     <MESSAGE value="Add ultra damage to black hole" />
     <MESSAGE value="Add score visible for button 3" />
     <MESSAGE value="Fix of ratio collision and add no fuel sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix of ratio collision and add no fuel sound" />
+    <MESSAGE value="Add scene 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add scene 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -643,6 +641,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746971984010" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746981027143" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
