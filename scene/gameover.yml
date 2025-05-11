@@ -31,24 +31,6 @@ game_objects:
           font_size: 90
       late_updated: { }
 
-  menu_text_button:
-    position: [ LARGEUR//2 , HAUTEUR//2 +100 ]
-    angle: 0
-    tags: { }
-    front_layer: false
-    components:
-      self_updated:
-        SpriteRenderer: { }
-      quick_updated: { }
-      standard:
-        Button:
-          event_on_click: "SCENE_MENU"
-        Grow_on_Hover: { }
-        FontRenderer:
-          texte: "MAIN MENU"
-          font_size: 70
-          color: "BLANK"
-      late_updated: { }
   Score_UI:
     position: [ LARGEUR//2 , HAUTEUR//2 +100 ]
     angle: 0
