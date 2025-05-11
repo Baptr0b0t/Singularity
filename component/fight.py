@@ -181,7 +181,7 @@ class BulletLifeTime(Gameobject.Component,Gameobject.Cooldown):
         return
 
 class EnemySpawner(Gameobject.Component,Gameobject.Cooldown):
-    def __init__(self, parent, time = 10, spawn_radius=10):
+    def __init__(self, parent, time = 7, spawn_radius=30):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, time)
         self.spawn_radius = spawn_radius

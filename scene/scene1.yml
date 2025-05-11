@@ -83,8 +83,19 @@ game_objects:
       standard:
         EnemySpawner: {}
       late_updated: { }
+  ai_ship_generator_2:
+    position: [ -3000, 1000 ]
+    angle: 0
+    tags: { }
+    front_layer: False
+    components:
+      self_updated: { }
+      quick_updated: { }
+      standard:
+        EnemySpawner: { }
+      late_updated: { }
   planet1:
-    position: [0, 0]
+    position: [1000, -1000]
     angle: 0
     tags:
       - PLANET
@@ -112,7 +123,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   planet2:
-    position: [ 2000, 2000 ]
+    position: [ 4000, 4000 ]
     angle: 80
     tags:
       - PLANET
@@ -140,7 +151,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   planet3:
-    position: [ 3000, -500 ]
+    position: [ 6000, -500 ]
     angle: 0
     tags:
       - PLANET
@@ -168,7 +179,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   planet4:
-    position: [ 4000, 500 ]
+    position: [ 4000, -5000 ]
     angle: 0
     tags:
       - PLANET
@@ -184,7 +195,7 @@ game_objects:
         Mass:
           mass: 59740000000000000000000
         PlanetCollision:
-          ratio: 0.5
+          ratio: 0.7
           restitution: 1
           damage_on_other: 10
         ConstantRotation: { }
@@ -196,7 +207,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   planet5:
-    position: [ 2000, -3000 ]
+    position: [ 10000, -8000 ]
     angle: 0
     tags:
       - PLANET
@@ -224,7 +235,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   planet6:
-    position: [ -1500, -500 ]
+    position: [ -1000, 900 ]
     angle: 0
     tags:
       - PLANET
