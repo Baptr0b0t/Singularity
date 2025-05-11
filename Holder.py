@@ -32,7 +32,7 @@ class EventManager:
         print(self.events)
 
 class Game:
-    LARGEUR, HAUTEUR = 1000, 600
+    LARGEUR, HAUTEUR = 1600, 960
     actual_scene = None
     music_player = None
     sound_player = None
