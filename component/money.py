@@ -53,5 +53,5 @@ class LootMoney(Gameobject.Component):
             money.add_standard_component(RelativeCamera(money))
 
         money.add_standard_component(DeleteOnCollision(money, planet_collision_ratio= 0.5, reward_money=self.value, tag_filter = PLAYER))
-
         SceneManager.Scene.add_object(money)
+        Holder.Game.Enemy_killed =+ 1

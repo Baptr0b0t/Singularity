@@ -82,3 +82,14 @@ class Score_for_Visible(Gameobject.Component):
             self.parent.get_component(SpriteRenderer).force_hide = False
         else:
             self.parent.get_component(SpriteRenderer).force_hide = True
+
+class Scene_do_after(Gameobject.Component,Gameobject.Cooldown):
+    def __init__(self, parent, do_after = 15, event = "SCENE_MENU"):
+        Gameobject.Component.__init__(self, parent)
+        Gameobject.Cooldown.__init__(self, do_after)
+        self.event = event
+        Gameobject.Cooldown.reset(self)
+
+    def update(self):
+        if Gameobject.Cooldown.is_ready(self):
+            Holder.Game.post_event(SceneManager.resolve_event(self.event))

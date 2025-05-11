@@ -32,6 +32,7 @@ ROUGE = (255, 0, 0)
 
 def appliquer_filtre_8bit(surface, largeur, hauteur, facteur):
     """
+    UNUSED!!!
     Applique un effet 8-bit en réduisant la résolution de l'affichage.
     :param surface: La surface d'origine (pygame.display ou autre surface).
     :param largeur: La largeur de la surface d'origine.
@@ -62,14 +63,14 @@ Holder.Game.event_manager = Holder.EventManager()
 Holder.Game.sound_player = SoundEffectManager()
 
 menu_scene = SceneManager.Scene("./scene/menu.yml")
+gameover_scene = SceneManager.Scene("./scene/gameover.yml")
 pause_scene = SceneManager.Scene("./scene/pause.yml")
 shop_scene = SceneManager.Scene("./scene/shop.yml")
-
+space_scene = None
 saving_system.init_save_file()
 Holder.Game.score = saving_system.get_highest_score()
 print("SCORE :", Holder.Game.score)
 Holder.Game.money = saving_system.get_money()
-
 Holder.Game.set_actual_scene(menu_scene)
 
 # Boucle principale
@@ -119,7 +120,11 @@ while running:
         Holder.Game.set_actual_scene(space_scene)
 
     if Holder.Game.has_event(eventlist.SCENE_MENU):
-        Holder.Game.score = saving_system.get_highest_score()
+        saving_system.new_score(space_scene.scene_name, Holder.Game.score)
+        Holder.Game.Shot_done = 0
+        Holder.Game.Enemy_killed = 0
+        Holder.Game.Money_received = 0
+        Holder.Game.Collision_done = 0
         Holder.Game.set_actual_scene(menu_scene)
     if Holder.Game.has_event(eventlist.SCENE_TUTORIAL):
         tutorial_scene = SceneManager.Scene("./scene/tutorial.yml")
@@ -127,9 +132,7 @@ while running:
 
 
     if Holder.Game.has_event(eventlist.GAME_OVER):
-        saving_system.new_score(Holder.Game.actual_scene.scene_name, Holder.Game.score)
-        Holder.Game.score = saving_system.get_highest_score()
-        Holder.Game.set_actual_scene(menu_scene)
+        Holder.Game.set_actual_scene(gameover_scene)
 
 
     # Dessin

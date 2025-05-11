@@ -7,24 +7,24 @@ from taglist import AI_TARGETED, AI_SWARM
 
 
 class Reputation(Gameobject.Component):
-    def __init__(self, parent, hostility = 0):
+    def __init__(self, parent, hostility = 0, shot_done = 0):
         super().__init__(parent)
         self.hostility = hostility
-        self.shot_done = 0
+        self.shot_done = shot_done
 
     def action_shooting(self):
         self.shot_done += 1
-        if self.shot_done >= 20:
+        if self.shot_done >= 10:
             self.hostility = 1
 
-        if self.shot_done >= 70:
+        if self.shot_done >= 50:
             self.hostility = 2
 
-        if self.shot_done >= 200:
+        if self.shot_done >= 100:
             self.hostility = 3
 
-        if self.shot_done >= 400:
-            self.hostility = self.shot_done*0.01
+        if self.shot_done >= 200:
+            self.hostility = self.shot_done*0.02
 
 
 class AITarget(Gameobject.Component, Gameobject.Cooldown):

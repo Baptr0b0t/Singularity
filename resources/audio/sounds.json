@@ -4,5 +4,6 @@
     "laser3": "./resources/audio/sounds/laser-3.mp3",
     "purchase": "./resources/audio/sounds/purchase.mp3",
     "no_money": "./resources/audio/sounds/no_more_money.mp3",
-    "got_shot": "./resources/audio/sounds/got_shot.mp3"
+    "got_shot": "./resources/audio/sounds/got_shot.mp3",
+    "planet_collision" : "./resources/audio/sounds/planet_collision.mp3"
 }
