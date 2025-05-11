@@ -88,6 +88,7 @@ class Scene_do_after(Gameobject.Component,Gameobject.Cooldown):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, do_after)
         self.event = event
+    def boot_up(self):
         Gameobject.Cooldown.reset(self)
 
     def update(self):

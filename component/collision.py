@@ -116,6 +116,7 @@ class PlanetCollision(Gameobject.Component):
                         game_object.get_component(Health).health_point -= obj_collision.damage_on_other * damage_proportion
                     if obj.has_tag(PLAYER) or game_object.has_tag(PLAYER):
                         Holder.Game.sound_player.play_sound(f"planet_collision", volume=0.2)
+                        Holder.Game.Collision_done += 1
 
 
 
@@ -181,6 +182,7 @@ class DeleteOnCollision(Gameobject.Component, Gameobject.Cooldown):
 
                 if collide_circle(game_object, obj, self.planet_collision_ratio, obj.get_component(PlanetCollision).collision_ratio):
                     if self.reward_money > 0:
+                        Holder.Game.Money_received += self.reward_money
                         Holder.Game.add_money(self.reward_money)
                     SceneManager.Scene.remove_object(game_object)
                     return

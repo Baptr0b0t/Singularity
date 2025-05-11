@@ -5,17 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Multiple fix and tweak">
-      <change afterPath="$PROJECT_DIR$/resources/audio/sounds/planet_collision.mp3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Holder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Holder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/ai.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/ai.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/collision.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/menu.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/money.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/money.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/audio/sounds.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/sounds.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scene/gameover.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/gameover.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,15 +176,7 @@
       <workItem from="1746775629154" duration="388000" />
       <workItem from="1746863320942" duration="367000" />
       <workItem from="1746895116751" duration="6941000" />
-      <workItem from="1746953840204" duration="4484000" />
-    </task>
-    <task id="LOCAL-00051" summary="Add perspective to Relative Camera with distance">
-      <option name="closed" value="true" />
-      <created>1741332183607</created>
-      <option name="number" value="00051" />
-      <option name="presentableId" value="LOCAL-00051" />
-      <option name="project" value="LOCAL" />
-      <updated>1741332183608</updated>
+      <workItem from="1746953840204" duration="5543000" />
     </task>
     <task id="LOCAL-00052" summary="Fix restitution&#10;FIX bug to be stuck by collision">
       <option name="closed" value="true" />
@@ -576,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746955560415</updated>
     </task>
-    <option name="localTasksCounter" value="100" />
+    <task id="LOCAL-00100" summary="Multiple fix and tweak">
+      <option name="closed" value="true" />
+      <created>1746959204885</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1746959204885</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -638,6 +632,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746959031540" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746960090041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
