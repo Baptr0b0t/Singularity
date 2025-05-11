@@ -8,7 +8,7 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/background.jpeg"
-          scale_factor: 1
+          scale_factor: 1.6
       quick_updated: { }
       standard:
         PlayMusic:
@@ -236,7 +236,7 @@ game_objects:
         Score_for_Visible:
           score_needed: 50
   Tutorial_text_button:
-    position: [LARGEUR//2, HAUTEUR//2-200]
+    position: [LARGEUR//2, HAUTEUR//2+400]
     angle: 0
     tags: { }
     front_layer : true
