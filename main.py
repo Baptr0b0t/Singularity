@@ -64,6 +64,7 @@ Holder.Game.sound_player = SoundEffectManager()
 
 menu_scene = SceneManager.Scene("./scene/menu.yml")
 gameover_scene = SceneManager.Scene("./scene/gameover.yml")
+win_scene = SceneManager.Scene("./scene/win.yml")
 pause_scene = SceneManager.Scene("./scene/pause.yml")
 shop_scene = SceneManager.Scene("./scene/shop.yml")
 space_scene = None
@@ -134,6 +135,10 @@ while running:
     if Holder.Game.has_event(eventlist.GAME_OVER):
         saving_system.new_score(space_scene.scene_name, Holder.Game.score)
         Holder.Game.set_actual_scene(gameover_scene)
+
+    if Holder.Game.has_event(eventlist.WIN):
+        saving_system.new_score(space_scene.scene_name, Holder.Game.score)
+        Holder.Game.set_actual_scene(win_scene)
 
 
     # Dessin

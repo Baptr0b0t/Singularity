@@ -5,7 +5,7 @@ from component.health import Health
 from component.movement import Fuel
 import math
 import SceneManager
-from taglist import PLAYER
+from taglist import PLAYER, BOSS
 
 class FPS_UI(Gameobject.Component, Gameobject.Cooldown):
     def __init__(self, parent, end_texte = "FPS", color = (255,255,255), size = 1, cooldown = 1):
@@ -153,16 +153,23 @@ class Stat_UI(Gameobject.Component):
         game_object.get_component(FontRenderer).change_text(texte, self.color, self.size)
 
 
-class Health_Rectangle(Gameobject.Component, Gameobject.Cooldown):
+class Boss_Health_Rectangle(Gameobject.Component, Gameobject.Cooldown):
     """
     :param color exemple value (255,255,255) or "BLANK"
     """
-    def __init__(self, parent, color = (0,255,0), size = 1, cooldown = 1):
+    def __init__(self, parent, color = (0,255,250), size = (400,30), cooldown = 1):
         Gameobject.Component.__init__(self, parent)
         Gameobject.Cooldown.__init__(self, cooldown)
         self.color = color
         self.size = size
-        #Todo: do the component
+
+    def update(self):
+        rectangle_renderer = self.parent.get_component(RectangleRenderer)
+        player_object = SceneManager.Scene.find_by_tag(BOSS)[0]
+        health = player_object.get_component(Health)
+        if health:
+            coef = health.health_point/health.max_health_point
+            rectangle_renderer.change_size(size = (self.size[0] * coef, self.size[1]))
 
 
 class Fuel_Rectangle(Gameobject.Component, Gameobject.Cooldown):

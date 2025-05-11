@@ -10,7 +10,8 @@ class Reputation(Gameobject.Component):
     def __init__(self, parent, hostility = 0, shot_done = 0):
         super().__init__(parent)
         self.hostility = hostility
-        self.shot_done = shot_done
+        self.shot_done = shot_done - 1
+        self.action_shooting()
 
     def action_shooting(self):
         self.shot_done += 1

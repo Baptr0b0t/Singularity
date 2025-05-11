@@ -129,10 +129,12 @@ class RectangleRenderer(Gameobject.Component):
         game_object = self.parent
         if color is None:
             color = self.color
-
-        surface_rect = pygame.Surface(size)
-        surface_rect.fill(color)
-        game_object.get_component(SpriteRenderer).set_sprite(surface_rect)
+        try:
+            surface_rect = pygame.Surface(size)
+            surface_rect.fill(color)
+            game_object.get_component(SpriteRenderer).set_sprite(surface_rect)
+        except:
+            pass
 
 
 

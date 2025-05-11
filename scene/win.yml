@@ -1,0 +1,46 @@
+game_objects:
+  background:
+    position: [ LARGEUR//2, HAUTEUR//2 ]
+    angle: 0
+    tags: { }
+    front_layer : False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/background.png"
+          scale_factor: 0.6
+      quick_updated: { }
+      standard:
+        Scene_do_after: {}
+        PlayMusic:
+          filename: "./resources/audio/Final flash of existence REMIX.mp3"
+      late_updated: { }
+
+  text_game_over:
+    position: [ LARGEUR/2, HAUTEUR/2 -100 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "You win!"
+          font_size: 90
+      late_updated: { }
+
+  Score_UI:
+    position: [ LARGEUR//2 , HAUTEUR//2 +100 ]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer: { }
+        Stat_UI: { }
+      late_updated: { }

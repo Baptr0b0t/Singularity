@@ -52,10 +52,10 @@ game_objects:
         EventOnNoHealth:
           event: "GAME_OVER"
         Reputation:
-          shot_done: 10
+          shot_done: 200
         Fuel: { }
-        Health: { }
         PlayerUpgradeEventListener: { }
+        Health: { }
         HealthRegen: { }
         Mass:
           mass : 1000
@@ -98,7 +98,7 @@ game_objects:
           level: 2
       late_updated: { }
   ai_ship_generator_3:
-    position: [ 3000, 1000 ]
+    position: [ 5000, 2000 ]
     angle: 0
     tags: { }
     front_layer: False
@@ -109,166 +109,46 @@ game_objects:
         EnemySpawner:
           level: 2
       late_updated: { }
-  planet1:
-    position: [1000, -1000]
+  ai_ship_generator_4:
+    position: [ 5000, -1000 ]
+    angle: 0
+    tags: { }
+    front_layer: False
+    components:
+      self_updated: { }
+      quick_updated: { }
+      standard:
+        EnemySpawner:
+          level: 2
+      late_updated: { }
+  Station_BOSS:
+    position: [ 3000, 900 ]
     angle: 0
     tags:
       - PLANET
-    front_layer : False
+      - BOSS
+    front_layer: False
     components:
       self_updated:
         SpriteRenderer:
-          image_path: "./resources/planet_2.png"
-          scale_factor: 1.2
-      quick_updated:
-        Velocity: { }
-      standard:
-        Mass:
-          mass: 79740000000000000000000
-        PlanetCollision:
-          ratio: 0.7
-          restitution : 1
-          damage_on_other: 10
-        ConstantRotation: { }
-        RelativeCamera: { }
-        Gravity:
-          fixed : True
-        #SpeedLimit:
-        #  speedlimit: 1000
-      late_updated:
-        SpaceMovement: { }
-  planet2:
-    position: [ 4000, 4000 ]
-    angle: 80
-    tags:
-      - PLANET
-    front_layer : False
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_2.png"
+          image_path: "./resources/space_station.png"
           scale_factor: 1
       quick_updated:
         Velocity: { }
       standard:
         Mass:
-          mass: 59740000000000000000000
+          mass: 60000000000000000000000
         PlanetCollision:
-          restitution : 1
-          ratio: 0.7
-          damage_on_other: 10
-        RelativeCamera: { }
-        Gravity:
-          fixed : True
-        #SpeedLimit:
-        #  speedlimit: 1000
-
-      late_updated:
-        SpaceMovement: { }
-  planet3:
-    position: [ 3000, -500 ]
-    angle: 0
-    tags:
-      - PLANET
-    front_layer: False
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_1.png"
-          scale_factor: 0.8
-      quick_updated:
-        Velocity: { }
-      standard:
-        Mass:
-          mass: 59740000000000000000000
-        PlanetCollision:
-          ratio: 0.7
+          ratio: 0.8
           restitution: 1
-          damage_on_other: 10
-        ConstantRotation: { }
-        RelativeCamera: { }
-        Gravity:
-          fixed: True
-        #SpeedLimit:
-        #  speedlimit: 1000
-      late_updated:
-        SpaceMovement: { }
-  planet4:
-    position: [ 3000, 1500 ]
-    angle: 0
-    tags:
-      - PLANET
-    front_layer: False
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_3.png"
-          scale_factor: 0.8
-      quick_updated:
-        Velocity: { }
-      standard:
-        Mass:
-          mass: 59740000000000000000000
-        PlanetCollision:
-          ratio: 0.7
-          restitution: 1
-          damage_on_other: 10
-        ConstantRotation: { }
-        RelativeCamera: { }
-        Gravity:
-          fixed: True
-        #SpeedLimit:
-        #  speedlimit: 1000
-      late_updated:
-        SpaceMovement: { }
-  planet5:
-    position: [ 5000, -2000 ]
-    angle: 0
-    tags:
-      - PLANET
-    front_layer: False
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_2.png"
-          scale_factor: 1.5
-      quick_updated:
-        Velocity: { }
-      standard:
-        Mass:
-          mass: 89740000000000000000000
-        PlanetCollision:
-          ratio: 0.7
-          restitution: 1
-          damage_on_other: 10
-        ConstantRotation: { }
-        RelativeCamera: { }
-        Gravity:
-          fixed: True
-        #SpeedLimit:
-        #  speedlimit: 1000
-      late_updated:
-        SpaceMovement: { }
-  planet6:
-    position: [ -2000, 900 ]
-    angle: 0
-    tags:
-      - PLANET
-    front_layer: False
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_1.png"
-          scale_factor: 0.8
-      quick_updated:
-        Velocity: { }
-      standard:
-        Mass:
-          mass: 59740000000000000000000
-        PlanetCollision:
-          ratio: 0.7
-          restitution: 1
-          damage_on_other: 10
+          damage_on_other: 20
+        Health:
+          health_point : 5000
+          max_health_point : 5000
+        HealthRegen:
+          regen_rate: 10
+        EventOnNoHealth:
+          event: "WIN"
         ConstantRotation: { }
         RelativeCamera: { }
         Gravity:
@@ -397,4 +277,21 @@ game_objects:
         RectangleRenderer:
           color: "FUEL"
         Fuel_Rectangle: { }
+      late_updated: { }
+
+
+  Boss_Health_Rectangle_UI:
+    position: [LARGEUR//2-200, 60]
+    angle: 0
+    tags: { }
+    front_layer : True
+    components:
+      self_updated:
+        SpriteRenderer:
+          use_topleft: True
+      quick_updated: { }
+      standard:
+        RectangleRenderer:
+          color: "FUEL"
+        Boss_Health_Rectangle: { }
       late_updated: { }
