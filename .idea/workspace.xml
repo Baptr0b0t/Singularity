@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Meteor generator">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Menu upgrade + Reset button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/eventlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/eventlist.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/save/save.py" beforeDir="false" afterPath="$PROJECT_DIR$/save/save.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scene/menu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/menu.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/scene1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene1.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,15 +177,7 @@
       <workItem from="1746895116751" duration="6941000" />
       <workItem from="1746953840204" duration="7378000" />
       <workItem from="1746962054666" duration="8775000" />
-      <workItem from="1746979292208" duration="5378000" />
-    </task>
-    <task id="LOCAL-00060" summary="Not working draft of &#10;TODO : Put event manager global in Holder.game">
-      <option name="closed" value="true" />
-      <created>1742393355125</created>
-      <option name="number" value="00060" />
-      <option name="presentableId" value="LOCAL-00060" />
-      <option name="project" value="LOCAL" />
-      <updated>1742393355125</updated>
+      <workItem from="1746979292208" duration="6683000" />
     </task>
     <task id="LOCAL-00061" summary="fix event manager as a global class in Holder.game">
       <option name="closed" value="true" />
@@ -575,7 +563,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746983755905</updated>
     </task>
-    <option name="localTasksCounter" value="109" />
+    <task id="LOCAL-00109" summary="Menu upgrade + Reset button">
+      <option name="closed" value="true" />
+      <created>1746984814535</created>
+      <option name="number" value="00109" />
+      <option name="presentableId" value="LOCAL-00109" />
+      <option name="project" value="LOCAL" />
+      <updated>1746984814535</updated>
+    </task>
+    <option name="localTasksCounter" value="110" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -599,7 +595,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same" />
     <MESSAGE value="Added loot credit" />
     <MESSAGE value="Added score system" />
     <MESSAGE value="Updated PlayerUpradeEventListener for use a event map for multiple event listenener" />
@@ -624,7 +619,8 @@
     <MESSAGE value="Add scene 3" />
     <MESSAGE value="YML and scene tweek" />
     <MESSAGE value="Meteor generator" />
-    <option name="LAST_COMMIT_MESSAGE" value="Meteor generator" />
+    <MESSAGE value="Menu upgrade + Reset button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Menu upgrade + Reset button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -637,6 +633,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746984782731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746988178531" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>
