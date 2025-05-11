@@ -37,12 +37,13 @@ game_objects:
           ratio : 0.1
       late_updated: { }
   player:
-    position: [LARGEUR//2, HAUTEUR//2+200]
+    position: [ 1000, 0 ]
     angle: 0
     tags:
       - MAIN_CAMERA
       - PLAYER
-    front_layer : false
+      - AI_TARGETED
+    front_layer: false
     components:
       self_updated:
         SpriteRenderer:
@@ -51,32 +52,29 @@ game_objects:
       quick_updated:
         Velocity: { }
       standard:
-        #ScreenLimit:
-        #  bounce: True
+        EventOnNoHealth:
+          event: "GAME_OVER"
+        Reputation: { }
         Fuel: { }
         Health: { }
-        Upgrade_Event:
-          event_name: "BOUGHT_HEALTH_UPGRADE"
-          component: Health
+        PlayerUpgradeEventListener: { }
         HealthRegen: { }
-        DamageCollision:
-          ratio: 0.81
-          damage_on_other: 20
         Mass:
-          mass : 1000
+          mass: 1000
         PlanetCollision:
-          ratio : 0.8
-          restitution : 0.95
+          ratio: 0.8
+          restitution: 0.95
+          damage_on_other: 10
         PlayerSpaceMovement:
-          acceleration_speed: 50
+          acceleration_speed: 100
         Gravity: { }
-        RelativeCamera: {}
+        RelativeCamera: { }
         PlayerShot: { }
         SpeedLimit:
           speedlimit: 200
       late_updated:
-        SpaceMovement: {}
-        Velocity_Arrow: {}
+        SpaceMovement: { }
+        Velocity_Arrow: { }
   ai_ship:
     position: [LARGEUR//2, HAUTEUR//2+100]
     angle: 0
@@ -144,7 +142,58 @@ game_objects:
         #  speedlimit: 1000
       late_updated:
         SpaceMovement: { }
-
+  text_shoot:
+    position: [ LARGEUR-330, HAUTEUR-200 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "Left-click : shoot"
+      late_updated: { }
+  text_throttle:
+    position: [ LARGEUR-330, HAUTEUR-150 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "Space : throttle"
+      late_updated: { }
+  text_boost:
+    position: [ LARGEUR-330, HAUTEUR-100 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "space+maj : boost"
+      late_updated: { }
+  text_shop:
+    position: [ LARGEUR-330, HAUTEUR-50 ]
+    angle: 0
+    tags: { }
+    front_layer: false
+    components:
+      self_updated:
+        SpriteRenderer: { }
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "r : shop"
+      late_updated: { }
   FPS_UI:
     position: [ 100, 80 ]
     angle: 0
