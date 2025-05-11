@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="YML and scene tweek">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Meteor generator">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/eventlist.py" beforeDir="false" afterPath="$PROJECT_DIR$/eventlist.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/save/save.py" beforeDir="false" afterPath="$PROJECT_DIR$/save/save.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/menu.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/menu.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/scene/scene1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene1.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/scene2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene2.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/scene3.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene3.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -180,15 +181,7 @@
       <workItem from="1746895116751" duration="6941000" />
       <workItem from="1746953840204" duration="7378000" />
       <workItem from="1746962054666" duration="8775000" />
-      <workItem from="1746979292208" duration="4092000" />
-    </task>
-    <task id="LOCAL-00059" summary="Add draft shop.yml&#10;Money is no more bond to Gameobject but directly from the game for let modification from outside of the scene&#10;AI spaceship have a higher movement speed">
-      <option name="closed" value="true" />
-      <created>1742390849928</created>
-      <option name="number" value="00059" />
-      <option name="presentableId" value="LOCAL-00059" />
-      <option name="project" value="LOCAL" />
-      <updated>1742390849928</updated>
+      <workItem from="1746979292208" duration="5378000" />
     </task>
     <task id="LOCAL-00060" summary="Not working draft of &#10;TODO : Put event manager global in Holder.game">
       <option name="closed" value="true" />
@@ -574,7 +567,15 @@
       <option name="project" value="LOCAL" />
       <updated>1746981302139</updated>
     </task>
-    <option name="localTasksCounter" value="108" />
+    <task id="LOCAL-00108" summary="Meteor generator">
+      <option name="closed" value="true" />
+      <created>1746983755904</created>
+      <option name="number" value="00108" />
+      <option name="presentableId" value="LOCAL-00108" />
+      <option name="project" value="LOCAL" />
+      <updated>1746983755905</updated>
+    </task>
+    <option name="localTasksCounter" value="109" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -598,7 +599,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add play button png" />
     <MESSAGE value="Fix damagecollider not applying by combining DamageCollision and DeleteOnCollision in same" />
     <MESSAGE value="Added loot credit" />
     <MESSAGE value="Added score system" />
@@ -623,7 +623,8 @@
     <MESSAGE value="Fix of ratio collision and add no fuel sound" />
     <MESSAGE value="Add scene 3" />
     <MESSAGE value="YML and scene tweek" />
-    <option name="LAST_COMMIT_MESSAGE" value="YML and scene tweek" />
+    <MESSAGE value="Meteor generator" />
+    <option name="LAST_COMMIT_MESSAGE" value="Meteor generator" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -636,6 +637,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746983303636" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746984782731" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

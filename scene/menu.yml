@@ -199,6 +199,20 @@ game_objects:
           event_on_click: "LOAD_SCENE_SPACE_1"
         Grow_on_Hover: { }
       late_updated: { }
+  Play_level1_text:
+    position: [LARGEUR//2, 300]
+    angle: 0
+    tags: { }
+    front_layer : true
+    components:
+      self_updated:
+        SpriteRenderer:
+          scale_factor: 0.7
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "Level 1 : free"
+      late_updated: { }
   Play_level2_button:
     position: [LARGEUR//2, 400]
     angle: 0
@@ -216,7 +230,21 @@ game_objects:
         Grow_on_Hover: { }
       late_updated:
         Score_for_Visible:
-          score_needed: 10
+          score_needed: 40
+  Play_level2_text:
+    position: [LARGEUR//2, 500]
+    angle: 0
+    tags: { }
+    front_layer : true
+    components:
+      self_updated:
+        SpriteRenderer:
+          scale_factor: 0.7
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "Level 2 : 40 points"
+      late_updated: { }
   Play_level3_button:
     position: [LARGEUR//2, 600]
     angle: 0
@@ -234,7 +262,21 @@ game_objects:
         Grow_on_Hover: { }
       late_updated:
         Score_for_Visible:
-          score_needed: 50
+          score_needed: 100
+  Play_level3_text:
+    position: [LARGEUR//2, 700]
+    angle: 0
+    tags: { }
+    front_layer : true
+    components:
+      self_updated:
+        SpriteRenderer:
+          scale_factor: 0.7
+      quick_updated: { }
+      standard:
+        FontRenderer:
+          texte: "Level 3 : 100 points"
+      late_updated: { }
   Tutorial_text_button:
     position: [LARGEUR//2+400, 80]
     angle: 0
@@ -253,7 +295,24 @@ game_objects:
           font_size: 70
           color: "BLANK"
       late_updated: { }
-
+  Reset_text_button:
+    position: [ 180, 600 ]
+    angle: 0
+    tags: { }
+    front_layer : true
+    components:
+      self_updated:
+        SpriteRenderer: {}
+      quick_updated: { }
+      standard:
+        Button:
+          event_on_click: "RESET_STAT"
+        Grow_on_Hover: { }
+        FontRenderer:
+          texte: "RESET PROGRESSION"
+          font_size: 30
+          color: "BLANK"
+      late_updated: { }
 
   Score_UI:
     position: [ 100, 500 ]

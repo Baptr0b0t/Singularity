@@ -141,6 +141,9 @@ while running:
         saving_system.new_score(space_scene.scene_name, Holder.Game.score)
         Holder.Game.set_actual_scene(win_scene)
 
+    if Holder.Game.has_event(eventlist.RESET_STAT):
+        saving_system.reset_progression()
+        running = False
 
     # Dessin
     fenetre.fill(NOIR)

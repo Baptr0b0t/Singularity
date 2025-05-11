@@ -72,3 +72,10 @@ def set_money(amount):
 
     with open(SAVE_FILE, "w") as save:
         json.dump(data, save, indent=4)
+
+def reset_progression():
+    if os.path.exists(SAVE_FILE):
+        os.remove(SAVE_FILE)
+        print("Fichier de sauvegarde supprimé.")
+    else:
+        print("Aucun fichier de sauvegarde à supprimer.")
