@@ -4,13 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Multiple fix and tweak">
+    <list default="true" id="48a2e437-980f-4ec1-beaa-41717d4a1097" name="Changes" comment="Add score visible for button 3">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/collision.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/collision.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/menu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/component/money.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/money.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/fight.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/fight.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/component/movement.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/movement.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/component/ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/component/ui.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/scene/gameover.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/gameover.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/audio/sounds.json" beforeDir="false" afterPath="$PROJECT_DIR$/resources/audio/sounds.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/scene1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene1.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/scene/scene2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/scene/scene2.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -176,39 +178,8 @@
       <workItem from="1746775629154" duration="388000" />
       <workItem from="1746863320942" duration="367000" />
       <workItem from="1746895116751" duration="6941000" />
-      <workItem from="1746953840204" duration="5543000" />
-    </task>
-    <task id="LOCAL-00052" summary="Fix restitution&#10;FIX bug to be stuck by collision">
-      <option name="closed" value="true" />
-      <created>1741333553227</created>
-      <option name="number" value="00052" />
-      <option name="presentableId" value="LOCAL-00052" />
-      <option name="project" value="LOCAL" />
-      <updated>1741333553227</updated>
-    </task>
-    <task id="LOCAL-00053" summary="Add fuel component (no recharge point yet)">
-      <option name="closed" value="true" />
-      <created>1741334603490</created>
-      <option name="number" value="00053" />
-      <option name="presentableId" value="LOCAL-00053" />
-      <option name="project" value="LOCAL" />
-      <updated>1741334603490</updated>
-    </task>
-    <task id="LOCAL-00054" summary="Add fuel UI">
-      <option name="closed" value="true" />
-      <created>1741337845676</created>
-      <option name="number" value="00054" />
-      <option name="presentableId" value="LOCAL-00054" />
-      <option name="project" value="LOCAL" />
-      <updated>1741337845676</updated>
-    </task>
-    <task id="LOCAL-00055" summary="Add Pause menu">
-      <option name="closed" value="true" />
-      <created>1742197289481</created>
-      <option name="number" value="00055" />
-      <option name="presentableId" value="LOCAL-00055" />
-      <option name="project" value="LOCAL" />
-      <updated>1742197289485</updated>
+      <workItem from="1746953840204" duration="7378000" />
+      <workItem from="1746962054666" duration="3387000" />
     </task>
     <task id="LOCAL-00056" summary="Add Music Player&#10;Add bootup method for component (used when the scene change)">
       <option name="closed" value="true" />
@@ -570,7 +541,39 @@
       <option name="project" value="LOCAL" />
       <updated>1746959204885</updated>
     </task>
-    <option name="localTasksCounter" value="101" />
+    <task id="LOCAL-00101" summary="Multiple fix and tweak">
+      <option name="closed" value="true" />
+      <created>1746960221943</created>
+      <option name="number" value="00101" />
+      <option name="presentableId" value="LOCAL-00101" />
+      <option name="project" value="LOCAL" />
+      <updated>1746960221944</updated>
+    </task>
+    <task id="LOCAL-00102" summary="Fix collision depth calcul">
+      <option name="closed" value="true" />
+      <created>1746963106973</created>
+      <option name="number" value="00102" />
+      <option name="presentableId" value="LOCAL-00102" />
+      <option name="project" value="LOCAL" />
+      <updated>1746963106974</updated>
+    </task>
+    <task id="LOCAL-00103" summary="Add ultra damage to black hole">
+      <option name="closed" value="true" />
+      <created>1746963312873</created>
+      <option name="number" value="00103" />
+      <option name="presentableId" value="LOCAL-00103" />
+      <option name="project" value="LOCAL" />
+      <updated>1746963312874</updated>
+    </task>
+    <task id="LOCAL-00104" summary="Add score visible for button 3">
+      <option name="closed" value="true" />
+      <created>1746964022827</created>
+      <option name="number" value="00104" />
+      <option name="presentableId" value="LOCAL-00104" />
+      <option name="project" value="LOCAL" />
+      <updated>1746964022828</updated>
+    </task>
+    <option name="localTasksCounter" value="105" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -594,9 +597,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="AI fighting update &#10;Zoomed rendering lag fixed using Cached image" />
-    <MESSAGE value="Bug fix with Cached Scale Render" />
-    <MESSAGE value="Add some AI at main menu&#10;Some find_by_tag/Component bug list &#10;Some AI improvement with AI_TARGETED tag" />
     <MESSAGE value="Add 2 music&#10;Add sounds manager" />
     <MESSAGE value="Add resource" />
     <MESSAGE value="Draft Tutorial" />
@@ -619,7 +619,10 @@
     <MESSAGE value="Add got_shot sound" />
     <MESSAGE value="Fix Commit error" />
     <MESSAGE value="Multiple fix and tweak" />
-    <option name="LAST_COMMIT_MESSAGE" value="Multiple fix and tweak" />
+    <MESSAGE value="Fix collision depth calcul" />
+    <MESSAGE value="Add ultra damage to black hole" />
+    <MESSAGE value="Add score visible for button 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add score visible for button 3" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -632,6 +635,6 @@
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746960090041" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Singularity$main.coverage" NAME="main Coverage Results" MODIFIED="1746965430185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
 </project>

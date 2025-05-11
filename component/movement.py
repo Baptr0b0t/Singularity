@@ -32,6 +32,7 @@ class Fuel(Gameobject.Component):
     def upgrade(self, value):
         self.max_fuel+=value
         self.fuel=self.max_fuel
+        self.parent.get_component(PlayerSpaceMovement).played_no_fuel = False
 
 
 class Gravity(Gameobject.Component):
@@ -83,6 +84,7 @@ class PlayerSpaceMovement(Gameobject.Component):
         super().__init__(parent)
         self.deltav = acceleration_speed
         self.boost_force = boost_force
+        self.played_no_fuel = False
 
     def update(self):
         game_object = self.parent
@@ -97,6 +99,9 @@ class PlayerSpaceMovement(Gameobject.Component):
                 transform.angle = math.atan2(souris_y - transform.y, souris_x - transform.x) + math.radians(90)
             fuel = game_object.get_component(Fuel)
             if fuel and fuel.fuel<=0: # Lorsqu'il n'y a plus de carburant
+                if not self.played_no_fuel:
+                    Holder.Game.sound_player.play_sound(f"no_fuel")
+                    self.played_no_fuel = True
                 return
 
             if velocity: #Lorsque le composant existe
@@ -106,7 +111,8 @@ class PlayerSpaceMovement(Gameobject.Component):
                         force = self.deltav * self.boost_force
 
                         if fuel:
-                            fuel.fuel -= self.boost_force
+                            fuel.fuel -= self.boost_force * 5
+
                     else:
                         force = self.deltav
                         if fuel:
