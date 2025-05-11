@@ -395,7 +395,7 @@ game_objects:
         Score_UI: { }
       late_updated: { }
 
-  Rectangle_UI:
+  Fuel_Rectangle_UI:
     position: [40, HAUTEUR//2 - 60]
     angle: 0
     tags: { }

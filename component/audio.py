@@ -86,7 +86,7 @@ class SoundEffectManager:
             self.sounds[name].set_volume(volume)
             self.sounds[name].play()
 
-            print(f"Son joué : {name}")
+            #print(f"Son joué : {name}")
         else:
             print(f"Son non trouvé : {name}")
 
