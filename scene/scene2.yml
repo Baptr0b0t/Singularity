@@ -123,7 +123,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   planet2:
-    position: [ 2000, 3000 ]
+    position: [ 4000, 4000 ]
     angle: 80
     tags:
       - PLANET
@@ -151,7 +151,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   planet3:
-    position: [ 2000, -2200 ]
+    position: [ 3000, -500 ]
     angle: 0
     tags:
       - PLANET
@@ -159,7 +159,7 @@ game_objects:
     components:
       self_updated:
         SpriteRenderer:
-          image_path: "./resources/planet_3.png"
+          image_path: "./resources/planet_1.png"
           scale_factor: 0.8
       quick_updated:
         Velocity: { }
@@ -179,91 +179,7 @@ game_objects:
       late_updated:
         SpaceMovement: { }
   planet4:
-    position: [ 3000, -4000 ]
-    angle: 0
-    tags:
-      - PLANET
-    front_layer: False
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_1.png"
-          scale_factor: 0.8
-      quick_updated:
-        Velocity: { }
-      standard:
-        Mass:
-          mass: 59740000000000000000000
-        PlanetCollision:
-          ratio: 0.7
-          restitution: 1
-          damage_on_other: 10
-        ConstantRotation: { }
-        RelativeCamera: { }
-        Gravity:
-          fixed: True
-        #SpeedLimit:
-        #  speedlimit: 1000
-      late_updated:
-        SpaceMovement: { }
-  planet5:
-    position: [ 4000, 2000 ]
-    angle: 0
-    tags:
-      - PLANET
-    front_layer: False
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_1.png"
-          scale_factor: 1.5
-      quick_updated:
-        Velocity: { }
-      standard:
-        Mass:
-          mass: 89740000000000000000000
-        PlanetCollision:
-          ratio: 0.7
-          restitution: 1
-          damage_on_other: 10
-        ConstantRotation: { }
-        RelativeCamera: { }
-        Gravity:
-          fixed: True
-        #SpeedLimit:
-        #  speedlimit: 1000
-      late_updated:
-        SpaceMovement: { }
-  planet6:
-    position: [ -2500, 900 ]
-    angle: 0
-    tags:
-      - PLANET
-    front_layer: False
-    components:
-      self_updated:
-        SpriteRenderer:
-          image_path: "./resources/planet_1.png"
-          scale_factor: 0.8
-      quick_updated:
-        Velocity: { }
-      standard:
-        Mass:
-          mass: 59740000000000000000000
-        PlanetCollision:
-          ratio: 0.7
-          restitution: 1
-          damage_on_other: 10
-        ConstantRotation: { }
-        RelativeCamera: { }
-        Gravity:
-          fixed: True
-        #SpeedLimit:
-        #  speedlimit: 1000
-      late_updated:
-        SpaceMovement: { }
-  planet7:
-    position: [ 0 , 2200 ]
+    position: [ 3000, 1500 ]
     angle: 0
     tags:
       - PLANET
@@ -290,8 +206,64 @@ game_objects:
         #  speedlimit: 1000
       late_updated:
         SpaceMovement: { }
+  planet5:
+    position: [ 5000, -2000 ]
+    angle: 0
+    tags:
+      - PLANET
+    front_layer: False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/planet_2.png"
+          scale_factor: 1.5
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 89740000000000000000000
+        PlanetCollision:
+          ratio: 0.7
+          restitution: 1
+          damage_on_other: 10
+        ConstantRotation: { }
+        RelativeCamera: { }
+        Gravity:
+          fixed: True
+        #SpeedLimit:
+        #  speedlimit: 1000
+      late_updated:
+        SpaceMovement: { }
+  planet6:
+    position: [ -2000, 900 ]
+    angle: 0
+    tags:
+      - PLANET
+    front_layer: False
+    components:
+      self_updated:
+        SpriteRenderer:
+          image_path: "./resources/planet_1.png"
+          scale_factor: 0.8
+      quick_updated:
+        Velocity: { }
+      standard:
+        Mass:
+          mass: 59740000000000000000000
+        PlanetCollision:
+          ratio: 0.7
+          restitution: 1
+          damage_on_other: 10
+        ConstantRotation: { }
+        RelativeCamera: { }
+        Gravity:
+          fixed: True
+        #SpeedLimit:
+        #  speedlimit: 1000
+      late_updated:
+        SpaceMovement: { }
   black_hole:
-    position: [ 600, 500 ]
+    position: [ 600, 2500 ]
     angle: 0
     tags:
       - PLANET
@@ -300,12 +272,12 @@ game_objects:
       self_updated:
         SpriteRenderer:
           image_path: "./resources/black_hole.png"
-          scale_factor: 0.02
+          scale_factor: 0.8
       quick_updated:
         Velocity: { }
       standard:
         Mass:
-          mass: 1000
+          mass: 59740000000000000000000
         PlanetCollision:
           ratio : 0.6
           restitution : 1
