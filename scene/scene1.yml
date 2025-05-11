@@ -301,7 +301,7 @@ game_objects:
         #  speedlimit: 1000
       late_updated:
         SpaceMovement: { }
-  black_hole:
+  small_asteroid:
     position: [ 600, 500 ]
     angle: 0
     tags:
@@ -310,19 +310,21 @@ game_objects:
     components:
       self_updated:
         SpriteRenderer:
-          image_path: "./resources/black_hole.png"
-          scale_factor: 0.02
+          image_path: "./resources/asteroide.png"
+          scale_factor: 0.7
       quick_updated:
         Velocity: { }
       standard:
         Mass:
-          mass: 1000
+          mass: 1300
         PlanetCollision:
           ratio : 0.6
           restitution : 1
+          damage_on_other: 10
+        Health: { }
+        DestroyOnNoHealth: { }
         RelativeCamera: { }
-        Gravity:
-          fixed : True
+        Gravity: { }
         #ScreenLimit:
         #  bounce : True
       late_updated:

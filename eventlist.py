@@ -1,4 +1,3 @@
-import pygame
 MY_EVENT = 20200
 
 
@@ -6,6 +5,8 @@ QUIT = 20201
 
 GAME_OVER = 20202
 WIN = 20203
+RESET_STAT = 20204
+
 
 #Scene
 SCENE_SPACE = 20311
