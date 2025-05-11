@@ -281,6 +281,7 @@ game_objects:
         PlanetCollision:
           ratio : 0.6
           restitution : 1
+          damage_on_other: 100
         RelativeCamera: { }
         Gravity:
           fixed : True
